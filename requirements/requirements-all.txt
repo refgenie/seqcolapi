@@ -1,0 +1,10 @@
+aiofiles
+fastapi
+henge
+jinja2
+logmuse>=0.2
+psycopg2-binary
+refget
+# seqcol
+uvicorn>=0.7.1
+ubiquerg>=0.6.1

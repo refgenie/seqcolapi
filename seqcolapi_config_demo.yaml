@@ -1,0 +1,14 @@
+refget_provider_apis:
+- https://www.ebi.ac.uk/ena/cram/sequence/
+schemas:
+- http://schema.databio.org/refget/RawSeqCol.yaml
+database:
+  host: $POSTGRES_HOST
+  port: 5432
+  password: $POSTGRES_PASSWORD
+  user: postgres
+  name: seqcol
+  table: seqcol
+server:
+  host: 0.0.0.0
+  port: 8000
