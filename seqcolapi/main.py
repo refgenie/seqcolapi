@@ -7,8 +7,12 @@ import uvicorn
 from fastapi import FastAPI, Response
 from fastapi.responses import JSONResponse
 from platform import python_version
+from starlette.requests import Request
+from starlette.templating import Jinja2Templates
+from starlette.staticfiles import StaticFiles
 from ubiquerg import VersionInHelpParser
 from yacman import get_first_env_var
+
 
 from .scconf import RDBDict, SeqColConf
 from ._version import __version__ as seqcolapi_version
@@ -16,9 +20,6 @@ from refget._version import __version__ as refgetclient_version
 
 PKG_NAME="seqcolapi"
 ALL_VERSIONS = {"server_version": seqcolapi_version, "refget_client_version": refgetclient_version, "python_version": python_version()}
-DEFAULT_PORT=8000
-
-
 
 # We don't need the full SeqColClient, 
 # which also has loading capability, and requires pyfaidx, which requires
@@ -40,9 +41,6 @@ DEFAULT_PORT=8000
 #                 return henge.NotFoundException("{} not found in database, or in refget.".format(druid))
 
 from seqcol import SeqColClient
-
-
-
 
 def build_parser():
     """
@@ -90,17 +88,39 @@ def build_parser():
         "-p", "--port",
         dest="port",
         type=int,
-        help="The port the webserver should be run on.", default=DEFAULT_PORT)
+        help="The port the webserver should be run on.", default=None)
     return parser
 
 
 app = FastAPI(title="SeqColAPI",
     description="An API for Sequence Collections",
-    version="0.0.1")
+    version=seqcolapi_version)
 
-@app.get("/")
+
+STATIC_DIRNAME = "static"
+STATIC_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), STATIC_DIRNAME)
+app.mount("/" + STATIC_DIRNAME, StaticFiles(directory=STATIC_PATH), name=STATIC_DIRNAME)
+TEMPLATES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates")
+templates = Jinja2Templates(directory=TEMPLATES_PATH)
+
+
+
+@app.get("/test")
 async def root():
     return Response(content="Welcome to the test seqcol server.")
+
+@app.get("/")
+@app.get("/index")
+async def index(request: Request):
+    """
+    Returns a landing page HTML with the server resources ready do download. No inputs required.
+    """
+    templ_vars = {"request": request, 
+                  "openapi_version": app.openapi()["openapi"]}
+    _LOGGER.debug("merged vars: {}".format(dict(templ_vars, **ALL_VERSIONS)))
+    return templates.TemplateResponse("index.html", dict(templ_vars, **ALL_VERSIONS))
+
+
 
 @app.get("/refget/{digest}")
 async def root(digest: str):
@@ -110,7 +130,8 @@ async def root(digest: str):
 @app.get("/seqcol/{digest}")
 async def root(digest: str):
     try:
-        print(sc.retrieve(digest))
+        # res = sc.retrieve(digest)
+        # print(res)
         return JSONResponse(content=sc.retrieve(digest))
     except:
         return {}
@@ -119,7 +140,8 @@ async def root(digest: str):
 @app.get("/seqcol/{digest}/{reclimit}")
 async def root(digest: str, reclimit: int):
     try:
-        print(sc.retrieve(digest, reclimit=reclimit))
+        # res = sc.retrieve(digest, reclimit=reclimit)
+        # print(res)
         return JSONResponse(content=sc.retrieve(digest, reclimit=reclimit))
     except:
         return {}
@@ -154,6 +176,7 @@ def main():
     sc = SeqColClient(database=pgdb,
         api_url_base=scc.refget_provider_apis,
         schemas=scc.schemas)
-
+    seqcolapi_port = args.port if args.port else scc.server.port
+    _LOGGER.info("Running on port {}".format(seqcolapi_port))
     uvicorn.run(app, host=scc.server.host,
-            port=scc.server.port)
+            port=seqcolapi_port)
