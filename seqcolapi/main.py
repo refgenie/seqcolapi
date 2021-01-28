@@ -25,7 +25,7 @@ DEFAULT_PORT=8000
 # biopython, which requires numpy, which is huge and can't compile the in
 # default fastapi container.
 # but switching from alpine to slim allows install of numpy;
-# This inflates the containers ize from 262Mb to 350Mb; pehaps that's worth paying.
+# This inflates the container size from 262Mb to 350Mb; perhaps that's worth paying.
 # class SeqColClient(refget.RefGetClient):
 #     def retrieve(self, druid, reclimit=None, raw=False):
 #         try:

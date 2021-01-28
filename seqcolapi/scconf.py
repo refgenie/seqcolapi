@@ -64,6 +64,22 @@ class RDBDict(object):
         params = {"key":key, "value":value}
         return self.execute_query(stmt, params)
 
+    def __getitem__(self, key):
+        if isinstance(key, int):
+            raise IndexError
+        stmt = sql.SQL("""
+            SELECT value FROM {table} WHERE key=%(key)s
+        """).format(table=sql.Identifier(self.db_table))
+        params = {"key":key}
+        return self.execute_read_query(stmt, params)
+
+    def __setitem__(self, key, value):
+        try: 
+            return self.insert(key, value)
+        except UniqueViolation as e:
+            print("Updating existing value")
+            return self.update(key, value)
+        
     def create_connection(self, db_name, db_user, db_password, db_host, db_port):
         connection = None
         try:
@@ -131,20 +147,3 @@ class RDBDict(object):
     # def __iter__(self)
     def __del__(self):
         self.close()
-
-    def __getitem__(self, key):
-        if isinstance(key, int):
-            raise IndexError
-        stmt = """
-            SELECT value FROM %(table)s WHERE key=%(key)s
-        """
-        params = {"table":self.db_table, "key":key}
-        return self.execute_read_query(stmt, params)
-
-    def __setitem__(self, key, value):
-        try: 
-            return self.insert(key, value)
-        except UniqueViolation as e:
-            print("Updating existing value")
-            return self.update(key, value)
-        
