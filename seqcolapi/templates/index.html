@@ -15,7 +15,7 @@
                 try {
                     var current_url = window.location.hostname
                 } catch(err) {
-                    var current_url = "refgenomes.databio.org"
+                    var current_url = "secqolapi.databio.org"
                 }
                 document.getElementById("welcome").innerHTML = "Welcome to <i> " + current_url + welcome_txt;
             };
@@ -51,9 +51,16 @@
     <div class="row">
         <div class="col-12" id="txt">
             <p id="welcome" class="text-justify"></p>
-            Welcome to seqcolapi. Try this:
+            Welcome to seqcolapi. Try this:<br><br>
 
-            <a href="/seqcol/6115e19530a7738af5be03469fe82b82c7485960b98741cd/1">/seqcol/6115e19530a7738af5be03469fe82b82c7485960b98741cd/1</a>
+            Collection a6748 with 3 small sequences: <a href="/seqcol/a6748aa0f6a1e165f871dbed5e54ba62/1">/seqcol/a6748aa0f6a1e165f871dbed5e54ba62/1</a><br/>
+            Now, a6748 just top-level digests: <a href="/seqcol/a6748aa0f6a1e165f871dbed5e54ba62/0">/seqcol/a6748aa0f6a1e165f871dbed5e54ba62/0</a><br/>
+            Choose just the sequences, for example: <a href="/seqcol/3b379221b4d6ea26da26cec571e5911c/0">/seqcol/3b379221b4d6ea26da26cec571e5911c/0</a><br/>
+            A related collection, 2786e, adds topologies: <a href="/seqcol/2786eb8a921aa97018c214f64b9960a0/0">/seqcol/2786eb8a921aa97018c214f64b9960a0/0</a><br/>
+            Collection 2786e recursing down 1 level: <a href="/seqcol/2786eb8a921aa97018c214f64b9960a0/1">/seqcol/2786eb8a921aa97018c214f64b9960a0/1</a><br/>
+            <br/><br/><br/>
+
+            Old example: <a href="/seqcol/6115e19530a7738af5be03469fe82b82c7485960b98741cd/1">/seqcol/6115e19530a7738af5be03469fe82b82c7485960b98741cd/1</a>
         </div>
     </div>
 </div>

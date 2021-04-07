@@ -36,7 +36,7 @@ docker run --rm -p 8000:8000 --name sccon \
 
 To deploy container to dockerhub:
 
-Use github action in this repo which deploys on release.
+Use github action in this repo which deploys on release, or through manual dispatch.
 
 
 Left to do:
