@@ -65,19 +65,24 @@ class RDBDict(object):
         return self.execute_query(stmt, params)
 
     def __getitem__(self, key):
+        # This little hack makes this work with `in`;
+        # e.g.: for x in rdbdict, which is now disabled, instead of infinite.
         if isinstance(key, int):
             raise IndexError
         stmt = sql.SQL("""
             SELECT value FROM {table} WHERE key=%(key)s
         """).format(table=sql.Identifier(self.db_table))
         params = {"key":key}
-        return self.execute_read_query(stmt, params)
+        res = self.execute_read_query(stmt, params)
+        if not res:
+            print("Not found: {}".format(key))
+        return res
 
     def __setitem__(self, key, value):
         try: 
             return self.insert(key, value)
         except UniqueViolation as e:
-            print("Updating existing value")
+            print("Updating existing value for {}".format(key))
             return self.update(key, value)
         
     def create_connection(self, db_name, db_user, db_password, db_host, db_port):
@@ -104,8 +109,9 @@ class RDBDict(object):
             if result:
                 return result[0]
             else:
-                print(result)
-                print(query)
+                print("Not found for key: {}".format())
+                print("Result: {}".format(str(result)))
+                print("Query: {}".format(str(query)))
                 return None
         except OperationalError as e:
             print("Error: {e}".format(e=str(e)))

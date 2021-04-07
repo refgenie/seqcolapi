@@ -19,7 +19,9 @@ from ._version import __version__ as seqcolapi_version
 from refget._version import __version__ as refgetclient_version
 
 PKG_NAME="seqcolapi"
-ALL_VERSIONS = {"server_version": seqcolapi_version, "refget_client_version": refgetclient_version, "python_version": python_version()}
+ALL_VERSIONS = {"server_version": seqcolapi_version, 
+    "refget_client_version": refgetclient_version, 
+    "python_version": python_version()}
 
 # We don't need the full SeqColClient, 
 # which also has loading capability, and requires pyfaidx, which requires
@@ -72,7 +74,7 @@ def build_parser():
             cmd, description=description, help=description)
 
     sps = {}
-    # add arguments that are common for both subparsers
+    # add arguments that are common for all subparsers
     for cmd, desc in msg_by_cmd.items():
         sps[cmd] = add_subparser(cmd, desc)
         sps[cmd].add_argument(
@@ -164,7 +166,7 @@ def main():
 
     # demo_filepath="/home/nsheff/code/seqcolapi/seqcolapi/seqcolapi_config_demo.yaml"
     scc = SeqColConf(filepath=args.config)
-
+    _LOGGER.info(f"Connecting to database... {scc.database.host}")
     pgdb = RDBDict(scc.database.name,
                     scc.database.user,
                     scc.database.password,
