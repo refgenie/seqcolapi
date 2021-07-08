@@ -141,6 +141,9 @@ async def root(digest: str):
 
 @app.get("/seqcol/{digest}/{reclimit}")
 async def root(digest: str, reclimit: int):
+
+    if reclimit > 1:
+        return Response(content="Error: recursion > 1 disabled. Use the /refget server to retrieve sequences.")
     try:
         # res = sc.retrieve(digest, reclimit=reclimit)
         # print(res)
