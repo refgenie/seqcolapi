@@ -1,71 +1,33 @@
 {% extends "base.html" %}
-{% block title %}Index{% endblock %}
 {% block head %}
-    {{ super() }}
-    <script>
-        $(document).ready(function(){
-          $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-    <script>
-        window.onload = function() {
-            var welcome_txt = "</i>."
-            what();
-            function what(){
-                try {
-                    var current_url = window.location.hostname
-                } catch(err) {
-                    var current_url = "secqolapi.databio.org"
-                }
-                document.getElementById("welcome").innerHTML = "Welcome to <i> " + current_url + welcome_txt;
-            };
-        }
-    </script>
-    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
-    <link href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
-		<script>
-        $.noConflict();
-        jQuery(function ($) {
-          $('[data-toggle="tooltip"]').tooltip();
-          $('#genome-table').on('all.bs.table', function (e, name, args) {
-            $('[data-toggle="tooltip"]').tooltip();
-          });
-        });
-		</script>
+  {{ super() }}
 {% endblock %}
+{% block title %}Sequence Collections API Demo{% endblock %}
 {% block content %}
-{% macro safe_show_asset_attr(x) %}
-    {% if x is none or not x|length %}
-        NA
-    {% else %}
-        {{ x }}
-    {% endif %}
-{% endmacro %}
 <div class="container">
-    <div class="row">
-        <div class="col-12" id="txt">
-            <p id="welcome" class="text-justify"></p>
-            Welcome to seqcolapi. Try this:<br><br>
+  <div class="row">
+    <h1>Sequence Collections API Demo</h1>
+  <div class="col-12" id="txt">
+      <p id="welcome" class="text-justify">
+      Welcome to the Sequence Collections API. This server hosts an implementation of the <a href="https://seqcol.readthedocs.io/">GA4GH Sequence Collections specification (draft)</a>.</p>
 
-            Collection a6748 with 3 small sequences: <a href="/seqcol/a6748aa0f6a1e165f871dbed5e54ba62/1">/seqcol/a6748aa0f6a1e165f871dbed5e54ba62/1</a><br/>
-            Now, a6748 just top-level digests: <a href="/seqcol/a6748aa0f6a1e165f871dbed5e54ba62/0">/seqcol/a6748aa0f6a1e165f871dbed5e54ba62/0</a><br/>
-            Choose just the sequences, for example: <a href="/seqcol/3b379221b4d6ea26da26cec571e5911c/0">/seqcol/3b379221b4d6ea26da26cec571e5911c/0</a><br/>
-            A related collection, 2786e, adds topologies: <a href="/seqcol/2786eb8a921aa97018c214f64b9960a0/0">/seqcol/2786eb8a921aa97018c214f64b9960a0/0</a><br/>
-            Collection 2786e recursing down 1 level: <a href="/seqcol/2786eb8a921aa97018c214f64b9960a0/1">/seqcol/2786eb8a921aa97018c214f64b9960a0/1</a><br/>
-            <br/><br/><br/>
+      <p>View the <a href="/docs">complete API documentation</a> or try these examples:<br><br>
 
-            Old example: <a href="/seqcol/6115e19530a7738af5be03469fe82b82c7485960b98741cd/1">/seqcol/6115e19530a7738af5be03469fe82b82c7485960b98741cd/1</a>
-        </div>
+      <h3>Retrieving a sequence collection</h3>
+      Collection a6748 with 3 small sequences: <a href="/collection/a6748aa0f6a1e165f871dbed5e54ba62/1">/collection/a6748aa0f6a1e165f871dbed5e54ba62/1</a><br/>
+      Now, a6748 just top-level digests: <a href="/collection/a6748aa0f6a1e165f871dbed5e54ba62/0">/collection/a6748aa0f6a1e165f871dbed5e54ba62/0</a><br/>
+      Choose just the sequences, for example: <a href="/collection/3b379221b4d6ea26da26cec571e5911c/0">/collection/3b379221b4d6ea26da26cec571e5911c/0</a><br/>
+      A related collection, 2786e, adds topologies: <a href="/collection/2786eb8a921aa97018c214f64b9960a0/0">/collection/2786eb8a921aa97018c214f64b9960a0/0</a><br/>
+      Collection 2786e recursing down 1 level: <a href="/collection/2786eb8a921aa97018c214f64b9960a0/1">/collection/2786eb8a921aa97018c214f64b9960a0/1</a><br/>
+      Old example: <a href="/collection/6115e19530a7738af5be03469fe82b82c7485960b98741cd/1">/collection/6115e19530a7738af5be03469fe82b82c7485960b98741cd/1</a>
+
+      <h3>Comparing two sequence collections</h3>
+
+      <p>Comparing two versions of hg38:
+
+      <a href="/comparison/514c871928a74885ce981faa61ccbb1a/c345e091cce0b1df78bfc124b03fba1c">/comparison/514c871928a74885ce981faa61ccbb1a/c345e091cce0b1df78bfc124b03fba1c</a>
+      </p>
     </div>
-</div>
-<hr class="featurette-divider">
-
-</div>
+  </div>
 </div>
 {% endblock %}
