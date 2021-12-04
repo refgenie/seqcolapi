@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/databio.css">
+    <link rel="stylesheet" href="https://databio.org/css/databio.css">
     <title>{% block title %}Sequence Collections API{% endblock %}</title>
   	{% endblock %}
   </head>
@@ -15,7 +15,7 @@
 		<nav class="navbar navbar-expand-md py-2 mb-4 border-bottom navbar-light" aria-label="navbar" style="background-color: #EFF3F6;">
 		  <div class="container">
 		    <a href="/" class="align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-		      <img src="/static/seqcol_logo.svg" alt="Sequnce Collections" width="240">
+		      <img src="static/seqcol_logo.svg" alt="Sequnce Collections" width="240">
 		    </a>
 		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		      <span class="navbar-toggler-icon"></span>
@@ -33,18 +33,19 @@
 		  </div>
 		</nav>
     {% endblock %}
+    <div class="container">
     {% block content %}
     No content
     {% endblock %}
+	</div>
 		{% block footer %}
 		<div class="container">
 		  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top align-top">
 		  <span class="badge rounded-pill bg-secondary">seqcolapi {{server_version}}</span>
 		  <span class="badge rounded-pill bg-secondary">
 		    Python {{python_version}}</span>
-		  </span>      
 		  <div class="ms-auto">
-		    <a href="https://databio.org/"><img src="/static/logo_databio_long.svg" alt="Sheffield Computational Biology Lab" width="200"></a>
+		    <a href="https://databio.org/"><img src="static/logo_databio_long.svg" alt="Sheffield Computational Biology Lab" width="200"></a>
 		  </div>
 			</footer>
 		</div>
