@@ -1,59 +1,65 @@
 #! /usr/bin/env python
 
-from setuptools import setup
+import os
 import sys
+from setuptools import setup
 
-PACKAGE = "seqcolapi"
+# Configuration options edit
+cfg = {
+    "package_name": "seqcolapi",
+    "author": u"Nathan Sheffield",
+    "author_email": "nathan@code.databio.org",
+    "description": "API for Sequence Collections",
+    "license": "BSD2",
+    "keywords": "bioinformatics, sequencing, ngs, genomes, server",
+    "requirements_file": "requirements/requirements-all.txt",
+    "url": "https://seqcol.databio.org/",
+    "classifiers": [
+        "Development Status :: 4 - Beta",
+        "License :: OSI Approved :: BSD License",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Topic :: Scientific/Engineering :: Bio-Informatics",
+    ],
+}
 
-# Additional keyword arguments for setup().
+# -----------------------------------------------------------------------------
+# Boilerplate below here should not require editing
+
 extra = {}
-
-# Ordinary dependencies
-DEPENDENCIES = []
-with open("requirements/requirements-all.txt", 'r') as reqs_file:
+reqs = []  # requirements array
+with open(cfg["requirements_file"], "r") as reqs_file:
     for line in reqs_file:
-        print(line)
         if not line.strip():
             continue
-        DEPENDENCIES.append(line)
+        reqs.append(line)
+extra["install_requires"] = reqs
 
-# 2to3
-if sys.version_info >= (3, ):
-    extra["use_2to3"] = True
-extra["install_requires"] = DEPENDENCIES
-
-
-with open("{}/_version.py".format(PACKAGE), 'r') as versionfile:
+with open(os.path.join(cfg["package_name"], "_version.py"), "r") as versionfile:
     version = versionfile.readline().split()[-1].strip("\"'\n")
 
-with open('README.md') as f:
+with open("README.md") as f:
     long_description = f.read()
     
 setup(
-    name=PACKAGE,
-    packages=[PACKAGE],
+    name=cfg["package_name"],
+    packages=[cfg["package_name"]],
     version=version,
-    description="API for Sequence Collections",
+    description=cfg["description"],
     long_description=long_description,
     long_description_content_type="text/markdown",
-    classifiers=[
-        "Development Status :: 4 - Beta",
-        "License :: OSI Approved :: BSD License",
-        "Programming Language :: Python :: 3.5",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-        "Topic :: Scientific/Engineering :: Bio-Informatics"
-    ],
-    keywords=" bioinformatics, sequencing, ngs, genomes, server",
-    url="https://seqcol.databio.org/",
-    author=u"Nathan Sheffield",
-    license="BSD2",
+    classifiers=cfg["classifiers"],
+    license=cfg["license"],
+    keywords=cfg["keywords"],
+    url=cfg["url"],
+    author=cfg["author"],
+    author_email=cfg["author_email"],
+    include_package_data=True,
     entry_points={
         "console_scripts": [
-            "{p} = {p}.__main__:main".format(p=PACKAGE),
+            "{p} = {p}.__main__:main".format(p=cfg["package_name"]),
         ],
     },
-    include_package_data=True,
     **extra
 )

@@ -16,7 +16,7 @@ digests = {
     "Ensembl GRCh38 primary assembly": "6e8e6adc1b11c0ef4b6550ce6a84e144",
     "Ensembl GRCh38 toplevel assembly": "0183ee16bc66279006da59036441e0a9",
     "UCSC hg38": "2edb0726016c13426eaa607f64450f52",
-    "NCBI GCA 000001405.28": "bd21d38bad9c8970bf7b1c725daa1939",
+    "NCBI GCA 000001405.28": "1c8acace4fc30133e7c3322f2bca45e0",
     "Refgenie hg38": "514c871928a74885ce981faa61ccbb1a",
     "Refgenie hg38 primary": "c345e091cce0b1df78bfc124b03fba1c"
 }
