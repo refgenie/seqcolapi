@@ -341,9 +341,12 @@ async def compare2digests(
     digest1: str = example_digest_hg38, digest2: str = example_digest_hg38_primary
 ):
     _LOGGER.info("Compare called")
-    result = sc.compare_digests(digest1, digest2)
-    result["a-digest"] = digest1
-    result["b-digest"] = digest2
+    result = {}
+    result["digests"] = {
+        "a": digest1,
+        "b": digest2
+    }
+    result.update(sc.compare_digests(digest1, digest2))
     return JSONResponse(result)
 
 
