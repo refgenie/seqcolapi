@@ -16,7 +16,7 @@ seqcolapi serve -c /home/nsheff/code/seqcolapi.databio.org/config/seqcolapi.yaml
 
 Use at: http://localhost:8100
 
-http://0.0.0.0:8100/compareget/a6748aa0f6a1e165f871dbed5e54ba62/2786eb8a921aa97018c214f64b9960a0
+http://0.0.0.0:8100/comparison/a6748aa0f6a1e165f871dbed5e54ba62/2786eb8a921aa97018c214f64b9960a0
 
 
 ### Running with docker
