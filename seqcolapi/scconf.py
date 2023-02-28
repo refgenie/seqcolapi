@@ -6,7 +6,7 @@ from psycopg2 import OperationalError, sql
 from psycopg2.errors import UniqueViolation
 
 
-class SeqColConf(yacman.YacAttMap):
+class SeqColConf(yacman.YAMLConfigManager):
     def __init__(
         self,
         entries={},
@@ -109,6 +109,16 @@ class RDBDict(object):
             print("Updating existing value for {}".format(key))
             return self.update(key, value)
 
+    def __delitem__(self, key):
+        stmt = sql.SQL(
+            """
+            DELETE FROM {table} WHERE key=%(key)s
+        """).format(table=sql.Identifier(self.db_table))
+        params = {"key": key}
+        res = self.execute_query(stmt, params)
+        return res
+
+
     def create_connection(self, db_name, db_user, db_password, db_host, db_port):
         connection = None
         try:
@@ -174,6 +184,22 @@ class RDBDict(object):
         print("Closing connection")
         return self.connection.close()
 
-    # def __iter__(self)
     def __del__(self):
         self.close()
+
+    def __iter__(self):
+        self._current_idx = 0
+        return self
+
+    def __next__(self):
+        stmt = sql.SQL("""
+            SELECT key,value FROM {table} LIMIT 1 OFFSET %(idx)s
+        """
+        ).format(table=sql.Identifier(self.db_table))
+        res = self.execute_read_query(stmt, {"idx": self._current_idx})
+        self._current_idx += 1
+        if not res:
+            print("Not found: {}".format(self._current_idx))
+            raise StopIteration
+        return res
+
