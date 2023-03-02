@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+  	
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sequence Collections API</title>
+  	
+  </head>
+  <body>
+		
+		<nav class="navbar navbar-expand-md py-2 mb-4 border-bottom navbar-light" aria-label="navbar" style="background-color: #EFF3F6;">
+		  <div class="container">
+		    <a href="/" class="align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+		      <img src="static/seqcol_logo.svg" alt="Sequence Collections" width="240">
+		    </a>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse me-auto" id="navbarSupportedContent">
+		      <ul class="navbar-nav ms-auto mb-2 mb-sm-0">        
+		      <li class="nav-item mx-2 my-0 h5">
+		        <a class="nav-link" href="/docs">API docs</a>
+		      </li>
+		      <li class="nav-item mx-2 my-0 h5">
+		      <a class="nav-link" href="https://github.com/refgenie/seqcol" target="_blank"><i class="fa fa-2x fa-github" aria-hidden="true"></i>GitHub</a>
+		      <li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav>
+    
+    <div class="container">
+    
+<h3>Sequence collection comparison matrix</h3>
+
+The square matrix below lists sequence collections on the x and y axes. At the intersection is a link to the /comparison endpoint that compares those two genomes.
+
+<style>
+th.rotated-text {
+    height: 200px;
+    white-space: nowrap;
+    padding: 0 !important;
+}
+
+th.rotated-text > div {
+    transform:
+        translate(13px, 0px)
+        rotate(310deg);
+    width: 20px;
+}
+
+th.rotated-text > div > span {
+    padding: 5px 10px;
+}
+</style>
+
+<table class="table mt-5">
+<thead>
+  <th></th>
+  <th class="rotated-text"><div><span>demo0</span></div></th>
+  <th class="rotated-text"><div><span>demo1</span></div></th>
+  <th class="rotated-text"><div><span>demo2</span></div></th>
+  <th class="rotated-text"><div><span>demo3</span></div></th>
+  <th class="rotated-text"><div><span>demo4</span></div></th>
+  <th class="rotated-text"><div><span>demo5</span></div></th>
+  <th class="rotated-text"><div><span>demo6</span></div></th>
+  
+</thead><tr>
+  <th><a href="/collection/59319772d1bcf2e0dd4b8a296f2d9682">demo0</a></th>
+
+	
+	<td>=</td>
+	
+	
+    <td><a href="/comparison/59319772d1bcf2e0dd4b8a296f2d9682/25764c98dd3ade9bca005c93821a23c3">Compare</a></td>
+	
+	
+    <td><a href="/comparison/59319772d1bcf2e0dd4b8a296f2d9682/eb67d173a586983f47ec72a54a6dab47">Compare</a></td>
+	
+	
+    <td><a href="/comparison/59319772d1bcf2e0dd4b8a296f2d9682/9fa60b812575fafecab76c9bf72a6caa">Compare</a></td>
+	
+	
+    <td><a href="/comparison/59319772d1bcf2e0dd4b8a296f2d9682/0c73f707c51db81248aa2b2a46323403">Compare</a></td>
+	
+	
+    <td><a href="/comparison/59319772d1bcf2e0dd4b8a296f2d9682/2e7bc302a54ecec62d8155e19fbf2748">Compare</a></td>
+	
+	
+    <td><a href="/comparison/59319772d1bcf2e0dd4b8a296f2d9682/59319772d1bcf2e0dd4b8a296f2d9682">Compare</a></td>
+	
+</tr>
+<tr>
+  <th><a href="/collection/25764c98dd3ade9bca005c93821a23c3">demo1</a></th>
+
+	
+    <td><a href="/comparison/25764c98dd3ade9bca005c93821a23c3/59319772d1bcf2e0dd4b8a296f2d9682">Compare</a></td>
+	
+	
+	<td>=</td>
+	
+	
+    <td><a href="/comparison/25764c98dd3ade9bca005c93821a23c3/eb67d173a586983f47ec72a54a6dab47">Compare</a></td>
+	
+	
+    <td><a href="/comparison/25764c98dd3ade9bca005c93821a23c3/9fa60b812575fafecab76c9bf72a6caa">Compare</a></td>
+	
+	
+    <td><a href="/comparison/25764c98dd3ade9bca005c93821a23c3/0c73f707c51db81248aa2b2a46323403">Compare</a></td>
+	
+	
+    <td><a href="/comparison/25764c98dd3ade9bca005c93821a23c3/2e7bc302a54ecec62d8155e19fbf2748">Compare</a></td>
+	
+	
+    <td><a href="/comparison/25764c98dd3ade9bca005c93821a23c3/59319772d1bcf2e0dd4b8a296f2d9682">Compare</a></td>
+	
+</tr>
+<tr>
+  <th><a href="/collection/eb67d173a586983f47ec72a54a6dab47">demo2</a></th>
+
+	
+    <td><a href="/comparison/eb67d173a586983f47ec72a54a6dab47/59319772d1bcf2e0dd4b8a296f2d9682">Compare</a></td>
+	
+	
+    <td><a href="/comparison/eb67d173a586983f47ec72a54a6dab47/25764c98dd3ade9bca005c93821a23c3">Compare</a></td>
+	
+	
+	<td>=</td>
+	
+	
+    <td><a href="/comparison/eb67d173a586983f47ec72a54a6dab47/9fa60b812575fafecab76c9bf72a6caa">Compare</a></td>
+	
+	
+    <td><a href="/comparison/eb67d173a586983f47ec72a54a6dab47/0c73f707c51db81248aa2b2a46323403">Compare</a></td>
+	
+	
+    <td><a href="/comparison/eb67d173a586983f47ec72a54a6dab47/2e7bc302a54ecec62d8155e19fbf2748">Compare</a></td>
+	
+	
+    <td><a href="/comparison/eb67d173a586983f47ec72a54a6dab47/59319772d1bcf2e0dd4b8a296f2d9682">Compare</a></td>
+	
+</tr>
+<tr>
+  <th><a href="/collection/9fa60b812575fafecab76c9bf72a6caa">demo3</a></th>
+
+	
+    <td><a href="/comparison/9fa60b812575fafecab76c9bf72a6caa/59319772d1bcf2e0dd4b8a296f2d9682">Compare</a></td>
+	
+	
+    <td><a href="/comparison/9fa60b812575fafecab76c9bf72a6caa/25764c98dd3ade9bca005c93821a23c3">Compare</a></td>
+	
+	
+    <td><a href="/comparison/9fa60b812575fafecab76c9bf72a6caa/eb67d173a586983f47ec72a54a6dab47">Compare</a></td>
+	
+	
+	<td>=</td>
+	
+	
+    <td><a href="/comparison/9fa60b812575fafecab76c9bf72a6caa/0c73f707c51db81248aa2b2a46323403">Compare</a></td>
+	
+	
+    <td><a href="/comparison/9fa60b812575fafecab76c9bf72a6caa/2e7bc302a54ecec62d8155e19fbf2748">Compare</a></td>
+	
+	
+    <td><a href="/comparison/9fa60b812575fafecab76c9bf72a6caa/59319772d1bcf2e0dd4b8a296f2d9682">Compare</a></td>
+	
+</tr>
+<tr>
+  <th><a href="/collection/0c73f707c51db81248aa2b2a46323403">demo4</a></th>
+
+	
+    <td><a href="/comparison/0c73f707c51db81248aa2b2a46323403/59319772d1bcf2e0dd4b8a296f2d9682">Compare</a></td>
+	
+	
+    <td><a href="/comparison/0c73f707c51db81248aa2b2a46323403/25764c98dd3ade9bca005c93821a23c3">Compare</a></td>
+	
+	
+    <td><a href="/comparison/0c73f707c51db81248aa2b2a46323403/eb67d173a586983f47ec72a54a6dab47">Compare</a></td>
+	
+	
+    <td><a href="/comparison/0c73f707c51db81248aa2b2a46323403/9fa60b812575fafecab76c9bf72a6caa">Compare</a></td>
+	
+	
+	<td>=</td>
+	
+	
+    <td><a href="/comparison/0c73f707c51db81248aa2b2a46323403/2e7bc302a54ecec62d8155e19fbf2748">Compare</a></td>
+	
+	
+    <td><a href="/comparison/0c73f707c51db81248aa2b2a46323403/59319772d1bcf2e0dd4b8a296f2d9682">Compare</a></td>
+	
+</tr>
+<tr>
+  <th><a href="/collection/2e7bc302a54ecec62d8155e19fbf2748">demo5</a></th>
+
+	
+    <td><a href="/comparison/2e7bc302a54ecec62d8155e19fbf2748/59319772d1bcf2e0dd4b8a296f2d9682">Compare</a></td>
+	
+	
+    <td><a href="/comparison/2e7bc302a54ecec62d8155e19fbf2748/25764c98dd3ade9bca005c93821a23c3">Compare</a></td>
+	
+	
+    <td><a href="/comparison/2e7bc302a54ecec62d8155e19fbf2748/eb67d173a586983f47ec72a54a6dab47">Compare</a></td>
+	
+	
+    <td><a href="/comparison/2e7bc302a54ecec62d8155e19fbf2748/9fa60b812575fafecab76c9bf72a6caa">Compare</a></td>
+	
+	
+    <td><a href="/comparison/2e7bc302a54ecec62d8155e19fbf2748/0c73f707c51db81248aa2b2a46323403">Compare</a></td>
+	
+	
+	<td>=</td>
+	
+	
+    <td><a href="/comparison/2e7bc302a54ecec62d8155e19fbf2748/59319772d1bcf2e0dd4b8a296f2d9682">Compare</a></td>
+	
+</tr>
+<tr>
+  <th><a href="/collection/59319772d1bcf2e0dd4b8a296f2d9682">demo6</a></th>
+
+	
+    <td><a href="/comparison/59319772d1bcf2e0dd4b8a296f2d9682/59319772d1bcf2e0dd4b8a296f2d9682">Compare</a></td>
+	
+	
+    <td><a href="/comparison/59319772d1bcf2e0dd4b8a296f2d9682/25764c98dd3ade9bca005c93821a23c3">Compare</a></td>
+	
+	
+    <td><a href="/comparison/59319772d1bcf2e0dd4b8a296f2d9682/eb67d173a586983f47ec72a54a6dab47">Compare</a></td>
+	
+	
+    <td><a href="/comparison/59319772d1bcf2e0dd4b8a296f2d9682/9fa60b812575fafecab76c9bf72a6caa">Compare</a></td>
+	
+	
+    <td><a href="/comparison/59319772d1bcf2e0dd4b8a296f2d9682/0c73f707c51db81248aa2b2a46323403">Compare</a></td>
+	
+	
+    <td><a href="/comparison/59319772d1bcf2e0dd4b8a296f2d9682/2e7bc302a54ecec62d8155e19fbf2748">Compare</a></td>
+	
+	
+	<td>=</td>
+	
+</tr>
+
+
+</table>
+
+	</div>
+		
+		<div class="container">
+		  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top align-top">
+		  <span class="badge rounded-pill bg-secondary">seqcolapi </span>
+		  <span class="badge rounded-pill bg-secondary">
+		    Python </span>
+		  <div class="ms-auto">
+		    <a href="https://databio.org/"><img src="static/logo_databio_long.svg" alt="Sheffield Computational Biology Lab" width="200"></a>
+		  </div>
+			</footer>
+		</div>
+		
+  </body>	
+  	<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://databio.org/css/databio.css">
+</html>
