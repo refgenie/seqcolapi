@@ -26,18 +26,18 @@ th.rotated-text > div > span {
 <table class="table mt-5">
 <thead>
   <th></th>
-  {% for x in digests -%}
+  {% for x in results -%}
   <th class="rotated-text"><div><span>{{ x }}</span></div></th>
   {% endfor %}
 </thead>
-{%- for x in digests -%}
+{%- for x in results -%}
 <tr>
-  <th>{{ x }}</th>
-{% for y in digests %}
+  <th><a href="{{ host }}/collection/{{results[x]['digest']}}">{{ x }}</a></th>
+{% for y in results %}
 	{% if x == y %}
 	<td>=</td>
 	{% else %}
-    <td><a href="http://seqcolapi.databio.org/comparison/{{digests[x]}}/{{digests[y]}}">Compare</a></td>
+    <td><a href="{{ host }}/comparison/{{results[x]['digest']}}/{{results[y]['digest']}}">Compare</a></td>
 	{% endif %}
 {%- endfor %}
 </tr>

@@ -387,20 +387,20 @@ def main():
 
     # demo_filepath="/home/nsheff/code/seqcolapi/seqcolapi/seqcolapi_config_demo.yaml"
     scc = SeqColConf(filepath=args.config)
-    _LOGGER.info(f"Connecting to database... {scc.database.host}")
+    _LOGGER.info(f"Connecting to database... {scc.exp['database']['host']}")
     pgdb = RDBDict(
-        scc.database.name,
-        scc.database.user,
-        scc.database.password,
-        scc.database.host,
-        scc.database.port,
+        scc.exp["database"]["name"],
+        scc.exp["database"]["user"],
+        scc.exp["database"]["password"],
+        scc.exp["database"]["host"],
+        scc.exp["database"]["port"],
     )
 
-    rgc = refget.RefGetClient(scc.refget_provider_apis, pgdb)
+    rgc = refget.RefGetClient(scc["refget_provider_apis"], pgdb)
 
     sc = SeqColClient(
-        database=pgdb, api_url_base=scc.refget_provider_apis, schemas=scc.schemas
+        database=pgdb, api_url_base=scc["refget_provider_apis"], schemas=scc["schemas"]
     )
-    seqcolapi_port = args.port if args.port else scc.server.port
+    seqcolapi_port = args.port if args.port else scc.exp["server"]["port"]
     _LOGGER.info("Running on port {}".format(seqcolapi_port))
-    uvicorn.run(app, host=scc.server.host, port=seqcolapi_port)
+    uvicorn.run(app, host=scc.exp["server"]["host"], port=seqcolapi_port)
