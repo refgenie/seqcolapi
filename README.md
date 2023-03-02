@@ -30,11 +30,8 @@ docker build --no-cache -t scim .
 To run in a container:
 
 ```
-export POSTGRES_PASSWORD=`pass aws/rds_postgres` 
-docker run --rm -p 8000:8000 --name sccon \
-  --env "POSTGRES_PASSWORD" \
-  --volume $CODE/seqcolapi.databio.org/config/seqcolapi.yaml:/config.yaml \
-  scim seqcolapi serve -c /config.yaml -p 8000
+source /home/nsheff/code/seqcolapi.databio.org/environment/production.env
+./docker_serve.sh
 ```
 
 To deploy container to dockerhub:
