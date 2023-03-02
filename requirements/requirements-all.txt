@@ -1,6 +1,6 @@
 aiofiles
 fastapi
-henge
+henge>=0.2.1
 jinja2
 logmuse>=0.2
 psycopg2-binary
