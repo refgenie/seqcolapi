@@ -39,19 +39,6 @@ app = FastAPI(
 
 app.mount("/" + STATIC_DIRNAME, StaticFiles(directory=STATIC_PATH), name=STATIC_DIRNAME)
 
-@app.get(
-    "/status", name="Status", summary="Check server status", tags=["General endpoints"]
-)
-async def status():
-    return Response(content="Welcome to the test seqcol server.")
-
-
-
-@app.get("/service-info", summary="GA4GH service info", tags=["General endpoints"])
-async def root():
-    return Response(content="Service info")
-
-
 @app.get("/", summary="Home page", tags=["General endpoints"])
 async def index(request: Request):
     """
@@ -61,6 +48,32 @@ async def index(request: Request):
     _LOGGER.debug("merged vars: {}".format(dict(templ_vars, **ALL_VERSIONS)))
     return templates.TemplateResponse("index.html", dict(templ_vars, **ALL_VERSIONS))
 
+@app.get("/service-info", summary="GA4GH service info", tags=["General endpoints"])
+async def service_info():
+    ret = {
+        "id": "org.databio.seqcolapi",
+        "name": "Sequence collections",
+        "type": {
+            "group": "org.ga4gh",
+            "artifact": "seqcol",
+            "version": ALL_VERSIONS["seqcol_spec_version"]
+        },
+        "description": "An API providing metadata such as names, lengths, and other values for collections of reference sequences",
+        "organization": {
+            "name": "Databio Lab",
+            "url": "https://databio.org"
+        },
+        "contactUrl": "https://github.com/refgenie/seqcol/issues",
+        "documentationUrl": "https://seqcolapi.databio.org",
+        "updatedAt": "2021-03-01T00:00:00Z",
+        "environment": "dev",
+        "version": ALL_VERSIONS["seqcolapi_version"],
+        "seqcol": {
+            "schema": scclient.schemas,
+            "sorted_name_length_pairs": True
+        }
+    }
+    return JSONResponse(content=ret)
 
 @app.get(
     "/sequence/{digest}",
