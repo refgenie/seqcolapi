@@ -10,20 +10,16 @@ import sys
 from fastapi import Body, FastAPI, Response
 from pydantic import BaseModel, Field
 from fastapi.responses import JSONResponse
-from platform import python_version
 from starlette.requests import Request
 from starlette.templating import Jinja2Templates
 from starlette.staticfiles import StaticFiles
 from typing import Union
-from ubiquerg import VersionInHelpParser
 
 from .cli import build_parser
+from .const import *
 from .scconf import RDBDict, SeqColConf
-from ._version import __version__ as seqcolapi_version
 from .examples import *
 
-from refget._version import __version__ as refgetclient_version
-from seqcol._version import __version__ as seqcol_version
 from seqcol import SeqColClient
 
 global _LOGGER
@@ -31,16 +27,6 @@ global _LOGGER
 _LOGGER = logging.getLogger(__name__)
 # _LOGGER.setLevel(logging.DEBUG)
 
-PKG_NAME = "seqcolapi"
-ALL_VERSIONS = {
-    "server_version": seqcolapi_version,
-    "seqcol_version": seqcol_version,
-    "refget_client_version": refgetclient_version,
-    "python_version": python_version(),
-}
-STATIC_DIRNAME = "static"
-STATIC_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), STATIC_DIRNAME)
-TEMPLATES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates")
 templates = Jinja2Templates(directory=TEMPLATES_PATH)
 
 _LOGGER.info(ALL_VERSIONS)
@@ -56,8 +42,9 @@ app.mount("/" + STATIC_DIRNAME, StaticFiles(directory=STATIC_PATH), name=STATIC_
 @app.get(
     "/status", name="Status", summary="Check server status", tags=["General endpoints"]
 )
-async def root():
+async def status():
     return Response(content="Welcome to the test seqcol server.")
+
 
 
 @app.get("/service-info", summary="GA4GH service info", tags=["General endpoints"])
@@ -80,7 +67,7 @@ async def index(request: Request):
     summary="Retrieve raw sequence via refget protocol",
     tags=["General endpoints"],
 )
-async def root(digest: str=example_sequence):
+async def refget(digest: str=example_sequence):
     return Response(content=scclient.refget(digest))
 
 
@@ -108,7 +95,7 @@ async def collection_recursive(digest: str=example_digest, level: Union[int, Non
     summary="Compare two sequence collections hosted on the server",
     tags=["Comparing sequence collections"],
 )
-async def compare2digests(
+async def compare_2_digests(
     digest1: str = example_digest_hg38, digest2: str = example_digest_hg38_primary
 ):
     _LOGGER.info("Compare called")
@@ -126,34 +113,13 @@ async def compare2digests(
     summary="Compare a local sequence collection to one on the server",
     tags=["Comparing sequence collections"],
 )
-async def compare1digest(digest1: str = example_digest_hg38, B: dict = example_hg38_sc):
+async def compare_1_digest(digest1: str = example_digest_hg38, B: dict = example_hg38_sc):
     _LOGGER.info(f"digest1: {digest1}")
     _LOGGER.info("seqcol")
     _LOGGER.info(B)
     A = scclient.retrieve(digest1, reclimit=1)
     return JSONResponse(scclient.compat_all(A, B))
 
-
-def main(args=None):
-    parser = build_parser()
-    parser = logmuse.add_logging_options(parser)
-    args = parser.parse_args()
-    if not args.command:
-        parser.print_help()
-        print("No subcommand given")
-        sys.exit(1)
-
-    _LOGGER = logmuse.logger_via_cli(args, make_root=True)
-    _LOGGER.info("Welcome to the SeqCol API app")
-    _LOGGER.info(ALL_VERSIONS)
-
-    # demo_filepath="/home/nsheff/code/seqcolapi/seqcolapi/seqcolapi_config_demo.yaml"
-
-    print(f"args: {args}")
-    if "config" in args and args.config is not None:
-        scconf = create_globals(args.config, args.port)
-        _LOGGER.info(f"Running on port {scconf.app['port']}")
-        uvicorn.run(app, host=scconf.app["host"], port=scconf.app["port"])
     
 def create_globals(config_path, port):
     """
@@ -173,20 +139,30 @@ def create_globals(config_path, port):
     scclient = SeqColClient(
         database=pgdb, api_url_base=scconf["refget_provider_apis"], schemas=scconf["schemas"]
     )
-    # You could also make a refget client here, but it's not necessary,
-    # since the SeqColClient has a refget method.
-    # global rgc
-    # rgc = refget.RefGetClient(scconf["refget_provider_apis"], pgdb)
     seqcolapi_port = port if port else scconf.exp["server"]["port"]
-    
     host = scconf.exp["server"]["host"]
     scconf.app = {"host": host, "port": seqcolapi_port}
     return scconf
 
-
-if __name__ == "__main__":
-    args = sys.argv
-    print(args)
-    main(args)
-else:
+if __name__ != "__main__":
+    # Establish global config when running through uvicorn CLI
     create_globals(os.environ.get("SEQCOL_CONFIG"), os.environ.get("SEQCOL_PORT"))
+
+def main(args=None):
+    parser = build_parser()
+    parser = logmuse.add_logging_options(parser)
+    args = parser.parse_args()
+    if not args.command:
+        parser.print_help()
+        print("No subcommand given")
+        sys.exit(1)
+
+    _LOGGER = logmuse.logger_via_cli(args, make_root=True)
+    _LOGGER.info("Welcome to the SeqCol API app")
+    _LOGGER.info(ALL_VERSIONS)
+
+    print(f"args: {args}")
+    if "config" in args and args.config is not None:
+        scconf = create_globals(args.config, args.port)
+        _LOGGER.info(f"Running on port {scconf.app['port']}")
+        uvicorn.run(app, host=scconf.app["host"], port=scconf.app["port"])
