@@ -1,6 +1,6 @@
 # seqcolapi
 
-Alpha version of a sequence collections server
+Alpha version of a sequence collections server. This is a very lightweight package that provides a FastAPI wrapper of functionality in the 
 
 ## Instructions
 
@@ -43,3 +43,18 @@ Left to do:
 - [x] it already retrieves from a refget server.
 - [x] let me insert stuff using only checksums.
 - [ ] make it take 2 refget servers correctly.
+
+
+## Running with new env setup
+
+```
+source environment/local.dev.env  # populate env variables with db credentials
+seqcolapi serve -c /home/nsheff/code/seqcolapi.databio.org/config/seqcolapi.yaml -p 8100
+
+```
+
+Does this work? 
+
+uvicorn seqcolapi.main:app --reload
+
+python seqcolapi/main.py serve -c /home/nsheff/code/seqcolapi.databio.org/config/seqcolapi.yaml -p 8100

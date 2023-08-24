@@ -1,10 +1,9 @@
-import yacman
 import psycopg2
+import yacman
 
-
+from collections.abc import Mapping
 from psycopg2 import OperationalError, sql
 from psycopg2.errors import UniqueViolation
-
 
 class SeqColConf(yacman.YAMLConfigManager):
     def __init__(
@@ -25,16 +24,17 @@ class SeqColConf(yacman.YAMLConfigManager):
 # pgdb["key"]               # Retrieve item
 # pgdb.close()              # Close connection
 
-
-class RDBDict(object):
+class RDBDict(Mapping):
     """
+    A Relational DataBase Dict.
+    
     Simple database connection manager object that allows us to use a
-    PostgresQL database as a simple key-value store to back python
+    PostgresQL database as a simple key-value store to back Python
     dict-style access to database items.
     """
 
     def __init__(
-        self, db_name, db_user, db_password, db_host, db_port, db_table="seqcol"
+        self, db_name, db_user, db_password, db_host, db_port, db_table
     ):
         self.db_table = db_table
         self.db_name = db_name
@@ -118,7 +118,6 @@ class RDBDict(object):
         res = self.execute_query(stmt, params)
         return res
 
-
     def create_connection(self, db_name, db_user, db_password, db_host, db_port):
         connection = None
         try:
@@ -143,7 +142,7 @@ class RDBDict(object):
             if result:
                 return result[0]
             else:
-                print("Not found for key: {}".format())
+                print("Not found for key: {}".format(query))
                 print("Result: {}".format(str(result)))
                 print("Query: {}".format(str(query)))
                 return None
@@ -187,6 +186,14 @@ class RDBDict(object):
     def __del__(self):
         self.close()
 
+    def __len__(self):
+        stmt = sql.SQL("""
+            SELECT COUNT(*) FROM {table}
+        """
+        ).format(table=sql.Identifier(self.db_table))
+        res = self.execute_read_query(stmt)
+        return res  
+
     def __iter__(self):
         self._current_idx = 0
         return self
@@ -203,3 +210,24 @@ class RDBDict(object):
             raise StopIteration
         return res
 
+
+# We don't need the full SeqColClient,
+# which also has loading capability, and requires pyfaidx, which requires
+# biopython, which requires numpy, which is huge and can't compile the in
+# default fastapi container.
+# So, I had written the below class which provides retrieve only.
+# HOWEVER, switching from alpine to slim allows install of numpy;
+# This inflates the container size from 262Mb to 350Mb; perhaps that's worth paying.
+# So I can avoid duplicating this and just use the full SeqColClient from seqcol
+# class SeqColClient(refget.RefGetClient):
+#     def retrieve(self, druid, reclimit=None, raw=False):
+#         try:
+#             return super(SeqColClient, self).retrieve(druid, reclimit, raw)
+#         except henge.NotFoundException as e:
+#             _LOGGER.debug(e)
+#             try:
+#                 return self.refget(druid)
+#             except Exception as e:
+#                 _LOGGER.debug(e)
+#                 raise e
+#                 return henge.NotFoundException("{} not found in database, or in refget.".format(druid))
