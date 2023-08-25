@@ -52,9 +52,10 @@ source environment/local.dev.env  # populate env variables with db credentials
 seqcolapi serve -c /home/nsheff/code/seqcolapi.databio.org/config/seqcolapi.yaml -p 8100
 
 ```
+The new recommended way to do this for development is:
 
-Does this work? 
+```
+uvicorn seqcolapi.main:app --reload --port 8100
+```
 
-uvicorn seqcolapi.main:app --reload
-
-python seqcolapi/main.py serve -c /home/nsheff/code/seqcolapi.databio.org/config/seqcolapi.yaml -p 8100
+This gets you live reloading. Then, for production, you can still install it and run with `seqcolapi` CLI.
