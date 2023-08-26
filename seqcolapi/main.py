@@ -8,6 +8,7 @@ import uvicorn
 import sys
 
 from fastapi import Body, FastAPI, Response
+from fastapi import HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from fastapi.responses import JSONResponse
@@ -21,7 +22,7 @@ from .const import *
 from .scconf import RDBDict, SeqColConf
 from .examples import *
 
-from seqcol import SeqColClient
+from seqcol import SeqColClient, format_itemwise
 
 global _LOGGER
 
@@ -47,6 +48,7 @@ app.add_middleware( # This is a public API, so we allow all origins
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 
 app.mount("/" + STATIC_DIRNAME, StaticFiles(directory=STATIC_PATH), name=STATIC_DIRNAME)
@@ -107,26 +109,18 @@ async def collection_recursive(digest: str=example_digest, level: Union[int, Non
     if level == None:
         level = 2
     if level > 2:
-        return Response(
-            content="Error: recursion > 1 disabled. Use the /refget server to retrieve sequences."
-        )
+        raise HTTPException(status_code=400, detail="Error: recursion > 1 disabled. Use the /refget server to retrieve sequences.")
     csc = scclient.retrieve(digest, reclimit=level-1)
-    list_of_dicts = []
-    print(csc)
-    for i in range(len(csc["lengths"])):
-        list_of_dicts.append(
-            {
-                "name": csc["names"][i],
-                "length": csc["lengths"][i],
-                "sequence": csc["sequences"][i],
-            })
     try:
         if format == "collated":
-            return JSONResponse(content=list_of_dicts)
+            if len(csc["lengths"]) > 10000:
+                raise HTTPException(status_code=413, detail="This server won't collate collections with > 10000 sequences")
+            return JSONResponse(content=format_itemwise(csc))
         else:
-            return JSONResponse(content=scclient.retrieve(digest, reclimit=level-1))
+            return JSONResponse(content=csc)
     except:
         return {}
+
 
 
 @app.get(
