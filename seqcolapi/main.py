@@ -8,6 +8,7 @@ import uvicorn
 import sys
 
 from fastapi import Body, FastAPI, Response
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from fastapi.responses import JSONResponse
 from starlette.requests import Request
@@ -36,6 +37,17 @@ app = FastAPI(
     description="An API providing metadata such as names, lengths, and other values for collections of reference sequences",
     version=seqcolapi_version,
 )
+
+origins = ["*"]
+
+app.add_middleware( # This is a public API, so we allow all origins
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 app.mount("/" + STATIC_DIRNAME, StaticFiles(directory=STATIC_PATH), name=STATIC_DIRNAME)
 
@@ -84,12 +96,13 @@ async def refget(digest: str=example_sequence):
     return Response(content=scclient.refget(digest))
 
 
+
 @app.get(
     "/collection/{digest}",
     summary="Retrieve a sequence collection",
     tags=["Retrieving sequence collections"],
 )
-async def collection_recursive(digest: str=example_digest, level: Union[int, None] = None):
+async def collection_recursive(digest: str=example_digest, level: Union[int, None] = None, format: Union[str, None] = None):
     print("retriving collection")
     if level == None:
         level = 2
@@ -97,8 +110,21 @@ async def collection_recursive(digest: str=example_digest, level: Union[int, Non
         return Response(
             content="Error: recursion > 1 disabled. Use the /refget server to retrieve sequences."
         )
+    csc = scclient.retrieve(digest, reclimit=level-1)
+    list_of_dicts = []
+    print(csc)
+    for i in range(len(csc["lengths"])):
+        list_of_dicts.append(
+            {
+                "name": csc["names"][i],
+                "length": csc["lengths"][i],
+                "sequence": csc["sequences"][i],
+            })
     try:
-        return JSONResponse(content=scclient.retrieve(digest, reclimit=level-1))
+        if format == "collated":
+            return JSONResponse(content=list_of_dicts)
+        else:
+            return JSONResponse(content=scclient.retrieve(digest, reclimit=level-1))
     except:
         return {}
 
