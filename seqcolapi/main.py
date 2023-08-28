@@ -177,10 +177,6 @@ def create_globals(config_path, port):
     scconf.app = {"host": host, "port": seqcolapi_port}
     return scconf
 
-if __name__ != "__main__":
-    # Establish global config when running through uvicorn CLI
-    create_globals(os.environ.get("SEQCOL_CONFIG"), os.environ.get("SEQCOL_PORT"))
-
 def main(args=None):
     parser = build_parser()
     parser = logmuse.add_logging_options(parser)
@@ -199,3 +195,8 @@ def main(args=None):
         scconf = create_globals(args.config, args.port)
         _LOGGER.info(f"Running on port {scconf.app['port']}")
         uvicorn.run(app, host=scconf.app["host"], port=scconf.app["port"])
+
+if __name__ != "__main__":
+    if os.environ.get("SEQCOL_CONFIG"):
+        # Establish global config when running through uvicorn CLI
+        create_globals(os.environ.get("SEQCOL_CONFIG"), os.environ.get("SEQCOL_PORT"))
