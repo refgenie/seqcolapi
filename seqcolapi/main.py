@@ -27,11 +27,11 @@ from seqcol import SeqColClient, format_itemwise
 global _LOGGER
 
 _LOGGER = logging.getLogger(__name__)
-# _LOGGER.setLevel(logging.DEBUG)
 
 templates = Jinja2Templates(directory=TEMPLATES_PATH)
 
-_LOGGER.info(ALL_VERSIONS)
+for key, value in ALL_VERSIONS.items():
+    _LOGGER.info(f"{key}: {value}")
 
 app = FastAPI(
     title="Sequence Collections API",
@@ -48,8 +48,6 @@ app.add_middleware( # This is a public API, so we allow all origins
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
 
 app.mount("/" + STATIC_DIRNAME, StaticFiles(directory=STATIC_PATH), name=STATIC_DIRNAME)
 
@@ -92,36 +90,32 @@ async def service_info():
 @app.get(
     "/sequence/{digest}",
     summary="Retrieve raw sequence via refget protocol",
-    tags=["General endpoints"],
+    tags=["Refget endpoints"],
 )
 async def refget(digest: str=example_sequence):
     return Response(content=scclient.refget(digest))
-
-
 
 @app.get(
     "/collection/{digest}",
     summary="Retrieve a sequence collection",
     tags=["Retrieving sequence collections"],
 )
-async def collection_recursive(digest: str=example_digest, level: Union[int, None] = None, format: Union[str, None] = None):
-    print("retriving collection")
+async def collection_recursive(digest: str=example_digest, level: Union[int, None] = None, collated: bool = True):
+    print("Retrieving collection")
     if level == None:
         level = 2
     if level > 2:
         raise HTTPException(status_code=400, detail="Error: recursion > 1 disabled. Use the /refget server to retrieve sequences.")
     csc = scclient.retrieve(digest, reclimit=level-1)
     try:
-        if format == "collated":
+        if not collated:
             if len(csc["lengths"]) > 10000:
-                raise HTTPException(status_code=413, detail="This server won't collate collections with > 10000 sequences")
+                raise HTTPException(status_code=413, detail="This server won't uncollate collections with > 10000 sequences")
             return JSONResponse(content=format_itemwise(csc))
         else:
             return JSONResponse(content=csc)
     except:
         return {}
-
-
 
 @app.get(
     "/comparison/{digest1}/{digest2}",
@@ -140,7 +134,6 @@ async def compare_2_digests(
     result.update(scclient.compare_digests(digest1, digest2))
     return JSONResponse(result)
 
-
 @app.post(
     "/comparison/{digest1}",
     summary="Compare a local sequence collection to one on the server",
@@ -148,12 +141,10 @@ async def compare_2_digests(
 )
 async def compare_1_digest(digest1: str = example_digest_hg38, B: dict = example_hg38_sc):
     _LOGGER.info(f"digest1: {digest1}")
-    _LOGGER.info("seqcol")
-    _LOGGER.info(B)
+    _LOGGER.info(f"B: {B}")
     A = scclient.retrieve(digest1, reclimit=1)
     return JSONResponse(scclient.compat_all(A, B))
 
-    
 def create_globals(config_path, port):
     """
     Create global variables for the app to use.
@@ -177,26 +168,27 @@ def create_globals(config_path, port):
     scconf.app = {"host": host, "port": seqcolapi_port}
     return scconf
 
-def main(args=None):
+def main(injected_args=None):
+    # Entry point for running from console_scripts, installed package
     parser = build_parser()
     parser = logmuse.add_logging_options(parser)
     args = parser.parse_args()
+    args.update(injected_args)
     if not args.command:
         parser.print_help()
         print("No subcommand given")
         sys.exit(1)
 
     _LOGGER = logmuse.logger_via_cli(args, make_root=True)
-    _LOGGER.info("Welcome to the SeqCol API app")
-    _LOGGER.info(ALL_VERSIONS)
 
-    print(f"args: {args}")
+    _LOGGER.info(f"args: {args}")
     if "config" in args and args.config is not None:
         scconf = create_globals(args.config, args.port)
         _LOGGER.info(f"Running on port {scconf.app['port']}")
         uvicorn.run(app, host=scconf.app["host"], port=scconf.app["port"])
 
 if __name__ != "__main__":
+    # Entrypoint for running through uvicorn CLI (dev)
     if os.environ.get("SEQCOL_CONFIG"):
-        # Establish global config when running through uvicorn CLI
         create_globals(os.environ.get("SEQCOL_CONFIG"), os.environ.get("SEQCOL_PORT"))
+

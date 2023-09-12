@@ -1,3 +1,4 @@
+import os 
 import psycopg2
 import yacman
 
@@ -33,17 +34,29 @@ class RDBDict(Mapping):
     dict-style access to database items.
     """
 
-    def __init__(
-        self, db_name, db_user, db_password, db_host, db_port, db_table
-    ):
-        self.db_table = db_table
-        self.db_name = db_name
-        self.db_user = db_user
-        self.db_host = db_host
-        self.db_port = db_port
-        self.connection = self.create_connection(
-            db_name, db_user, db_password, db_host, db_port
-        )
+    def __init__(self,
+                 db_name: str=None,
+                 db_user: str=None,
+                 db_password: str=None,
+                 db_host: str=None,
+                 db_port: str=None,
+                 db_table: str=None):
+        self.db_name = db_name or os.environ.get("POSTGRES_DB")
+        self.db_user = db_user or os.environ.get("POSTGRES_USER")
+        self.db_host = db_host or os.environ.get("POSTGRES_HOST") or "localhost"
+        self.db_port = db_port or os.environ.get("POSTGRES_PORT") or "5432"
+        self.db_table = db_table or os.environ.get("POSTGRES_TABLE") or "seqcol"
+        db_password = db_password or os.environ.get("POSTGRES_PASSWORD")
+
+        try: 
+            self.connection = self.create_connection(self.db_name, self.db_user, 
+                db_password, self.db_host, self.db_port)
+            if not self.connection:
+                raise Exception("Connection failed")
+        except Exception as e:
+            print(f"{self}")
+            raise e 
+        print(self.connection)
         self.connection.autocommit = True
 
     def __repr__(self):
