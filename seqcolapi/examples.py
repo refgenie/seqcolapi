@@ -1,4 +1,3 @@
-
 # Models
 # Used for documentation examples in OpenAPI
 
@@ -141,4 +140,4 @@ reclimit_ex = Path(
     gt=-1,
     lt=2,
     examples=0,
-    )
+)
