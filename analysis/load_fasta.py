@@ -1,33 +1,35 @@
-import os
-os.chdir("/home/nsheff/code/seqcolapi/seqcolapi")
-
 import henge
+import os
+import sys
+import logging
 import refgenconf
-import scconf
 import seqcol
 
 # TODO put this somewhere permanent
-try:
-    from scconf import RDBDict
-except ImportError:
-    print("You must run this from the folder with rdbdict.py")
+sys.path.append("seqcolapi")
+from scconf import RDBDict
 
 # set logging
-logging.basicConfig(level=os.environ.get("LOGLEVEL", "DEBUG"))
-logging.getLogger("refgenie").setLevel(logging.DEBUG)
-logging.getLogger().setLevel(logging.DEBUG)
-logging.getLogger("henge").setLevel(logging.DEBUG)
+_LOGGER = logging.getLogger()  # root logger
+stream = logging.StreamHandler(sys.stdout)
+fmt = logging.Formatter("%(levelname)s %(asctime)s | %(name)s:%(module)s:%(lineno)d > %(message)s ")
+stream.setFormatter(fmt)
+_LOGGER.setLevel(os.environ.get("LOGLEVEL", "DEBUG"))
+_LOGGER.addHandler(stream)
 
-rgc = refgenconf.RefGenConf("/home/nsheff/Dropbox/env/refgenie_config/zither.yaml")
-scc = scconf.SeqColConf(filepath="/home/nsheff/code/seqcolapi.databio.org/config/seqcolapi.yaml")
+scc = seqcol.SeqColConf()
 
-pgdb = scconf.RDBDict()  # parameterized through env vars
+# rgc = refgenconf.RefGenConf("/home/nsheff/Dropbox/env/refgenie_config/zither.yaml")
 
-schenge = seqcol.SeqColClient(
+pgdb = RDBDict()  # parameterized through env vars
+
+schenge = seqcol.SeqColHenge(
     database=pgdb,
-    api_url_base="https://www.ebi.ac.uk/ena/cram/sequence/",
     schemas=["/home/nsheff/code/seqcol/seqcol/schemas/SeqColArraySetInherent.yaml"],
-    checksum_function=henge.sha512t24u)
+    checksum_function=henge.sha512t24u_digest)
+
+schenge.retrieve('xysio2')
+
 
 from jinja2 import Environment, FileSystemLoader
 

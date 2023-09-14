@@ -1,10 +1,16 @@
+import logging
+import sys
 import yacman
-from utilities import *
 
 from tqdm import tqdm
 
+# Locals
+sys.path.append("analysis")
+from utilities import *
+
+
 # Data from https://projects.ensembl.org/hprc/
-yaml_genomes_path = "config/hprc.yaml"
+yaml_genomes_path = "analysis/config/hprc.yaml"
 # genomes = load_yaml(yaml_genomes_path)
 # with open(yaml_genomes_path, "r") as f:
 #     ensembl_genomes = yaml.safe_load(f)
@@ -16,7 +22,7 @@ for i, g in enumerate(tqdm(ensembl_genomes)):
     if ensembl_genomes[i].get("fasta") is not None:
         print("Already downloaded")
         continue
-    g = add_attributes_for_ensembl_genomes(g)
+    g = add_attributes_for_ensembl_genomes(g, data_path="analysis/data")
     download_and_cache(g["url"], g["local_file"], g["remote_md5"])
     g["fasta"] = g["local_file"]
     ensembl_genomes[i] = g
@@ -27,3 +33,7 @@ for i, g in enumerate(tqdm(ensembl_genomes)):
 # TODO: these pangenome elements should be run through refgenie...
 
 pgdb = scconf.RDBDict()  # parameterized through env vars
+
+import seqcol
+
+scc = seqcol.SeqColConf()

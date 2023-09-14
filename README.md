@@ -61,7 +61,7 @@ To upgrade the software:
 3. Finally, deploy the instance (this repo) with manual dispatch using the included GitHub action, or use auto-deploy when `config.yaml` is updated.
 
 
-## Run locally
+## Run locally for development
 
 For running a local server, connecting to a local database:
 ```
@@ -75,14 +75,12 @@ source servers/seqcolapi.databio.org/production.env
 uvicorn seqcolapi.main:app --reload --port 8100
 ```
 
+### Installing and running for production
 
-### Running natively
+Install natively with `pip install .`, then run natively:
 
-Install natively with `pip install .`
-
-Run natively:
 ```
-export POSTGRES_PASSWORD=`pass aws/rds_postgres`
+source servers/seqcolapi.databio.org/production.env
 seqcolapi serve -c /home/nsheff/code/seqcolapi.databio.org/config/seqcolapi.yaml -p 8100
 ```
 

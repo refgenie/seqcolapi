@@ -1,24 +1,12 @@
+import logging
 import os
 import psycopg2
-import yacman
 
 from collections.abc import Mapping
 from psycopg2 import OperationalError, sql
 from psycopg2.errors import UniqueViolation
 
-
-class SeqColConf(yacman.YAMLConfigManager):
-    def __init__(
-        self,
-        entries={},
-        filepath=None,
-        yamldata=None,
-        writable=False,
-        wait_max=60,
-        skip_read_lock=False,
-    ):
-        super(SeqColConf, self).__init__(entries, filepath, yamldata, writable)
-
+_LOGGER = logging.getLogger(__name__)
 
 # Use like:
 # pgdb = RDBDict(...)       # Open connection
@@ -59,9 +47,9 @@ class RDBDict(Mapping):
             if not self.connection:
                 raise Exception("Connection failed")
         except Exception as e:
-            print(f"{self}")
+            _LOGGER.info(f"{self}")
             raise e
-        print(self.connection)
+        _LOGGER.info(self.connection)
         self.connection.autocommit = True
 
     def __repr__(self):
@@ -117,14 +105,14 @@ class RDBDict(Mapping):
         params = {"key": key}
         res = self.execute_read_query(stmt, params)
         if not res:
-            print("Not found: {}".format(key))
+            _LOGGER.info("Not found: {}".format(key))
         return res
 
     def __setitem__(self, key, value):
         try:
             return self.insert(key, value)
         except UniqueViolation as e:
-            print("Updating existing value for {}".format(key))
+            _LOGGER.info("Updating existing value for {}".format(key))
             return self.update(key, value)
 
     def __delitem__(self, key):
@@ -147,9 +135,9 @@ class RDBDict(Mapping):
                 host=db_host,
                 port=db_port,
             )
-            print("Connection to PostgreSQL DB successful")
+            _LOGGER.info("Connection to PostgreSQL DB successful")
         except OperationalError as e:
-            print("Error: {e}".format(e=str(e)))
+            _LOGGER.info("Error: {e}".format(e=str(e)))
         return connection
 
     def execute_read_query(self, query, params=None):
@@ -161,16 +149,15 @@ class RDBDict(Mapping):
             if result:
                 return result[0]
             else:
-                print("Not found for key: {}".format(query))
-                print("Result: {}".format(str(result)))
-                print("Query: {}".format(str(query)))
+                _LOGGER.debug(f"Query: {query}")
+                _LOGGER.debug(f"Result: {result}")
                 return None
         except OperationalError as e:
-            print("Error: {e}".format(e=str(e)))
+            _LOGGER.info("Error: {e}".format(e=str(e)))
             raise Exception
             return None
         except TypeError as e:
-            print("TypeError: {e}, item: {q}".format(e=str(e), q=query))
+            _LOGGER.info("TypeError: {e}, item: {q}".format(e=str(e), q=query))
             raise Exception
             return None
 
@@ -182,11 +169,11 @@ class RDBDict(Mapping):
             result = cursor.fetchall()
             return result
         except OperationalError as e:
-            print("Error: {e}".format(e=str(e)))
+            _LOGGER.info("Error: {e}".format(e=str(e)))
             raise Exception
             return None
         except TypeError as e:
-            print("TypeError: {e}, item: {q}".format(e=str(e), q=query))
+            pri_LOGGER.infont("TypeError: {e}, item: {q}".format(e=str(e), q=query))
             raise Exception
             return None
 
@@ -194,12 +181,12 @@ class RDBDict(Mapping):
         cursor = self.connection.cursor()
         try:
             return cursor.execute(query, params)
-            print("Query executed successfully")
+            _LOGGER.info("Query executed successfully")
         except OperationalError as e:
-            print("Error: {e}".format(e=str(e)))
+            _LOGGER.info("Error: {e}".format(e=str(e)))
 
     def close(self):
-        print("Closing connection")
+        _LOGGER.info("Closing connection")
         return self.connection.close()
 
     def __del__(self):
@@ -227,7 +214,7 @@ class RDBDict(Mapping):
         res = self.execute_read_query(stmt, {"idx": self._current_idx})
         self._current_idx += 1
         if not res:
-            print("Not found: {}".format(self._current_idx))
+            _LOGGER.info("Not found: {}".format(self._current_idx))
             raise StopIteration
         return res
 

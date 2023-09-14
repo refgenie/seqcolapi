@@ -3,10 +3,10 @@ schemas:
 - https://schema.databio.org/refget/SeqColArraySetInherent.yaml
 database:
   host: $POSTGRES_HOST
-  user: $POSTGRES_USER
+  user: seqcol_admin
   password: $POSTGRES_PASSWORD
   port: 5432
-  name: $POSTGRES_DB
+  name: seqcol
   table: seqcol
 server:
   host: 0.0.0.0
