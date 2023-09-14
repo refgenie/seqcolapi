@@ -11,7 +11,7 @@ from fastapi import Body, FastAPI, Response
 from fastapi import HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from starlette.requests import Request
 from starlette.templating import Jinja2Templates
 from starlette.staticfiles import StaticFiles
@@ -49,9 +49,6 @@ app.add_middleware(  # This is a public API, so we allow all origins
     allow_headers=["*"],
 )
 
-app.mount("/" + STATIC_DIRNAME, StaticFiles(directory=STATIC_PATH), name=STATIC_DIRNAME)
-
-
 @app.get("/", summary="Home page", tags=["General endpoints"])
 async def index(request: Request):
     """
@@ -60,6 +57,13 @@ async def index(request: Request):
     templ_vars = {"request": request, "openapi_version": app.openapi()["openapi"]}
     _LOGGER.debug("merged vars: {}".format(dict(templ_vars, **ALL_VERSIONS)))
     return templates.TemplateResponse("index.html", dict(templ_vars, **ALL_VERSIONS))
+
+@app.get('favicon.ico', include_in_schema=False)
+async def favicon():
+    return FileResponse(f"/static/favicon.ico")
+
+# Mount must come after the `/` route
+app.mount(f"/" , StaticFiles(directory=STATIC_PATH), name=STATIC_DIRNAME)
 
 
 @app.get("/service-info", summary="GA4GH service info", tags=["General endpoints"])
