@@ -22,7 +22,7 @@ from .const import *
 from .scconf import RDBDict, SeqColConf
 from .examples import *
 
-from seqcol import SeqColClient, format_itemwise
+from seqcol import SeqColHenge, format_itemwise
 
 global _LOGGER
 
@@ -172,7 +172,7 @@ def create_globals(config_path, port):
         scconf.exp["database"]["port"],
         scconf.exp["database"]["table"],
     )
-    scclient = SeqColClient(
+    scclient = SeqColHenge(
         database=pgdb,
         api_url_base=scconf["refget_provider_apis"],
         schemas=scconf["schemas"],

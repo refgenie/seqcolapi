@@ -214,18 +214,18 @@ class RDBDict(Mapping):
         return res
 
 
-# We don't need the full SeqColClient,
+# We don't need the full SeqColHenge,
 # which also has loading capability, and requires pyfaidx, which requires
 # biopython, which requires numpy, which is huge and can't compile the in
 # default fastapi container.
 # So, I had written the below class which provides retrieve only.
 # HOWEVER, switching from alpine to slim allows install of numpy;
 # This inflates the container size from 262Mb to 350Mb; perhaps that's worth paying.
-# So I can avoid duplicating this and just use the full SeqColClient from seqcol
-# class SeqColClient(refget.RefGetClient):
+# So I can avoid duplicating this and just use the full SeqColHenge from seqcol
+# class SeqColHenge(refget.RefGetClient):
 #     def retrieve(self, druid, reclimit=None, raw=False):
 #         try:
-#             return super(SeqColClient, self).retrieve(druid, reclimit, raw)
+#             return super(SeqColHenge, self).retrieve(druid, reclimit, raw)
 #         except henge.NotFoundException as e:
 #             _LOGGER.debug(e)
 #             try:
