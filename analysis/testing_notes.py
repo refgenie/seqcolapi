@@ -1,4 +1,3 @@
-
 # main()
 
 # Some testing/developing notes:
@@ -9,7 +8,7 @@
 
 # mydict = SqliteDict('/home/nsheff/code/refget/docs_jupyter/my_db.sqlite', autocommit=True)
 # rgc = refget.RefGetClient("https://refget.herokuapp.com/sequence/", mydict)
-#2262e7f00a684c9f061eb33a3cdd32e13ff67642e69c8c96
+# 2262e7f00a684c9f061eb33a3cdd32e13ff67642e69c8c96
 
 # print(pgdb)
 # pgdb.table
@@ -38,4 +37,3 @@
 # fa_file = "/home/nsheff/code/seqcol/demo_fasta/demo.fa.gz"
 # content = sc.load_fasta2(fa_file)
 # content
-

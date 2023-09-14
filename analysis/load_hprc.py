@@ -27,5 +27,3 @@ for i, g in enumerate(tqdm(ensembl_genomes)):
 # TODO: these pangenome elements should be run through refgenie...
 
 pgdb = scconf.RDBDict()  # parameterized through env vars
-
-

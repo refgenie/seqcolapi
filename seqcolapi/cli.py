@@ -2,6 +2,7 @@ from ubiquerg import VersionInHelpParser
 
 from .const import PKG_NAME, seqcolapi_version
 
+
 def build_parser():
     """
     Build argument parser

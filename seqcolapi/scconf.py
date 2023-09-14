@@ -1,10 +1,11 @@
-import os 
+import os
 import psycopg2
 import yacman
 
 from collections.abc import Mapping
 from psycopg2 import OperationalError, sql
 from psycopg2.errors import UniqueViolation
+
 
 class SeqColConf(yacman.YAMLConfigManager):
     def __init__(
@@ -25,22 +26,25 @@ class SeqColConf(yacman.YAMLConfigManager):
 # pgdb["key"]               # Retrieve item
 # pgdb.close()              # Close connection
 
+
 class RDBDict(Mapping):
     """
     A Relational DataBase Dict.
-    
+
     Simple database connection manager object that allows us to use a
     PostgresQL database as a simple key-value store to back Python
     dict-style access to database items.
     """
 
-    def __init__(self,
-                 db_name: str=None,
-                 db_user: str=None,
-                 db_password: str=None,
-                 db_host: str=None,
-                 db_port: str=None,
-                 db_table: str=None):
+    def __init__(
+        self,
+        db_name: str = None,
+        db_user: str = None,
+        db_password: str = None,
+        db_host: str = None,
+        db_port: str = None,
+        db_table: str = None,
+    ):
         self.db_name = db_name or os.environ.get("POSTGRES_DB")
         self.db_user = db_user or os.environ.get("POSTGRES_USER")
         self.db_host = db_host or os.environ.get("POSTGRES_HOST") or "localhost"
@@ -48,14 +52,15 @@ class RDBDict(Mapping):
         self.db_table = db_table or os.environ.get("POSTGRES_TABLE") or "seqcol"
         db_password = db_password or os.environ.get("POSTGRES_PASSWORD")
 
-        try: 
-            self.connection = self.create_connection(self.db_name, self.db_user, 
-                db_password, self.db_host, self.db_port)
+        try:
+            self.connection = self.create_connection(
+                self.db_name, self.db_user, db_password, self.db_host, self.db_port
+            )
             if not self.connection:
                 raise Exception("Connection failed")
         except Exception as e:
             print(f"{self}")
-            raise e 
+            raise e
         print(self.connection)
         self.connection.autocommit = True
 
@@ -126,7 +131,8 @@ class RDBDict(Mapping):
         stmt = sql.SQL(
             """
             DELETE FROM {table} WHERE key=%(key)s
-        """).format(table=sql.Identifier(self.db_table))
+        """
+        ).format(table=sql.Identifier(self.db_table))
         params = {"key": key}
         res = self.execute_query(stmt, params)
         return res
@@ -200,19 +206,21 @@ class RDBDict(Mapping):
         self.close()
 
     def __len__(self):
-        stmt = sql.SQL("""
+        stmt = sql.SQL(
+            """
             SELECT COUNT(*) FROM {table}
         """
         ).format(table=sql.Identifier(self.db_table))
         res = self.execute_read_query(stmt)
-        return res  
+        return res
 
     def __iter__(self):
         self._current_idx = 0
         return self
 
     def __next__(self):
-        stmt = sql.SQL("""
+        stmt = sql.SQL(
+            """
             SELECT key,value FROM {table} LIMIT 1 OFFSET %(idx)s
         """
         ).format(table=sql.Identifier(self.db_table))
@@ -224,18 +232,18 @@ class RDBDict(Mapping):
         return res
 
 
-# We don't need the full SeqColClient,
+# We don't need the full SeqColHenge,
 # which also has loading capability, and requires pyfaidx, which requires
 # biopython, which requires numpy, which is huge and can't compile the in
 # default fastapi container.
 # So, I had written the below class which provides retrieve only.
 # HOWEVER, switching from alpine to slim allows install of numpy;
 # This inflates the container size from 262Mb to 350Mb; perhaps that's worth paying.
-# So I can avoid duplicating this and just use the full SeqColClient from seqcol
-# class SeqColClient(refget.RefGetClient):
+# So I can avoid duplicating this and just use the full SeqColHenge from seqcol
+# class SeqColHenge(refget.RefGetClient):
 #     def retrieve(self, druid, reclimit=None, raw=False):
 #         try:
-#             return super(SeqColClient, self).retrieve(druid, reclimit, raw)
+#             return super(SeqColHenge, self).retrieve(druid, reclimit, raw)
 #         except henge.NotFoundException as e:
 #             _LOGGER.debug(e)
 #             try:
