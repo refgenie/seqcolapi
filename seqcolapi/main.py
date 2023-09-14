@@ -79,7 +79,7 @@ async def service_info():
         "updatedAt": "2021-03-01T00:00:00Z",
         "environment": "dev",
         "version": ALL_VERSIONS["seqcolapi_version"],
-        "seqcol": {"schema": scclient.schemas, "sorted_name_length_pairs": True},
+        "seqcol": {"schema": schenge.schemas, "sorted_name_length_pairs": True},
     }
     return JSONResponse(content=ret)
 
@@ -90,7 +90,7 @@ async def service_info():
     tags=["Refget endpoints"],
 )
 async def refget(digest: str = example_sequence):
-    return Response(content=scclient.refget(digest))
+    return Response(content=schenge.refget(digest))
 
 
 @app.get(
@@ -109,7 +109,7 @@ async def collection_recursive(
             status_code=400,
             detail="Error: recursion > 1 disabled. Use the /refget server to retrieve sequences.",
         )
-    csc = scclient.retrieve(digest, reclimit=level - 1)
+    csc = schenge.retrieve(digest, reclimit=level - 1)
     try:
         if not collated:
             if len(csc["lengths"]) > 10000:
@@ -135,7 +135,7 @@ async def compare_2_digests(
     _LOGGER.info("Compare called")
     result = {}
     result["digests"] = {"a": digest1, "b": digest2}
-    result.update(scclient.compare_digests(digest1, digest2))
+    result.update(schenge.compare_digests(digest1, digest2))
     return JSONResponse(result)
 
 
@@ -149,15 +149,15 @@ async def compare_1_digest(
 ):
     _LOGGER.info(f"digest1: {digest1}")
     _LOGGER.info(f"B: {B}")
-    A = scclient.retrieve(digest1, reclimit=1)
-    return JSONResponse(scclient.compat_all(A, B))
+    A = schenge.retrieve(digest1, reclimit=1)
+    return JSONResponse(schenge.compat_all(A, B))
 
 
 def create_globals(config_path, port):
     """
     Create global variables for the app to use.
     """
-    global scclient
+    global schenge
     scconf = SeqColConf(filepath=config_path)
     _LOGGER.info(f"Connecting to database... {scconf.exp['database']['host']}")
     pgdb = RDBDict(
@@ -168,7 +168,7 @@ def create_globals(config_path, port):
         scconf.exp["database"]["port"],
         scconf.exp["database"]["table"],
     )
-    scclient = SeqColHenge(
+    schenge = SeqColHenge(
         database=pgdb,
         api_url_base=scconf["refget_provider_apis"],
         schemas=scconf["schemas"],

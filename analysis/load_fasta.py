@@ -23,7 +23,7 @@ scc = scconf.SeqColConf(filepath="/home/nsheff/code/seqcolapi.databio.org/config
 
 pgdb = scconf.RDBDict()  # parameterized through env vars
 
-scclient = seqcol.SeqColClient(
+schenge = seqcol.SeqColClient(
     database=pgdb,
     api_url_base="https://www.ebi.ac.uk/ena/cram/sequence/",
     schemas=["/home/nsheff/code/seqcol/seqcol/schemas/SeqColArraySetInherent.yaml"],
@@ -53,7 +53,7 @@ demo_fasta_files = {
     "demo6": { "fasta": f"{folder}/demo6.fa" },
 }
 
-results = scclient.load_multiple_fastas(demo_fasta_files)
+results = schenge.load_multiple_fastas(demo_fasta_files)
 outfile = "/home/nsheff/work/resources/reference_fasta/links_demo.html"
 outfile_local = "/home/nsheff/work/resources/reference_fasta/links_demo_local.html"
 build_compare_table_html(results, outfile, host="")
@@ -73,7 +73,7 @@ ref_fasta_files = {
   "Refgenie hg38 primary": rgc.seek("hg38_primary", "fasta"),
 }
 
-results_ref = scclient.load_multiple_fastas(ref_fasta_files)
+results_ref = schenge.load_multiple_fastas(ref_fasta_files)
 outfile = "/home/nsheff/work/resources/reference_fasta/links_ref.html"
 outfile_local = "/home/nsheff/work/resources/reference_fasta/links_new_local.html"
 build_compare_table_html(results_ref, outfile, host="")
@@ -84,7 +84,7 @@ import json
 print(json.dumps(results, default=lambda o: '<not serializable>', indent=2))
 
 # How to view a database:
-# scclient.show()  # only works for databases that implement .items()
+# schenge.show()  # only works for databases that implement .items()
 # for k in pgdb:
 #     print(k)
 
@@ -110,14 +110,14 @@ logging.getLogger("seqcol").setLevel(logging.DEBUG)
 # Now this is just unpolished exploratory code for an interactive session:
 # Can probably be removed soon (2023-03-02)
 
-scclient.compare_digests("2786eb8a921aa97018c214f64b9960a0", "a6748aa0f6a1e165f871dbed5e54ba62")
-scclient.compare_digests("c345e091cce0b1df78bfc124b03fba1c", "bd21d38bad9c8970bf7b1c725daa1939")
-scclient.compare_digests("0183ee16bc66279006da59036441e0a9", "6e8e6adc1b11c0ef4b6550ce6a84e144")
-scclient.compare_digests("6e8e6adc1b11c0ef4b6550ce6a84e144", "0183ee16bc66279006da59036441e0a9")
-scclient.compare_digests("514c871928a74885ce981faa61ccbb1a", "c345e091cce0b1df78bfc124b03fba1c")
-scclient.compare_digests("514c871928a74885ce981faa61ccbb1a", "6e8e6adc1b11c0ef4b6550ce6a84e144")
-scclient.compare_digests("c345e091cce0b1df78bfc124b03fba1c", "6e8e6adc1b11c0ef4b6550ce6a84e144")
-scclient.compare_digests("bd21d38bad9c8970bf7b1c725daa1939", "0183ee16bc66279006da59036441e0a9")
+schenge.compare_digests("2786eb8a921aa97018c214f64b9960a0", "a6748aa0f6a1e165f871dbed5e54ba62")
+schenge.compare_digests("c345e091cce0b1df78bfc124b03fba1c", "bd21d38bad9c8970bf7b1c725daa1939")
+schenge.compare_digests("0183ee16bc66279006da59036441e0a9", "6e8e6adc1b11c0ef4b6550ce6a84e144")
+schenge.compare_digests("6e8e6adc1b11c0ef4b6550ce6a84e144", "0183ee16bc66279006da59036441e0a9")
+schenge.compare_digests("514c871928a74885ce981faa61ccbb1a", "c345e091cce0b1df78bfc124b03fba1c")
+schenge.compare_digests("514c871928a74885ce981faa61ccbb1a", "6e8e6adc1b11c0ef4b6550ce6a84e144")
+schenge.compare_digests("c345e091cce0b1df78bfc124b03fba1c", "6e8e6adc1b11c0ef4b6550ce6a84e144")
+schenge.compare_digests("bd21d38bad9c8970bf7b1c725daa1939", "0183ee16bc66279006da59036441e0a9")
 
 import pyfaidx
 fa_object.keys()
@@ -167,30 +167,30 @@ pgdb = scconf.RDBDict(scc.exp["database"]["name"],
                 scc.exp["database"]["host"],
                 scc.exp["database"]["port"])
 
-scclient = seqcol.SeqColClient(database=pgdb,
+schenge = seqcol.SeqColClient(database=pgdb,
     api_url_base="https://www.ebi.ac.uk/ena/cram/sequence/",
     schemas=["/home/nsheff/code/seqcol/seqcol/schemas/SeqColArraySetInherent.yaml"],
     checksum_function=henge.md5)
 
-d = scclient.insert(x2, "SeqColArraySet", reclimit=1)
+d = schenge.insert(x2, "SeqColArraySet", reclimit=1)
 d
 s
-scclient.retrieve("8934293c230d540b3746d6d9b44171dd", reclimit=1)
-scclient.retrieve(d, reclimit=0)
+schenge.retrieve("8934293c230d540b3746d6d9b44171dd", reclimit=1)
+schenge.retrieve(d, reclimit=0)
 
 
-SCAS = scclient.load_fasta_from_filepath(filepath)
+SCAS = schenge.load_fasta_from_filepath(filepath)
 SCAS["SCAS"].keys()
 
-SCAS["SCAS"]["names_lengths"] = seqcol.build_names_lengths(SCAS["SCAS"], scclient.checksum_function)
+SCAS["SCAS"]["names_lengths"] = seqcol.build_names_lengths(SCAS["SCAS"], schenge.checksum_function)
 SCAS["SCAS"].keys()
-valid_schema = scclient.schemas["SeqColArraySet"]
+valid_schema = schenge.schemas["SeqColArraySet"]
 
       item_inherent_split = henge.select_inherent_properties(SCAS["SCAS"], valid_schema)
       attr_string = henge.canonical_str(item_inherent_split["inherent"])
       external_string = henge.canonical_str(item_inherent_split["external"])
 
-digest = scclient.insert(SCAS["SCAS"], "SeqColArraySet", reclimit=1)
+digest = schenge.insert(SCAS["SCAS"], "SeqColArraySet", reclimit=1)
 
 SCAS.keys()
 
