@@ -17,22 +17,14 @@ logging.basicConfig(level=os.environ.get("LOGLEVEL", "DEBUG"))
 logging.getLogger("refgenie").setLevel(logging.DEBUG)
 logging.getLogger().setLevel(logging.DEBUG)
 logging.getLogger("henge").setLevel(logging.DEBUG)
-logging.getLogger("henge").setLevel(logging.info)
-logging.getLogger("henge").debug("bah")
 
 rgc = refgenconf.RefGenConf("/home/nsheff/Dropbox/env/refgenie_config/zither.yaml")
 scc = scconf.SeqColConf(filepath="/home/nsheff/code/seqcolapi.databio.org/config/seqcolapi.yaml")
 
-pgdb = scconf.RDBDict()
+pgdb = scconf.RDBDict()  # parameterized through env vars
 
-# Now handled through env vars
-# scc.exp["database"]["name"],
-#                 scc.exp["database"]["user"],
-#                 scc.exp["database"]["password"],
-#                 scc.exp["database"]["host"],
-#                 scc.exp["database"]["port"])
-
-scclient = seqcol.SeqColClient(database=pgdb,
+scclient = seqcol.SeqColClient(
+    database=pgdb,
     api_url_base="https://www.ebi.ac.uk/ena/cram/sequence/",
     schemas=["/home/nsheff/code/seqcol/seqcol/schemas/SeqColArraySetInherent.yaml"],
     checksum_function=henge.sha512t24u)
@@ -52,13 +44,13 @@ def build_compare_table_html(results, outfile, host="http://seqcolapi.databio.or
 # Load demo fasta files
 folder = "/home/nsheff/code/seqcol/demo_fasta"
 demo_fasta_files = {
-    "demo0": f"{folder}/demo0.fa",
-    "demo1": f"{folder}/demo1.fa.gz",
-    "demo2": f"{folder}/demo2.fa",
-    "demo3": f"{folder}/demo3.fa",
-    "demo4": f"{folder}/demo4.fa",
-    "demo5": f"{folder}/demo5.fa.gz",
-    "demo6": f"{folder}/demo6.fa",
+    "demo0": { "fasta": f"{folder}/demo0.fa" },
+    "demo1": { "fasta": f"{folder}/demo1.fa.gz" },
+    "demo2": { "fasta": f"{folder}/demo2.fa" },
+    "demo3": { "fasta": f"{folder}/demo3.fa" },
+    "demo4": { "fasta": f"{folder}/demo4.fa" },
+    "demo5": { "fasta": f"{folder}/demo5.fa.gz" },
+    "demo6": { "fasta": f"{folder}/demo6.fa" },
 }
 
 results = scclient.load_multiple_fastas(demo_fasta_files)

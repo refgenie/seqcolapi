@@ -1,0 +1,20 @@
+- assembly: demo0
+  local_file: data/demo/demo0.fasta
+
+- assembly: demo1
+  local_file: data/demo/demo1.fasta
+
+- assembly: demo2
+  local_file: data/demo/demo2.fasta
+
+- assembly: demo3
+  local_file: data/demo/demo3.fasta
+
+- assembly: demo4
+  local_file: data/demo/demo4.fasta
+
+- assembly: demo5
+  local_file: data/demo/demo5.fasta
+
+- assembly: demo6
+  local_file: data/demo/demo6.fasta
