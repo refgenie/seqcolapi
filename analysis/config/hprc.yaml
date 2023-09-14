@@ -1320,6 +1320,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504375.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018504375.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504375.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018504375v1/Info/Index
+  file_name: Homo_sapiens-GCA_018504375.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504375.1/ensembl/genome/Homo_sapiens-GCA_018504375.1-unmasked.fa.gz
+  local_file: data/HG01243.pri.mat.f1_v2.unmasked.fa.gz
+  remote_md5: cbf1a1b084fb041e38d1a633d063cce5
+  fasta: data/HG01243.pri.mat.f1_v2.unmasked.fa.gz
 - assembly: NA20129.alt.pat.f1_v2
   population: Southwest USA
   assembly_accession: GCA_018504625.1
@@ -1333,6 +1338,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504625.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018504625.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504625.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018504625v1/Info/Index
+  file_name: Homo_sapiens-GCA_018504625.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504625.1/ensembl/genome/Homo_sapiens-GCA_018504625.1-unmasked.fa.gz
+  local_file: data/NA20129.alt.pat.f1_v2.unmasked.fa.gz
+  remote_md5: c8db3e57c711a13bbf3e2ae8e8d7e6f0
+  fasta: data/NA20129.alt.pat.f1_v2.unmasked.fa.gz
 - assembly: NA20129.pri.mat.f1_v2
   population: Southwest USA
   assembly_accession: GCA_018504635.1
@@ -1346,6 +1356,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504635.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018504635.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504635.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018504635v1/Info/Index
+  file_name: Homo_sapiens-GCA_018504635.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504635.1/ensembl/genome/Homo_sapiens-GCA_018504635.1-unmasked.fa.gz
+  local_file: data/NA20129.pri.mat.f1_v2.unmasked.fa.gz
+  remote_md5: 87dbd592bdb1bd8a188cecf1d101bf95
+  fasta: data/NA20129.pri.mat.f1_v2.unmasked.fa.gz
 - assembly: HG01109.alt.pat.f1_v2
   population: Puerto Rico
   assembly_accession: GCA_018504645.1
@@ -1359,6 +1374,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504645.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018504645.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504645.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018504645v1/Info/Index
+  file_name: Homo_sapiens-GCA_018504645.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504645.1/ensembl/genome/Homo_sapiens-GCA_018504645.1-unmasked.fa.gz
+  local_file: data/HG01109.alt.pat.f1_v2.unmasked.fa.gz
+  remote_md5: 25b3527476c1c97a0e1098eae1b67ec7
+  fasta: data/HG01109.alt.pat.f1_v2.unmasked.fa.gz
 - assembly: NA21309.pri.mat.f1_v2
   population: Kinyawa, Kenya
   assembly_accession: GCA_018504655.1
@@ -1372,6 +1392,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504655.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018504655.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504655.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018504655v1/Info/Index
+  file_name: Homo_sapiens-GCA_018504655.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504655.1/ensembl/genome/Homo_sapiens-GCA_018504655.1-unmasked.fa.gz
+  local_file: data/NA21309.pri.mat.f1_v2.unmasked.fa.gz
+  remote_md5: 20d3884c98205fa82f489c4fc4849e4c
+  fasta: data/NA21309.pri.mat.f1_v2.unmasked.fa.gz
 - assembly: NA21309.alt.pat.f1_v2
   population: Kinyawa, Kenya
   assembly_accession: GCA_018504665.1
@@ -1385,6 +1410,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504665.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018504665.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504665.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018504665v1/Info/Index
+  file_name: Homo_sapiens-GCA_018504665.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018504665.1/ensembl/genome/Homo_sapiens-GCA_018504665.1-unmasked.fa.gz
+  local_file: data/NA21309.alt.pat.f1_v2.unmasked.fa.gz
+  remote_md5: 311ae4c8536990b27743611893c5d71c
+  fasta: data/NA21309.alt.pat.f1_v2.unmasked.fa.gz
 - assembly: HG02109.pri.mat.f1_v2
   population: African Ancestry From Barbados In The Caribbean
   assembly_accession: GCA_018505825.1
@@ -1398,6 +1428,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018505825.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018505825.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018505825.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018505825v1/Info/Index
+  file_name: Homo_sapiens-GCA_018505825.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018505825.1/ensembl/genome/Homo_sapiens-GCA_018505825.1-unmasked.fa.gz
+  local_file: data/HG02109.pri.mat.f1_v2.unmasked.fa.gz
+  remote_md5: d9a5a9bdcd6eba17b0341cf58d414b5d
+  fasta: data/HG02109.pri.mat.f1_v2.unmasked.fa.gz
 - assembly: HG03492.alt.pat.f1_v2
   population: Punjabi In Lahore, Pakistan
   assembly_accession: GCA_018505835.1
@@ -1411,6 +1446,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018505835.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018505835.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018505835.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018505835v1/Info/Index
+  file_name: Homo_sapiens-GCA_018505835.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018505835.1/ensembl/genome/Homo_sapiens-GCA_018505835.1-unmasked.fa.gz
+  local_file: data/HG03492.alt.pat.f1_v2.unmasked.fa.gz
+  remote_md5: 65b49458314bc3fed50b6b5fc173bc61
+  fasta: data/HG03492.alt.pat.f1_v2.unmasked.fa.gz
 - assembly: HG03492.pri.mat.f1_v2
   population: Punjabi In Lahore, Pakistan
   assembly_accession: GCA_018505845.1
@@ -1424,6 +1464,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018505845.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018505845.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018505845.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018505845v1/Info/Index
+  file_name: Homo_sapiens-GCA_018505845.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018505845.1/ensembl/genome/Homo_sapiens-GCA_018505845.1-unmasked.fa.gz
+  local_file: data/HG03492.pri.mat.f1_v2.unmasked.fa.gz
+  remote_md5: 3178d976932b398021b2a445b9b4399b
+  fasta: data/HG03492.pri.mat.f1_v2.unmasked.fa.gz
 - assembly: HG02055.alt.pat.f1_v2
   population: Barbados
   assembly_accession: GCA_018505855.1
@@ -1437,6 +1482,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018505855.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018505855.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018505855.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018505855v1/Info/Index
+  file_name: Homo_sapiens-GCA_018505855.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018505855.1/ensembl/genome/Homo_sapiens-GCA_018505855.1-unmasked.fa.gz
+  local_file: data/HG02055.alt.pat.f1_v2.unmasked.fa.gz
+  remote_md5: 39780bb545b1d635db908b86a34948f5
+  fasta: data/HG02055.alt.pat.f1_v2.unmasked.fa.gz
 - assembly: HG02109.alt.pat.f1_v2
   population: African Ancestry From Barbados In The Caribbean
   assembly_accession: GCA_018505865.1
@@ -1450,6 +1500,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018505865.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018505865.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018505865.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018505865v1/Info/Index
+  file_name: Homo_sapiens-GCA_018505865.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018505865.1/ensembl/genome/Homo_sapiens-GCA_018505865.1-unmasked.fa.gz
+  local_file: data/HG02109.alt.pat.f1_v2.unmasked.fa.gz
+  remote_md5: cb4153d3363327621b357b534722cc93
+  fasta: data/HG02109.alt.pat.f1_v2.unmasked.fa.gz
 - assembly: HG02055.pri.mat.f1_v2
   population: Barbados
   assembly_accession: GCA_018506125.1
@@ -1463,6 +1518,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506125.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018506125.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506125.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018506125v1/Info/Index
+  file_name: Homo_sapiens-GCA_018506125.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506125.1/ensembl/genome/Homo_sapiens-GCA_018506125.1-unmasked.fa.gz
+  local_file: data/HG02055.pri.mat.f1_v2.unmasked.fa.gz
+  remote_md5: 1710edd2351a02583e5eb9be7f2b743e
+  fasta: data/HG02055.pri.mat.f1_v2.unmasked.fa.gz
 - assembly: HG03098.alt.pat.f1_v2
   population: Mende In Sierra Leone
   assembly_accession: GCA_018506155.1
@@ -1476,6 +1536,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506155.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018506155.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506155.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018506155v1/Info/Index
+  file_name: Homo_sapiens-GCA_018506155.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506155.1/ensembl/genome/Homo_sapiens-GCA_018506155.1-unmasked.fa.gz
+  local_file: data/HG03098.alt.pat.f1_v2.unmasked.fa.gz
+  remote_md5: a5f80556fa455114d763b0ddab5509a1
+  fasta: data/HG03098.alt.pat.f1_v2.unmasked.fa.gz
 - assembly: HG03098.pri.mat.f1_v2
   population: Mende In Sierra Leone
   assembly_accession: GCA_018506165.1
@@ -1489,6 +1554,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506165.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018506165.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506165.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018506165v1/Info/Index
+  file_name: Homo_sapiens-GCA_018506165.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506165.1/ensembl/genome/Homo_sapiens-GCA_018506165.1-unmasked.fa.gz
+  local_file: data/HG03098.pri.mat.f1_v2.unmasked.fa.gz
+  remote_md5: 3f213903a3238b64b37dc40995b44cff
+  fasta: data/HG03098.pri.mat.f1_v2.unmasked.fa.gz
 - assembly: HG005.alt.pat.f1_v2
   population: Asian
   assembly_accession: GCA_018506945.1
@@ -1500,6 +1570,11 @@
   transcripts: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506945.1/ensembl/geneset/2022_07/Homo_sapiens-GCA_018506945.1-2022_07-cdna.fa.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506945.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018506945v1/Info/Index
+  file_name: Homo_sapiens-GCA_018506945.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506945.1/ensembl/genome/Homo_sapiens-GCA_018506945.1-unmasked.fa.gz
+  local_file: data/HG005.alt.pat.f1_v2.unmasked.fa.gz
+  remote_md5: d815c412ea96c765ac8b3fd241eacb30
+  fasta: data/HG005.alt.pat.f1_v2.unmasked.fa.gz
 - assembly: HG00733.alt.pat.f1_v2
   population: Puerto Rican In Puerto Rico
   assembly_accession: GCA_018506955.1
@@ -1513,6 +1588,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506955.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018506955.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506955.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018506955v1/Info/Index
+  file_name: Homo_sapiens-GCA_018506955.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506955.1/ensembl/genome/Homo_sapiens-GCA_018506955.1-unmasked.fa.gz
+  local_file: data/HG00733.alt.pat.f1_v2.unmasked.fa.gz
+  remote_md5: aa8e2fa9f3a9b90193b3c803285164fb
+  fasta: data/HG00733.alt.pat.f1_v2.unmasked.fa.gz
 - assembly: HG005.pri.mat.f1_v2
   population: Asian
   assembly_accession: GCA_018506965.1
@@ -1524,6 +1604,11 @@
   transcripts: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506965.1/ensembl/geneset/2022_07/Homo_sapiens-GCA_018506965.1-2022_07-cdna.fa.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506965.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018506965v1/Info/Index
+  file_name: Homo_sapiens-GCA_018506965.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506965.1/ensembl/genome/Homo_sapiens-GCA_018506965.1-unmasked.fa.gz
+  local_file: data/HG005.pri.mat.f1_v2.unmasked.fa.gz
+  remote_md5: 759b6967cc0cd0140ce69ce8e40f96f4
+  fasta: data/HG005.pri.mat.f1_v2.unmasked.fa.gz
 - assembly: HG00733.pri.mat.f1_v2
   population: Puerto Rican In Puerto Rico
   assembly_accession: GCA_018506975.1
@@ -1537,6 +1622,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506975.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018506975.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506975.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018506975v1/Info/Index
+  file_name: Homo_sapiens-GCA_018506975.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018506975.1/ensembl/genome/Homo_sapiens-GCA_018506975.1-unmasked.fa.gz
+  local_file: data/HG00733.pri.mat.f1_v2.unmasked.fa.gz
+  remote_md5: cb03fa96865d034bf2b410b8d623df96
+  fasta: data/HG00733.pri.mat.f1_v2.unmasked.fa.gz
 - assembly: HG02145.pri.mat.f1_v2
   population: African Ancestry From Barbados In The Caribbean
   assembly_accession: GCA_018852585.1
@@ -1550,6 +1640,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018852585.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018852585.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018852585.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018852585v1/Info/Index
+  file_name: Homo_sapiens-GCA_018852585.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018852585.1/ensembl/genome/Homo_sapiens-GCA_018852585.1-unmasked.fa.gz
+  local_file: data/HG02145.pri.mat.f1_v2.unmasked.fa.gz
+  remote_md5: 5cf8dc4d731a7e69783554311365f781
+  fasta: data/HG02145.pri.mat.f1_v2.unmasked.fa.gz
 - assembly: HG02145.alt.pat.f1_v2
   population: African Ancestry From Barbados In The Caribbean
   assembly_accession: GCA_018852595.1
@@ -1563,6 +1658,11 @@
   variants_gnomad: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018852595.1/ensembl/variation/2022_10/vcf/Homo_sapiens-GCA_018852595.1-2022_10-gnomad.vcf.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018852595.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018852595v1/Info/Index
+  file_name: Homo_sapiens-GCA_018852595.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018852595.1/ensembl/genome/Homo_sapiens-GCA_018852595.1-unmasked.fa.gz
+  local_file: data/HG02145.alt.pat.f1_v2.unmasked.fa.gz
+  remote_md5: cfa7ec0f15c37eb6c067b0d34d93db92
+  fasta: data/HG02145.alt.pat.f1_v2.unmasked.fa.gz
 - assembly: HG002.alt.pat.f1_v2
   population: Caucasian
   assembly_accession: GCA_018852605.1
@@ -1574,6 +1674,11 @@
   transcripts: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018852605.1/ensembl/geneset/2022_07/Homo_sapiens-GCA_018852605.1-2022_07-cdna.fa.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018852605.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018852605v1/Info/Index
+  file_name: Homo_sapiens-GCA_018852605.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018852605.1/ensembl/genome/Homo_sapiens-GCA_018852605.1-unmasked.fa.gz
+  local_file: data/HG002.alt.pat.f1_v2.unmasked.fa.gz
+  remote_md5: 7fd1460fbb5f60de6cce889f0e7ad44d
+  fasta: data/HG002.alt.pat.f1_v2.unmasked.fa.gz
 - assembly: HG002.pri.mat.f1_v2
   population: Caucasian
   assembly_accession: GCA_018852615.1
@@ -1585,6 +1690,11 @@
   transcripts: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018852615.1/ensembl/geneset/2022_07/Homo_sapiens-GCA_018852615.1-2022_07-cdna.fa.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018852615.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca018852615v1/Info/Index
+  file_name: Homo_sapiens-GCA_018852615.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_018852615.1/ensembl/genome/Homo_sapiens-GCA_018852615.1-unmasked.fa.gz
+  local_file: data/HG002.pri.mat.f1_v2.unmasked.fa.gz
+  remote_md5: 53edbb15ddc18de5cfe02a3a0bb44298
+  fasta: data/HG002.pri.mat.f1_v2.unmasked.fa.gz
 - assembly: HG002.pat.cur.20211005
   population: Caucasian
   assembly_accession: GCA_021950905.1
@@ -1596,6 +1706,11 @@
   transcripts: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_021950905.1/ensembl/geneset/2022_07/Homo_sapiens-GCA_021950905.1-2022_07-cdna.fa.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_021950905.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca021950905v1/Info/Index
+  file_name: Homo_sapiens-GCA_021950905.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_021950905.1/ensembl/genome/Homo_sapiens-GCA_021950905.1-unmasked.fa.gz
+  local_file: data/HG002.pat.cur.20211005.unmasked.fa.gz
+  remote_md5: 15138879ea44f4174ca245ded469fd7b
+  fasta: data/HG002.pat.cur.20211005.unmasked.fa.gz
 - assembly: HG002.mat.cur.20211005
   population: Caucasian
   assembly_accession: GCA_021951015.1
@@ -1607,3 +1722,8 @@
   transcripts: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_021951015.1/ensembl/geneset/2022_07/Homo_sapiens-GCA_021951015.1-2022_07-cdna.fa.gz
   ftp_dumps: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_021951015.1
   rapid_link: https://rapid.ensembl.org/Homo_sapiens_gca021951015v1/Info/Index
+  file_name: Homo_sapiens-GCA_021951015.1-unmasked.fa.gz
+  url: https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_021951015.1/ensembl/genome/Homo_sapiens-GCA_021951015.1-unmasked.fa.gz
+  local_file: data/HG002.mat.cur.20211005.unmasked.fa.gz
+  remote_md5: 8351881dc69adbdf87dd77414d289813
+  fasta: data/HG002.mat.cur.20211005.unmasked.fa.gz
