@@ -115,6 +115,7 @@ async def collection(
         )
     try:
         csc = schenge.retrieve(digest, reclimit=level - 1)
+        print(digest, csc)
     except henge.NotFoundException as e:
         _LOGGER.debug(e)
         raise HTTPException(

@@ -30,7 +30,6 @@ schenge = seqcol.SeqColHenge(
 
 schenge.retrieve('xysio2')
 
-
 from jinja2 import Environment, FileSystemLoader
 
 def build_compare_table_html(results, outfile, host="http://seqcolapi.databio.org"):
@@ -54,6 +53,8 @@ demo_fasta_files = {
     "demo5": { "fasta": f"{folder}/demo5.fa.gz" },
     "demo6": { "fasta": f"{folder}/demo6.fa" },
 }
+
+seqcol.fasta_file_to_seqcol(demo_fasta_files["demo0"]["fasta"])
 
 results = schenge.load_multiple_fastas(demo_fasta_files)
 outfile = "/home/nsheff/work/resources/reference_fasta/links_demo.html"
