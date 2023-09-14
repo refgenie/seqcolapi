@@ -5,6 +5,7 @@ from collections.abc import Mapping
 from psycopg2 import OperationalError, sql
 from psycopg2.errors import UniqueViolation
 
+
 class SeqColConf(yacman.YAMLConfigManager):
     def __init__(
         self,
@@ -24,18 +25,17 @@ class SeqColConf(yacman.YAMLConfigManager):
 # pgdb["key"]               # Retrieve item
 # pgdb.close()              # Close connection
 
+
 class RDBDict(Mapping):
     """
     A Relational DataBase Dict.
-    
+
     Simple database connection manager object that allows us to use a
     PostgresQL database as a simple key-value store to back Python
     dict-style access to database items.
     """
 
-    def __init__(
-        self, db_name, db_user, db_password, db_host, db_port, db_table
-    ):
+    def __init__(self, db_name, db_user, db_password, db_host, db_port, db_table):
         self.db_table = db_table
         self.db_name = db_name
         self.db_user = db_user
@@ -113,7 +113,8 @@ class RDBDict(Mapping):
         stmt = sql.SQL(
             """
             DELETE FROM {table} WHERE key=%(key)s
-        """).format(table=sql.Identifier(self.db_table))
+        """
+        ).format(table=sql.Identifier(self.db_table))
         params = {"key": key}
         res = self.execute_query(stmt, params)
         return res
@@ -187,19 +188,21 @@ class RDBDict(Mapping):
         self.close()
 
     def __len__(self):
-        stmt = sql.SQL("""
+        stmt = sql.SQL(
+            """
             SELECT COUNT(*) FROM {table}
         """
         ).format(table=sql.Identifier(self.db_table))
         res = self.execute_read_query(stmt)
-        return res  
+        return res
 
     def __iter__(self):
         self._current_idx = 0
         return self
 
     def __next__(self):
-        stmt = sql.SQL("""
+        stmt = sql.SQL(
+            """
             SELECT key,value FROM {table} LIMIT 1 OFFSET %(idx)s
         """
         ).format(table=sql.Identifier(self.db_table))

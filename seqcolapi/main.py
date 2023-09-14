@@ -41,7 +41,7 @@ app = FastAPI(
 
 origins = ["*"]
 
-app.add_middleware( # This is a public API, so we allow all origins
+app.add_middleware(  # This is a public API, so we allow all origins
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
@@ -50,8 +50,8 @@ app.add_middleware( # This is a public API, so we allow all origins
 )
 
 
-
 app.mount("/" + STATIC_DIRNAME, StaticFiles(directory=STATIC_PATH), name=STATIC_DIRNAME)
+
 
 @app.get("/", summary="Home page", tags=["General endpoints"])
 async def index(request: Request):
@@ -62,6 +62,7 @@ async def index(request: Request):
     _LOGGER.debug("merged vars: {}".format(dict(templ_vars, **ALL_VERSIONS)))
     return templates.TemplateResponse("index.html", dict(templ_vars, **ALL_VERSIONS))
 
+
 @app.get("/service-info", summary="GA4GH service info", tags=["General endpoints"])
 async def service_info():
     ret = {
@@ -70,33 +71,27 @@ async def service_info():
         "type": {
             "group": "org.ga4gh",
             "artifact": "seqcol",
-            "version": ALL_VERSIONS["seqcol_spec_version"]
+            "version": ALL_VERSIONS["seqcol_spec_version"],
         },
         "description": "An API providing metadata such as names, lengths, and other values for collections of reference sequences",
-        "organization": {
-            "name": "Databio Lab",
-            "url": "https://databio.org"
-        },
+        "organization": {"name": "Databio Lab", "url": "https://databio.org"},
         "contactUrl": "https://github.com/refgenie/seqcol/issues",
         "documentationUrl": "https://seqcolapi.databio.org",
         "updatedAt": "2021-03-01T00:00:00Z",
         "environment": "dev",
         "version": ALL_VERSIONS["seqcolapi_version"],
-        "seqcol": {
-            "schema": scclient.schemas,
-            "sorted_name_length_pairs": True
-        }
+        "seqcol": {"schema": scclient.schemas, "sorted_name_length_pairs": True},
     }
     return JSONResponse(content=ret)
+
 
 @app.get(
     "/sequence/{digest}",
     summary="Retrieve raw sequence via refget protocol",
     tags=["General endpoints"],
 )
-async def refget(digest: str=example_sequence):
+async def refget(digest: str = example_sequence):
     return Response(content=scclient.refget(digest))
-
 
 
 @app.get(
@@ -104,23 +99,32 @@ async def refget(digest: str=example_sequence):
     summary="Retrieve a sequence collection",
     tags=["Retrieving sequence collections"],
 )
-async def collection_recursive(digest: str=example_digest, level: Union[int, None] = None, format: Union[str, None] = None):
+async def collection_recursive(
+    digest: str = example_digest,
+    level: Union[int, None] = None,
+    format: Union[str, None] = None,
+):
     print("retriving collection")
     if level == None:
         level = 2
     if level > 2:
-        raise HTTPException(status_code=400, detail="Error: recursion > 1 disabled. Use the /refget server to retrieve sequences.")
-    csc = scclient.retrieve(digest, reclimit=level-1)
+        raise HTTPException(
+            status_code=400,
+            detail="Error: recursion > 1 disabled. Use the /refget server to retrieve sequences.",
+        )
+    csc = scclient.retrieve(digest, reclimit=level - 1)
     try:
         if format == "collated":
             if len(csc["lengths"]) > 10000:
-                raise HTTPException(status_code=413, detail="This server won't collate collections with > 10000 sequences")
+                raise HTTPException(
+                    status_code=413,
+                    detail="This server won't collate collections with > 10000 sequences",
+                )
             return JSONResponse(content=format_itemwise(csc))
         else:
             return JSONResponse(content=csc)
     except:
         return {}
-
 
 
 @app.get(
@@ -133,10 +137,7 @@ async def compare_2_digests(
 ):
     _LOGGER.info("Compare called")
     result = {}
-    result["digests"] = {
-        "a": digest1,
-        "b": digest2
-    }
+    result["digests"] = {"a": digest1, "b": digest2}
     result.update(scclient.compare_digests(digest1, digest2))
     return JSONResponse(result)
 
@@ -146,14 +147,16 @@ async def compare_2_digests(
     summary="Compare a local sequence collection to one on the server",
     tags=["Comparing sequence collections"],
 )
-async def compare_1_digest(digest1: str = example_digest_hg38, B: dict = example_hg38_sc):
+async def compare_1_digest(
+    digest1: str = example_digest_hg38, B: dict = example_hg38_sc
+):
     _LOGGER.info(f"digest1: {digest1}")
     _LOGGER.info("seqcol")
     _LOGGER.info(B)
     A = scclient.retrieve(digest1, reclimit=1)
     return JSONResponse(scclient.compat_all(A, B))
 
-    
+
 def create_globals(config_path, port):
     """
     Create global variables for the app to use.
@@ -170,12 +173,15 @@ def create_globals(config_path, port):
         scconf.exp["database"]["table"],
     )
     scclient = SeqColClient(
-        database=pgdb, api_url_base=scconf["refget_provider_apis"], schemas=scconf["schemas"]
+        database=pgdb,
+        api_url_base=scconf["refget_provider_apis"],
+        schemas=scconf["schemas"],
     )
     seqcolapi_port = port if port else scconf.exp["server"]["port"]
     host = scconf.exp["server"]["host"]
     scconf.app = {"host": host, "port": seqcolapi_port}
     return scconf
+
 
 def main(args=None):
     parser = build_parser()
@@ -195,6 +201,7 @@ def main(args=None):
         scconf = create_globals(args.config, args.port)
         _LOGGER.info(f"Running on port {scconf.app['port']}")
         uvicorn.run(app, host=scconf.app["host"], port=scconf.app["port"])
+
 
 if __name__ != "__main__":
     if os.environ.get("SEQCOL_CONFIG"):

@@ -7,7 +7,7 @@ from setuptools import setup
 # Configuration options edit
 cfg = {
     "package_name": "seqcolapi",
-    "author": u"Nathan Sheffield",
+    "author": "Nathan Sheffield",
     "author_email": "nathan@code.databio.org",
     "description": "API for Sequence Collections",
     "license": "BSD2",
@@ -41,7 +41,7 @@ with open(os.path.join(cfg["package_name"], "_version.py"), "r") as versionfile:
 
 with open("README.md") as f:
     long_description = f.read()
-    
+
 setup(
     name=cfg["package_name"],
     packages=[cfg["package_name"]],
