@@ -32,8 +32,35 @@ for i, g in enumerate(tqdm(ensembl_genomes)):
 
 # TODO: these pangenome elements should be run through refgenie...
 
-pgdb = scconf.RDBDict()  # parameterized through env vars
+sys.path.append("seqcolapi")
+from scconf import RDBDict
+pgdb = RDBDict()  # parameterized through env vars
 
 import seqcol
-
 scc = seqcol.SeqColConf()
+import henge
+schenge = seqcol.SeqColHenge(
+    database=pgdb,
+    schemas=["/home/nsheff/code/seqcol/seqcol/schemas/SeqColArraySetInherent.yaml"],
+    checksum_function=henge.sha512t24u_digest)
+
+
+# set logging
+_LOGGER = logging.getLogger()  # root logger
+stream = logging.StreamHandler(sys.stdout)
+fmt = logging.Formatter("%(levelname)s %(asctime)s | %(name)s:%(module)s:%(lineno)d > %(message)s ")
+stream.setFormatter(fmt)
+_LOGGER.setLevel(os.environ.get("LOGLEVEL", "DEBUG"))
+_LOGGER.addHandler(stream)
+
+seqcol.fasta_file_to_seqcol(ensembl_genomes[1]["fasta"])
+
+
+# results = schenge.load_multiple_fastas(demo_fasta_files)
+
+for i, g in enumerate(tqdm(ensembl_genomes)):
+    _LOGGER.info(f"Pre-processing i={i}: {g['assembly']}...")
+    result = schenge.load_fasta_from_filepath(g["fasta"])
+    with ensembl_genomes as cfg:
+        cfg[i]["seqcol_digest"] = result["digest"]
+        cfg.write()
