@@ -28,6 +28,9 @@ schenge = seqcol.SeqColHenge(
     schemas=["/home/nsheff/code/seqcol/seqcol/schemas/SeqColArraySetInherent.yaml"],
     checksum_function=henge.sha512t24u_digest)
 
+#     schemas=scconf["schemas"]
+
+
 schenge.retrieve('xysio2')
 
 from jinja2 import Environment, FileSystemLoader

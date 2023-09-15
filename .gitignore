@@ -73,3 +73,6 @@ dist/
 seqcolapi.egg-info/
 
 *ipynb_checkpoints*
+
+
+analysis/results
