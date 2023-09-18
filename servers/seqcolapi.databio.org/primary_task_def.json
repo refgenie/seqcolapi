@@ -25,20 +25,12 @@
       "workingDirectory": null,
       "secrets": [
         {
-          "valueFrom": "BEDBASE_POSTGRES_PASSWORD",
+          "valueFrom": "SEQCOLAPI_POSTGRES_PASSWORD",
           "name": "POSTGRES_PASSWORD"
         },
         {
           "valueFrom": "BEDBASE_POSTGRES_HOST",
           "name": "POSTGRES_HOST"
-        },
-        {
-          "valueFrom": "BEDBASE_POSTGRES_USER",
-          "name": "POSTGRES_USER"
-        },
-        {
-          "valueFrom": "BEDBASE_POSTGRES_DB",
-          "name": "POSTGRES_DB"
         }
       ],
       "dockerSecurityOptions": null,
