@@ -57,10 +57,11 @@ seqcol.fasta_file_to_seqcol(ensembl_genomes[1]["fasta"])
 
 
 # results = schenge.load_multiple_fastas(demo_fasta_files)
-
+# TODO: Remove fasta processing from seqcol; rely on Andy's rust utility instead
+# it's way faster.
 for i, g in enumerate(tqdm(ensembl_genomes)):
     _LOGGER.info(f"Pre-processing i={i}: {g['assembly']}...")
-    result = schenge.load_fasta_from_filepath(g["fasta"])
+    result = schenge.load_fasta_from_filepath(g["fasta"])  # here
     with ensembl_genomes as cfg:
         cfg[i]["seqcol_digest"] = result["digest"]
         cfg.write()

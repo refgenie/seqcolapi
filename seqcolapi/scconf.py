@@ -14,6 +14,13 @@ _LOGGER = logging.getLogger(__name__)
 # pgdb["key"]               # Retrieve item
 # pgdb.close()              # Close connection
 
+def getenv(varname):
+    """ Simple wrapper to make the Exception more informative for missing env var"""
+    try: 
+        return os.environ[varname]
+    except KeyError:
+        raise Exception(f"Environment variable {varname} not set.")
+
 
 class RDBDict(Mapping):
     """
@@ -33,12 +40,13 @@ class RDBDict(Mapping):
         db_port: str = None,
         db_table: str = None,
     ):
-        self.db_name = db_name or os.environ.get("POSTGRES_DB")
-        self.db_user = db_user or os.environ.get("POSTGRES_USER")
+        self.connection = None
+        self.db_name = db_name or getenv("POSTGRES_DB")
+        self.db_user = db_user or getenv("POSTGRES_USER")
         self.db_host = db_host or os.environ.get("POSTGRES_HOST") or "localhost"
         self.db_port = db_port or os.environ.get("POSTGRES_PORT") or "5432"
         self.db_table = db_table or os.environ.get("POSTGRES_TABLE") or "seqcol"
-        db_password = db_password or os.environ.get("POSTGRES_PASSWORD")
+        db_password = db_password or getenv("POSTGRES_PASSWORD")
 
         try:
             self.connection = self.create_connection(
@@ -190,7 +198,8 @@ class RDBDict(Mapping):
         return self.connection.close()
 
     def __del__(self):
-        self.close()
+        if self.connection:
+            self.close()
 
     def __len__(self):
         stmt = sql.SQL(

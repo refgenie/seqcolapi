@@ -1,0 +1,6 @@
+pipeline_name: add_to_seqcol
+samples:
+  seqcol_digest:
+    type: "string"
+    description: "seqcol digest"
+    

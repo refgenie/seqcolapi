@@ -76,3 +76,5 @@ seqcolapi.egg-info/
 
 
 analysis/results
+analysis/data/*.gz
+analysis/data/*.checksums

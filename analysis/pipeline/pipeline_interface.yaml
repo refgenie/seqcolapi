@@ -5,4 +5,4 @@ pre_submit:
     - looper.write_sample_yaml
 var_templates:
   pipeline: '{looper.piface_dir}/add_to_seqcol_server.py'
-command_template: 'python3.11 {pipeline.var_templates.pipeline} {sample.sample_yaml_path}'
+command_template: 'python -u {pipeline.var_templates.pipeline} {sample.sample_yaml_path}'

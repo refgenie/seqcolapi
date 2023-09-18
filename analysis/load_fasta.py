@@ -45,6 +45,37 @@ def build_compare_table_html(results, outfile, host="http://seqcolapi.databio.or
     with open(outfile, "w") as fh:
         fh.write(output_from_parsed_template)
 
+
+import yacman
+yacman.YAMLConfigManager(filepath="analysis/results.yaml")
+
+results = yacman.load_yaml("analysis/results.yaml")
+results["add_to_seqcol"]["sample"]
+inputs = yacman.load_yaml("analysis/config/hprc.yaml")
+results.keys()
+columns = list(inputs[0].keys())
+columns = ["assembly", "assembly_accession", "seqcol_digest"]
+for g in range(len(inputs)):
+    print(g)
+    assembly = inputs[g]["assembly"]
+    inputs[g]["seqcol_digest"] = results["add_to_seqcol"]["sample"][assembly]["seqcol_digest"]
+
+build_seqcol_list(inputs, columns, "analysis/seqcol_list.html", host="http://seqcolapi.databio.org")
+
+
+def build_seqcol_list(results, columns, outfile, host="http://seqcolapi.databio.org"):
+    """ Build a list of genomes. """
+    env = Environment(loader=FileSystemLoader('/home/nsheff/code/seqcolapi/seqcolapi/templates'))
+    template = env.get_template('seqcol_list.html')
+    output_from_parsed_template = template.render(results=results, columns=columns, host=host)
+    print(output_from_parsed_template)
+    # to save the results
+    with open(outfile, "w") as fh:
+        fh.write(output_from_parsed_template)
+
+
+
+
 # Load demo fasta files
 folder = "/home/nsheff/code/seqcol/demo_fasta"
 demo_fasta_files = {
