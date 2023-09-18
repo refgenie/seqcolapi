@@ -183,7 +183,14 @@ def create_globals(scconf: yacman.YAMLConfigManager):
     """
     _LOGGER.info(f"Connecting to database... {scconf.exp['database']['host']}")
     global schenge
-    pgdb = RDBDict()
+    pgdb = RDBDict(
+        db_name=scconf.exp["database"]["name"],
+        db_user=scconf.exp["database"]["user"],
+        db_pass=scconf.exp["database"]["password"],
+        db_host=scconf.exp["database"]["host"],
+        db_port=scconf.exp["database"]["port"],
+        db_table=scconf.exp["database"]["table"],
+        )
     schenge = SeqColHenge(
         database=pgdb,
         schemas=scconf["schemas"],
