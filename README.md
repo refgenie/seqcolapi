@@ -11,6 +11,7 @@ This repository contains:
 
 To build the docker file:
 
+
 ```
 docker build --no-cache -t scim .
 ```
@@ -53,6 +54,14 @@ ipython3
 Now run `load_fasta.py`
 
 ## Deploy to AWS ECS
+
+### Testing locally first
+
+```
+cd servers/seqcolapi.databio.org
+docker build -t scim .
+docker run scim
+```
 
 To upgrade the software:
 
