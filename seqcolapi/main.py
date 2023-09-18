@@ -196,7 +196,8 @@ def main(injected_args=None):
     parser = build_parser()
     parser = logmuse.add_logging_options(parser)
     args = parser.parse_args()
-    args.update(injected_args)
+    if injected_args:
+        args.__dict__.update(injected_args)
     if not args.command:
         parser.print_help()
         print("No subcommand given")
@@ -205,10 +206,10 @@ def main(injected_args=None):
     _LOGGER = logmuse.logger_via_cli(args, make_root=True)
     _LOGGER.info(f"args: {args}")
     if "config" in args and args.config is not None:
-        scconf = SeqColConf(filepath=config_path)
+        scconf = SeqColConf(filepath=args.config)
         create_globals(scconf)
-        _LOGGER.info(f"Running on port {scconf.app['port']}")
         port = args.port or scconf.exp["server"]["port"]
+        _LOGGER.info(f"Running on port {port}")
         uvicorn.run(app,
                     host=scconf.exp["server"]["host"], 
                     port=port)

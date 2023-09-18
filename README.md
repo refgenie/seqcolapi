@@ -81,7 +81,7 @@ Install natively with `pip install .`, then run natively:
 
 ```
 source servers/seqcolapi.databio.org/production.env
-seqcolapi serve -c /home/nsheff/code/seqcolapi.databio.org/config/seqcolapi.yaml -p 8100
+seqcolapi serve -c /home/nsheff/code/seqcolapi/servers/seqcolapi.databio.org/seqcolapi.yaml -p 8100
 ```
 
 Use at: http://localhost:8100
