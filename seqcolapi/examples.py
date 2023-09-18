@@ -6,7 +6,7 @@ from fastapi import Path, Body
 example_digest = Path(
     ...,
     description="Sequence collection digest",
-    pattern=r"^\w+$",
+    pattern=r"^[-\w]+$",
     max_length=64,
     min_length=32,
     examples="a6748aa0f6a1e165f871dbed5e54ba62",
@@ -15,7 +15,7 @@ example_digest = Path(
 example_digest_2 = Path(
     ...,
     description="Sequence collection digest",
-    pattern=r"^\w+$",
+    pattern=r"^[-\w]+$",
     max_length=64,
     min_length=32,
     examples="2786eb8a921aa97018c214f64b9960a0",
@@ -24,7 +24,7 @@ example_digest_2 = Path(
 example_digest_hg38 = Path(
     ...,
     description="Sequence collection digest",
-    pattern=r"^\w+$",
+    pattern=r"^[-\w]+$",
     max_length=64,
     min_length=32,
     examples="514c871928a74885ce981faa61ccbb1a",
@@ -33,7 +33,7 @@ example_digest_hg38 = Path(
 example_digest_hg38_primary = Path(
     ...,
     description="Sequence collection digest",
-    pattern=r"^\w+$",
+    pattern=r"^[-\w]+$",
     max_length=64,
     min_length=32,
     examples="c345e091cce0b1df78bfc124b03fba1c",
@@ -42,7 +42,7 @@ example_digest_hg38_primary = Path(
 example_sequence = Path(
     ...,
     description="Refget sequence digest",
-    pattern=r"^\w+$",
+    pattern=r"^[-\w]+$",
     max_length=64,
     min_length=32,
     examples="76f9f3315fa4b831e93c36cd88196480",

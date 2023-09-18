@@ -1,0 +1,197 @@
+add_to_seqcol:
+  project: {}
+  sample:
+    HG005.pri.mat.f1_v2:
+      seqcol_digest: HhM9RLhBL4ggspYnU7_MI_QrLQZoUTqJ
+    T2T-CHM13v2.0:
+      seqcol_digest: cT0L9BSX-_X5Wv_lbpJRXAFOEPj0Dvav
+    HG02257.alt.pat.f1_v2:
+      seqcol_digest: MFxJDHkVdTBlPvUFRbYWDZYxmycvHSRp
+    HG02257.pri.mat.f1_v2:
+      seqcol_digest: PU_Crd5eY96THL1Jkf1oJ0ABf3hcQfPv
+    HG02559.alt.pat.f1_v2:
+      seqcol_digest: OCV0NxSbsWc-Xh3nPSQ0GrnAmYpRGFAL
+    HG02559.pri.mat.f1_v2:
+      seqcol_digest: -UZ3ln8PXKtOgREFMkdncoMzTSV-Eaj5
+    HG02486.alt.pat.f1_v2:
+      seqcol_digest: 8Qlx8ZKwKL4U5s100-rjUZCA7UcWxpJr
+    HG02486.pri.mat.f1_v2:
+      seqcol_digest: ZXK7B5SQ2iX_esmgYtwaOBtgTr3dwd7L
+    HG01891.pri.mat.f1_v2:
+      seqcol_digest: vUoInwW05o32k_Cq6-xkenrzLWF9oZ4N
+    HG01891.alt.pat.f1_v2:
+      seqcol_digest: Zu_hdPQWU5DTGGRPa3cf_0TVNjdspvj-
+    HG01258.pri.mat.f1_v2:
+      seqcol_digest: cH3KUtgjMAxCl6Tkn5aCPPl_Yqyo-mkl
+    HG03516.alt.pat.f1_v2:
+      seqcol_digest: mSSLkiEl3Y7Bub48I1Ng-iVLCZm3_wli
+    HG03516.pri.mat.f1_v2:
+      seqcol_digest: S3kEaQ_QvrAYuZs2R8Un6hg3f_1ibteZ
+    HG01123.pri.mat.f1_v2.1:
+      seqcol_digest: Ld18iSJB2oh7kTRGpFJD5bupqnHaXt-r
+    HG01258.alt.pat.f1_v2:
+      seqcol_digest: SQuRKoVbeO2JdcGRSO_WxmZsmAxbqSdb
+    HG01361.pri.mat.f1_v2:
+      seqcol_digest: uc3BXswbHLIuPEuBa-pY7MAT8qNNFHhY
+    HG01123.alt.pat.f1_v2.1:
+      seqcol_digest: RfpuPSsslqdCmPGat5yqoQF10qZXA2OJ
+    HG01361.alt.pat.f1_v2:
+      seqcol_digest: 4YXbbLQwvkukFrZDm-NUQpZggJ81HeoO
+    HG01358.pri.mat.f1_v2.1:
+      seqcol_digest: CxRryMc8SwVpuan6rL3Nw5-qnTU1JYCo
+    HG02622.pri.mat.f1_v2:
+      seqcol_digest: xCb3Ha1fm7Uz6dwvN5JXqdPLRVrMTTm9
+    HG02622.alt.pat.f1_v2:
+      seqcol_digest: s8IHAP13yprMBvOzZaOkDkCP6wks008y
+    HG02717.pri.mat.f1_v2:
+      seqcol_digest: rQTvFXRJg1fktSlSFGfkf1tGN6jV57n8
+    HG02630.alt.pat.f1_v2:
+      seqcol_digest: G45RS0KtkiRThy4lp_tzRzoTNe__YZ6M
+    HG02630.pri.mat.f1_v2:
+      seqcol_digest: JiBQCxx8g1OqKfuQdxW5H4-XNIsJ_E1B
+    HG01358.alt.pat.f1_v2.1:
+      seqcol_digest: f4NOc-aMUFU2JCm5tGQYAsBnzS9iTXwW
+    HG02717.alt.pat.f1_v2:
+      seqcol_digest: TppX7IsQ-f5TlUcLhqklj-Ya9KlytKIB
+    HG02572.alt.pat.f1_v2:
+      seqcol_digest: UIshAuHmM4BsVnAxjJEs3D7ZJV7Tx9uK
+    HG02572.pri.mat.f1_v2:
+      seqcol_digest: -xS7eWQFw9s3HxA-TQsHKtU-2qCc9J--
+    HG02886.pri.mat.f1_v2:
+      seqcol_digest: 5goiErAN_XrYjB-6MT9Og4QXZ0gsHca7
+    HG02886.alt.pat.f1_v2:
+      seqcol_digest: vTYYcCahSkIu5PME4JyLstVt7eOXekXD
+    HG01175.alt.pat.f1_v2:
+      seqcol_digest: zhDl_7kiYDY49LpM5_g3SJ99gkAn3hGj
+    HG01106.alt.pat.f1_v2:
+      seqcol_digest: b2veuoCX_cwS1bHf0E133npWU66K5X5Y
+    HG01175.pri.mat.f1_v2:
+      seqcol_digest: L2qjWuBkmwM1eDgVDCFuOjyqleUZ7X4U
+    HG00741.pri.mat.f1_v2:
+      seqcol_digest: sPeVwLWKqdHlatwcYf7u-OmcBJNmG_32
+    HG00741.alt.pat.f1_v2:
+      seqcol_digest: xZ0Xf-pTJSKc0oGUDV3zL3_TcpO5nl1d
+    HG01106.pri.mat.f1_v2:
+      seqcol_digest: 73AP6Fn5d7P7RB04axUk-24ssrnJb4Ab
+    HG00438.pri.mat.f1_v2:
+      seqcol_digest: -9M0kYfdvscDEVL13kKp87c8NCU2B5Hh
+    HG02148.alt.pat.f1_v2:
+      seqcol_digest: mmZHq6GxnHALdsbider2E5Jp-AhVxWVt
+    HG02148.pri.mat.f1_v2:
+      seqcol_digest: cq2ryytoR7YEu8UUHtRnNr5KDA4NErUQ
+    HG01952.pri.mat.f1_v2:
+      seqcol_digest: jcQVpDWreZwQAVQicTW4dNPQ8Fz3eYjh
+    HG01952.alt.pat.f1_v2:
+      seqcol_digest: 5Pum9BofAqDuL43GMQ6EqLwQVFQsTTSZ
+    HG00673.pri.mat.f1_v2:
+      seqcol_digest: fMW6DR6vGda_MfSmeScSip0XPmauTcLO
+    HG00621.alt.pat.f1_v2:
+      seqcol_digest: 7Z-1F3kSi-eXduHZIG5R3rZAGvJ5Depi
+    HG00673.alt.pat.f1_v2:
+      seqcol_digest: 4HylbyjZIYZP7XlgQ3N8jw4xJ8pgl7bb
+    HG00438.alt.pat.f1_v2:
+      seqcol_digest: Garq3gUkWDFi6vkyYkdQn_p5tUVu3_hm
+    HG00621.pri.mat.f1_v2:
+      seqcol_digest: BjbE7ZEeWbNVZeYqeyBXYScwlBVimZBB
+    HG01071.pri.mat.f1_v2:
+      seqcol_digest: x0CrFmo9JcS1QVIm1GY4XWjpl9p8WHRl
+    HG01928.pri.mat.f1_v2:
+      seqcol_digest: p2xs5S6BOA1LiQKMSMJ3snTQVIF0NtjW
+    HG01928.alt.pat.f1_v2:
+      seqcol_digest: emHHDrJgEwvhf03dJP-Pk8vXHK_KHeOr
+    HG00735.alt.pat.f1_v2:
+      seqcol_digest: ny1PsG4UOLGUzECAX2ZTxRaYaQGLiZZi
+    HG01071.alt.pat.f1_v2:
+      seqcol_digest: soFuT59nkwqdZ3i9FZ6GsPaC8v0UqpZU
+    HG00735.pri.mat.f1_v2:
+      seqcol_digest: BbH1ZrRSfhBhVHhYLBYq8FNiaSeJHryC
+    HG03579.pri.mat.f1_v2:
+      seqcol_digest: Hmdch7xzoR_8uyaCHQwvmGWn40e4c58U
+    HG03579.alt.pat.f1_v2:
+      seqcol_digest: cYrHK5KVoZeyjdS3Mo1srvDYoP44DtWn
+    HG01978.alt.pat.f1_v2:
+      seqcol_digest: FBe70obDKdaLQbFC6rigZBlrkjjhOJ6o
+    HG03453.pri.mat.f1_v2:
+      seqcol_digest: LXAPWhSKfrwQkCZsoGPy1W3XSGwwZJR1
+    HG01978.pri.mat.f1_v2:
+      seqcol_digest: r6ieZ0QGT0NLHuqtkpQQyCXiXXRBwExd
+    HG03540.pri.mat.f1_v2:
+      seqcol_digest: Kc-Q1c-dlAmYoTS9a5C-wnXXNTJZEL7Y
+    HG03453.alt.pat.f1_v2:
+      seqcol_digest: P0njMo_ngJB7KvnLAPjBPnGXoigeXAVA
+    HG03540.alt.pat.f1_v2:
+      seqcol_digest: y7kmkFlydCwj48nHNFJ76TMzNjfYPFno
+    HG03486.alt.pat.f1_v2:
+      seqcol_digest: yK-YzwV_nIfvoov5f5yCfX2WK18booij
+    NA18906.pri.mat.f1_v2:
+      seqcol_digest: JLxVTGB1J1NsHwQc9Ph1G1uvJoF0vcmX
+    NA19240.alt.pat.f1_v2:
+      seqcol_digest: EsxyPLersYlRzzZ-ccHQ5mJK0_sU2eUn
+    NA19240.pri.mat.f1_v2:
+      seqcol_digest: rMLfj_2guPmN7lVgtRCiSS2_baCN1whg
+    NA18906.alt.pat.f1_v2:
+      seqcol_digest: BqfaoAPziDGbqTeaTlLzQD_cf6frizzK
+    HG03486.pri.mat.f1_v2:
+      seqcol_digest: BuZj05B1DuUyRND9eYKf4LhrOMDBtyOk
+    HG02818.alt.pat.f1_v2:
+      seqcol_digest: WtvqOdQqFvqVdAzs8ql5-d8vwwtEOXUD
+    HG02818.pri.mat.f1_v2:
+      seqcol_digest: iB8zea9dHlENH43vvkCtcxZlJ4wT1Uz1
+    HG01243.alt.pat.f1_v2:
+      seqcol_digest: yFCTQeIXhkSUukadRWjWvOVRsz_OyTGq
+    HG02080.alt.pat.f1_v2:
+      seqcol_digest: tt6XTgH0zmAtOqbVHzM28MomIrnW4SuA
+    HG02723.pri.mat.f1_v2:
+      seqcol_digest: NcoX-bKBNYbA2o6EwJeQk1IH8ZtZZgps
+    HG02723.alt.pat.f1_v2:
+      seqcol_digest: Vdn0RtSTthV_5EImofY-lSeO3a3bwIQX
+    HG02080.pri.mat.f1_v2:
+      seqcol_digest: XVWtB0SreQEBLIfzbOjbKG5PEb1asj6k
+    HG01109.pri.mat.f1_v2:
+      seqcol_digest: PhKsGQm9pHaNLkimAYQPsornvIZpqvnH
+    HG01243.pri.mat.f1_v2:
+      seqcol_digest: 03eDIlAb6h7tiYvcU2f43-A-RmJzN632
+    NA20129.alt.pat.f1_v2:
+      seqcol_digest: tzg-YjJ70yBfIo5ijfN3LgsPAfc2fH-y
+    NA20129.pri.mat.f1_v2:
+      seqcol_digest: eYQOqMmclnUP_SYW5KnMCKcfCOtY2Jfn
+    HG01109.alt.pat.f1_v2:
+      seqcol_digest: t2DLI454ZtI0hxz3ublokln-RrQtZfLO
+    NA21309.pri.mat.f1_v2:
+      seqcol_digest: tJW0O7A3G4KGYoJ9OGwA0G2hLRm9MHQC
+    NA21309.alt.pat.f1_v2:
+      seqcol_digest: Sz7UMHSkMT6X29fRukTjWiKb2NPjkfpz
+    HG02109.pri.mat.f1_v2:
+      seqcol_digest: kfe4S1NWXJrzdkn7-PEmO14qQ_97iPcT
+    HG03492.alt.pat.f1_v2:
+      seqcol_digest: Lt9FTvjBEThMyHAm-_st-2ygIlqTUcSK
+    HG03492.pri.mat.f1_v2:
+      seqcol_digest: SXDV7XYbyfGfknp07q5u4Foz6P7j19pn
+    HG02055.alt.pat.f1_v2:
+      seqcol_digest: av3aqrEvSnd3t2EM0m6jXTtjC0ap8hGm
+    HG02109.alt.pat.f1_v2:
+      seqcol_digest: fEQuZ-F9oVaqzhXzl-6Ziq4Zj8XUpXQf
+    HG02055.pri.mat.f1_v2:
+      seqcol_digest: j1V8g5DkGVx7R_5W7y8M_yxMUwqgOXeF
+    HG03098.alt.pat.f1_v2:
+      seqcol_digest: 0PSK6PxA62LbmS0DRQb2VeH2UW2byEOl
+    HG03098.pri.mat.f1_v2:
+      seqcol_digest: tX5MdWuQMBqkg7lEbdozJNyseAKOdRqi
+    HG005.alt.pat.f1_v2:
+      seqcol_digest: MC8U95jiJqlpU7FkwtTWBILApRLW11tv
+    HG00733.alt.pat.f1_v2:
+      seqcol_digest: OdOkD0fYg_ryMFWq5fgNjxR4DxsdgAMo
+    HG00733.pri.mat.f1_v2:
+      seqcol_digest: tFKFtJwX3jVBaQcYgyLEOOt82rlJqou8
+    HG02145.pri.mat.f1_v2:
+      seqcol_digest: VgBPdkMRNxWi6UR2VXQDrYNJYtNn0Uf4
+    HG02145.alt.pat.f1_v2:
+      seqcol_digest: f0oF1fypWOJulxmykodrzqek3LEVHtTv
+    HG002.alt.pat.f1_v2:
+      seqcol_digest: rnrRAhWZmbGjP1CK-L9I1eHNfKJNqkoH
+    HG002.pri.mat.f1_v2:
+      seqcol_digest: tQLJhZVyD-ehl1lkqTMv-sieRJcejmvk
+    HG002.pat.cur.20211005:
+      seqcol_digest: 6BCEz05tbMxTTl6k4x9gFmgkNaXECShd
+    HG002.mat.cur.20211005:
+      seqcol_digest: XjCjW7CHIqVb6lTzxhAVL-vaMohzgXAt

@@ -4,14 +4,15 @@ import logging
 import logmuse
 import os
 import refget
-import uvicorn
 import sys
+import uvicorn
+import yacman
 
 from fastapi import Body, FastAPI, Response
 from fastapi import HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from starlette.requests import Request
 from starlette.templating import Jinja2Templates
 from starlette.staticfiles import StaticFiles
@@ -19,19 +20,19 @@ from typing import Union
 
 from .cli import build_parser
 from .const import *
-from .scconf import RDBDict, SeqColConf
+from .scconf import RDBDict
 from .examples import *
 
-from seqcol import SeqColClient, format_itemwise
+from seqcol import SeqColConf, SeqColHenge, format_itemwise
 
 global _LOGGER
 
 _LOGGER = logging.getLogger(__name__)
-# _LOGGER.setLevel(logging.DEBUG)
 
 templates = Jinja2Templates(directory=TEMPLATES_PATH)
 
-_LOGGER.info(ALL_VERSIONS)
+for key, value in ALL_VERSIONS.items():
+    _LOGGER.info(f"{key}: {value}")
 
 app = FastAPI(
     title="Sequence Collections API",
@@ -49,8 +50,9 @@ app.add_middleware(  # This is a public API, so we allow all origins
     allow_headers=["*"],
 )
 
-
-app.mount("/" + STATIC_DIRNAME, StaticFiles(directory=STATIC_PATH), name=STATIC_DIRNAME)
+@app.get('favicon.ico', include_in_schema=False)
+async def favicon():
+    return FileResponse(f"/static/favicon.ico")
 
 
 @app.get("/", summary="Home page", tags=["General endpoints"])
@@ -61,6 +63,7 @@ async def index(request: Request):
     templ_vars = {"request": request, "openapi_version": app.openapi()["openapi"]}
     _LOGGER.debug("merged vars: {}".format(dict(templ_vars, **ALL_VERSIONS)))
     return templates.TemplateResponse("index.html", dict(templ_vars, **ALL_VERSIONS))
+
 
 
 @app.get("/service-info", summary="GA4GH service info", tags=["General endpoints"])
@@ -80,7 +83,7 @@ async def service_info():
         "updatedAt": "2021-03-01T00:00:00Z",
         "environment": "dev",
         "version": ALL_VERSIONS["seqcolapi_version"],
-        "seqcol": {"schema": scclient.schemas, "sorted_name_length_pairs": True},
+        "seqcol": {"schema": schenge.schemas, "sorted_name_length_pairs": True},
     }
     return JSONResponse(content=ret)
 
@@ -88,10 +91,10 @@ async def service_info():
 @app.get(
     "/sequence/{digest}",
     summary="Retrieve raw sequence via refget protocol",
-    tags=["General endpoints"],
+    tags=["Refget endpoints"],
 )
 async def refget(digest: str = example_sequence):
-    return Response(content=scclient.refget(digest))
+    return Response(content=schenge.refget(digest))
 
 
 @app.get(
@@ -99,12 +102,10 @@ async def refget(digest: str = example_sequence):
     summary="Retrieve a sequence collection",
     tags=["Retrieving sequence collections"],
 )
-async def collection_recursive(
-    digest: str = example_digest,
-    level: Union[int, None] = None,
-    format: Union[str, None] = None,
+async def collection(
+    digest: str = example_digest, level: Union[int, None] = None, collated: bool = True
 ):
-    print("retriving collection")
+    print("Retrieving collection")
     if level == None:
         level = 2
     if level > 2:
@@ -112,19 +113,29 @@ async def collection_recursive(
             status_code=400,
             detail="Error: recursion > 1 disabled. Use the /refget server to retrieve sequences.",
         )
-    csc = scclient.retrieve(digest, reclimit=level - 1)
     try:
-        if format == "collated":
+        csc = schenge.retrieve(digest, reclimit=level - 1)
+    except henge.NotFoundException as e:
+        _LOGGER.debug(e)
+        raise HTTPException(
+            status_code=404,
+            detail="Error: collection not found. Check the digest and try again.",
+        )
+    try:
+        if not collated:
             if len(csc["lengths"]) > 10000:
                 raise HTTPException(
                     status_code=413,
-                    detail="This server won't collate collections with > 10000 sequences",
+                    detail="This server won't uncollate collections with > 10000 sequences",
                 )
             return JSONResponse(content=format_itemwise(csc))
         else:
             return JSONResponse(content=csc)
     except:
-        return {}
+        raise HTTPException(
+            status_code=404,
+            detail="Error: collection not found. Check the digest and try again.",
+        )
 
 
 @app.get(
@@ -138,7 +149,14 @@ async def compare_2_digests(
     _LOGGER.info("Compare called")
     result = {}
     result["digests"] = {"a": digest1, "b": digest2}
-    result.update(scclient.compare_digests(digest1, digest2))
+    try:
+        result.update(schenge.compare_digests(digest1, digest2))
+    except henge.NotFoundException as e:
+        _LOGGER.debug(e)
+        raise HTTPException(
+            status_code=404,
+            detail="Error: collection not found. Check the digest and try again.",
+        )
     return JSONResponse(result)
 
 
@@ -151,59 +169,56 @@ async def compare_1_digest(
     digest1: str = example_digest_hg38, B: dict = example_hg38_sc
 ):
     _LOGGER.info(f"digest1: {digest1}")
-    _LOGGER.info("seqcol")
-    _LOGGER.info(B)
-    A = scclient.retrieve(digest1, reclimit=1)
-    return JSONResponse(scclient.compat_all(A, B))
+    _LOGGER.info(f"B: {B}")
+    A = schenge.retrieve(digest1, reclimit=1)
+    return JSONResponse(schenge.compat_all(A, B))
 
 
-def create_globals(config_path, port):
+# Mount statics after other routes for lower precedence
+app.mount(f"/" , StaticFiles(directory=STATIC_PATH), name=STATIC_DIRNAME)
+
+def create_globals(scconf: yacman.YAMLConfigManager):
     """
     Create global variables for the app to use.
     """
-    global scclient
-    scconf = SeqColConf(filepath=config_path)
     _LOGGER.info(f"Connecting to database... {scconf.exp['database']['host']}")
-    pgdb = RDBDict(
-        scconf.exp["database"]["name"],
-        scconf.exp["database"]["user"],
-        scconf.exp["database"]["password"],
-        scconf.exp["database"]["host"],
-        scconf.exp["database"]["port"],
-        scconf.exp["database"]["table"],
-    )
-    scclient = SeqColClient(
+    global schenge
+    pgdb = RDBDict()
+    schenge = SeqColHenge(
         database=pgdb,
-        api_url_base=scconf["refget_provider_apis"],
         schemas=scconf["schemas"],
     )
-    seqcolapi_port = port if port else scconf.exp["server"]["port"]
-    host = scconf.exp["server"]["host"]
-    scconf.app = {"host": host, "port": seqcolapi_port}
     return scconf
 
 
-def main(args=None):
+def main(injected_args=None):
+    # Entry point for running from console_scripts, installed package
     parser = build_parser()
     parser = logmuse.add_logging_options(parser)
     args = parser.parse_args()
+    args.update(injected_args)
     if not args.command:
         parser.print_help()
         print("No subcommand given")
         sys.exit(1)
 
     _LOGGER = logmuse.logger_via_cli(args, make_root=True)
-    _LOGGER.info("Welcome to the SeqCol API app")
-    _LOGGER.info(ALL_VERSIONS)
-
-    print(f"args: {args}")
+    _LOGGER.info(f"args: {args}")
     if "config" in args and args.config is not None:
-        scconf = create_globals(args.config, args.port)
+        scconf = SeqColConf(filepath=config_path)
+        create_globals(scconf)
         _LOGGER.info(f"Running on port {scconf.app['port']}")
-        uvicorn.run(app, host=scconf.app["host"], port=scconf.app["port"])
-
+        port = args.port or scconf.exp["server"]["port"]
+        uvicorn.run(app,
+                    host=scconf.exp["server"]["host"], 
+                    port=port)
+    else:
+        _LOGGER.error("Configure by passing -c SEQCOLAPI_CONFIG ")
 
 if __name__ != "__main__":
-    if os.environ.get("SEQCOL_CONFIG"):
-        # Establish global config when running through uvicorn CLI
-        create_globals(os.environ.get("SEQCOL_CONFIG"), os.environ.get("SEQCOL_PORT"))
+    # Entrypoint for running through uvicorn CLI (dev)
+    if os.environ.get("SEQCOLAPI_CONFIG") is not None:
+        scconf = SeqColConf()
+        create_globals(scconf)
+    else:
+        _LOGGER.error("Configure by setting SEQCOLAPI_CONFIG env var")

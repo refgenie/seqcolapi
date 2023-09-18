@@ -1,23 +1,11 @@
 # seqcolapi
 
-Alpha version of a sequence collections server. This is a very lightweight package that provides a FastAPI wrapper of functionality in the 
+This repository contains:
+
+1. Beta version of sequence collections server software, the `seqcolapi` package. This package is based on the `seqcol` package. It simply provides an API wrapper, implementing the seqcol service.
+2. Configuration and GitHub Actions for demo server instance ([seqcolapi.databio.org subfolder](/seqcolapi.databio.org)).
 
 ## Instructions
-
-### Running natively
-
-Install natively with `pip install .`
-
-Run natively:
-```
-export POSTGRES_PASSWORD=`pass aws/rds_postgres`
-seqcolapi serve -c /home/nsheff/code/seqcolapi.databio.org/config/seqcolapi.yaml -p 8100
-```
-
-Use at: http://localhost:8100
-
-http://0.0.0.0:8100/comparison/a6748aa0f6a1e165f871dbed5e54ba62/2786eb8a921aa97018c214f64b9960a0
-
 
 ### Running with docker
 
@@ -30,8 +18,11 @@ docker build --no-cache -t scim .
 To run in a container:
 
 ```
-source /home/nsheff/code/seqcolapi.databio.org/environment/production.env
-./docker_serve.sh
+export POSTGRES_PASSWORD=`pass aws/rds_postgres` 
+docker run --rm -p 8000:8000 --name sccon \
+  --env "POSTGRES_PASSWORD" \
+  --volume $CODE/seqcolapi.databio.org/config/seqcolapi.yaml:/config.yaml \
+  scim seqcolapi serve -c /config.yaml -p 8000
 ```
 
 To deploy container to dockerhub:
@@ -45,17 +36,55 @@ Left to do:
 - [ ] make it take 2 refget servers correctly.
 
 
-## Running with new env setup
+## seqcolapi.databio.org
 
-```
-source environment/local.dev.env  # populate env variables with db credentials
-seqcolapi serve -c /home/nsheff/code/seqcolapi.databio.org/config/seqcolapi.yaml -p 8100
+Config file located in /config.
 
-```
-The new recommended way to do this for development is:
+This will use the image in docker.io://databio/seqcolapi, github repo: [refgenie/seqcolapi](https://github.com/refgenie/seqcolapi) as base, bundle it with the above config, and deploy to the shefflab ECS.
 
+
+To load up new data:
 ```
+cd analysis
+source ../servers/localhost/dev_local.env
+ipython3
+```
+
+Now run `load_fasta.py`
+
+## Deploy to AWS ECS
+
+To upgrade the software:
+
+1. Ensure the [seqcol](https://github.com/refgenie/seqcol/) package master branch is as you want it.
+2. Deploy the updated [secqolapi](https://github.com/refgenie/seqcolapi/) app to dockerhub (using manual dispatch, or deploy on github release).
+3. Finally, deploy the instance (this repo) with manual dispatch using the included GitHub action, or use auto-deploy when `config.yaml` is updated.
+
+
+## Run locally for development
+
+For running a local server, connecting to a local database:
+```
+source servers/localhost/dev_local.env
 uvicorn seqcolapi.main:app --reload --port 8100
 ```
 
-This gets you live reloading. Then, for production, you can still install it and run with `seqcolapi` CLI.
+For running a local server, connecting to the production database:
+```
+source servers/seqcolapi.databio.org/production.env
+uvicorn seqcolapi.main:app --reload --port 8100
+```
+
+### Installing and running for production
+
+Install natively with `pip install .`, then run natively:
+
+```
+source servers/seqcolapi.databio.org/production.env
+seqcolapi serve -c /home/nsheff/code/seqcolapi.databio.org/config/seqcolapi.yaml -p 8100
+```
+
+Use at: http://localhost:8100
+
+http://0.0.0.0:8100/comparison/a6748aa0f6a1e165f871dbed5e54ba62/2786eb8a921aa97018c214f64b9960a0
+
