@@ -1,6 +1,6 @@
 refget_provider_apis: https://www.ebi.ac.uk/ena/cram/sequence/
 schemas:
-- /home/nsheff/code/seqcol/seqcol/schemas/SeqColArraySetInherent.yaml
+- https://schema.databio.org/refget/SeqColArraySetInherent.yaml
 database:
   host: $POSTGRES_HOST
   user: seqcol_admin

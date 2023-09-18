@@ -191,6 +191,7 @@ def create_globals(scconf: yacman.YAMLConfigManager):
         db_port=scconf.exp["database"]["port"],
         db_table=scconf.exp["database"]["table"],
         )
+    _LOGGER.info(f"Using schema: {scconf['schemas']}")
     schenge = SeqColHenge(
         database=pgdb,
         schemas=scconf["schemas"],
