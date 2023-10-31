@@ -57,10 +57,22 @@ Now run `load_fasta.py`
 
 ### Testing locally first
 
+Build the seqcolapi image
+
 ```
+cd
+docker build -t docker.io/databio/seqcolapi:latest .
+```
+
+```
+docker pull docker.io/databio/seqcolapi:latest
 cd servers/seqcolapi.databio.org
 docker build -t scim .
-docker run scim
+docker run \
+  -e POSTGRES_HOST=$POSTGRES_HOST \
+  -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
+  --network=host \
+  scim
 ```
 
 To upgrade the software:
@@ -81,6 +93,7 @@ uvicorn seqcolapi.main:app --reload --port 8100
 For running a local server, connecting to the production database:
 ```
 source servers/seqcolapi.databio.org/production.env
+export SEQCOLAPI_CONFIG=servers/seqcolapi.databio.org/seqcolapi.yaml
 uvicorn seqcolapi.main:app --reload --port 8100
 ```
 

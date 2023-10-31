@@ -126,9 +126,10 @@ async def collection(
             if len(csc["lengths"]) > 10000:
                 raise HTTPException(
                     status_code=413,
-                    detail="This server won't uncollate collections with > 10000 sequences",
+                    detail="This server won't decollate collections with > 10000 sequences",
                 )
-            return JSONResponse(content=format_itemwise(csc))
+            else:
+                return JSONResponse(content=format_itemwise(csc))
         else:
             return JSONResponse(content=csc)
     except:
@@ -172,6 +173,15 @@ async def compare_1_digest(
     _LOGGER.info(f"B: {B}")
     A = schenge.retrieve(digest1, reclimit=1)
     return JSONResponse(schenge.compat_all(A, B))
+
+
+@app.get(
+    "/list",
+    summary="List all sequence collections on the server",
+    tags=["Listing sequence collections"],
+)
+async def list_collections(limit: int = 100, offset: int = 0):
+    return JSONResponse(schenge.list(limit=limit, offset=offset))
 
 
 # Mount statics after other routes for lower precedence

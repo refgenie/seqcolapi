@@ -6,7 +6,7 @@ import refgenconf
 import seqcol
 
 # TODO put this somewhere permanent
-sys.path.append("seqcolapi")
+sys.path.append("../seqcolapi")
 from scconf import RDBDict
 
 # set logging
@@ -22,6 +22,12 @@ scc = seqcol.SeqColConf()
 # rgc = refgenconf.RefGenConf("/home/nsheff/Dropbox/env/refgenie_config/zither.yaml")
 
 pgdb = RDBDict()  # parameterized through env vars
+
+pgdb.get_paged_keys()
+
+for i in pgdb:
+    print(i)
+
 
 schenge = seqcol.SeqColHenge(
     database=pgdb,

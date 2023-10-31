@@ -21,6 +21,52 @@ def getenv(varname):
     except KeyError:
         raise Exception(f"Environment variable {varname} not set.")
 
+import pipestat
+class PipestatMapping(pipestat.PipestatManager):
+    """ A wrapper class to allow using a PipestatManager as a dict-like object."""
+    def __getitem__(self, key):
+        # This little hack makes this work with `in`;
+        # e.g.: for x in rdbdict, which is now disabled, instead of infinite.
+        if isinstance(key, int):
+            raise IndexError
+        return self.retrieve(key)
+
+    def __setitem__(self, key, value):
+        return self.insert({key: value})
+
+
+    def __len__(self):
+        return self.count_records()
+        
+    def _next_page(self):
+        self._buf["page_index"] += 1
+        limit = self._buf["page_size"]
+        offset = self._buf["page_index"] * limit
+        self._buf["keys"] = self.get_records(limit, offset)
+        return self._buf["keys"][0]
+
+    def __iter__(self):
+        _LOGGER.debug("Iterating...")
+        self._buf = {  # buffered iterator
+            "current_view_index": 0,
+            "len":  len(self),
+            "page_size": 100,
+            "page_index": -1,
+            "keys": self._next_page(),
+        }
+        return self
+
+    def __next__(self):
+        if self._buf["current_view_index"] > self._buf["len"]:
+            raise StopIteration
+        
+        idx = self._buf["current_view_index"] - self._buf["page_index"] * self._buf["page_size"]
+        if idx <= self._buf["page_size"]:
+            self._buf["current_view_index"] += 1
+            return self._buf["keys"][idx-1]
+        else:  # current index is beyond current page, but not beyond total
+            return self._next_page()
+
 
 class RDBDict(Mapping):
     """
@@ -207,25 +253,68 @@ class RDBDict(Mapping):
             SELECT COUNT(*) FROM {table}
         """
         ).format(table=sql.Identifier(self.db_table))
+        print(stmt)
         res = self.execute_read_query(stmt)
         return res
 
+    def get_paged_keys(self, limit=None, offset=None):
+        stmt_str = "SELECT key FROM {table}"
+        if limit:
+            stmt_str += f" LIMIT {limit}"
+        if offset != None:
+            stmt_str += f" OFFSET {offset}"
+        stmt = sql.SQL(stmt_str).format(
+            table=sql.Identifier(self.db_table))
+        res = self.execute_multi_query(stmt)
+        return res   
+
+    def _next_page(self):
+        self._buf["page_index"] += 1
+        limit = self._buf["page_size"]
+        offset = self._buf["page_index"] * limit
+        self._buf["keys"] = self.get_paged_keys(limit, offset)
+        return self._buf["keys"][0]
+
     def __iter__(self):
-        self._current_idx = 0
+        _LOGGER.debug("Iterating...")
+        self._buf = {  # buffered iterator
+            "current_view_index": 0,
+            "len":  len(self),
+            "page_size": 10,
+            "page_index": 0,
+            "keys": self.get_paged_keys(10, 0),
+        }
         return self
 
     def __next__(self):
-        stmt = sql.SQL(
-            """
-            SELECT key,value FROM {table} LIMIT 1 OFFSET %(idx)s
-        """
-        ).format(table=sql.Identifier(self.db_table))
-        res = self.execute_read_query(stmt, {"idx": self._current_idx})
-        self._current_idx += 1
-        if not res:
-            _LOGGER.info("Not found: {}".format(self._current_idx))
+        if self._buf["current_view_index"] > self._buf["len"]:
             raise StopIteration
-        return res
+        
+        idx = self._buf["current_view_index"] - self._buf["page_index"] * self._buf["page_size"]
+        if idx <= self._buf["page_size"]:
+            self._buf["current_view_index"] += 1
+            return self._buf["keys"][idx-1]
+        else:  # current index is beyond current page, but not beyond total
+            return self._next_page()
+
+    # Old, non-paged iterator:
+    # def __iter__(self):
+    #     self._current_idx = 0
+    #     return self
+
+    # def __next__(self):
+    #     stmt = sql.SQL(
+    #         """
+    #         SELECT key,value FROM {table} LIMIT 1 OFFSET %(idx)s
+    #     """
+    #     ).format(table=sql.Identifier(self.db_table))
+    #     res = self.execute_read_query(stmt, {"idx": self._current_idx})
+    #     self._current_idx += 1
+    #     if not res:
+    #         _LOGGER.info("Not found: {}".format(self._current_idx))
+    #         raise StopIteration
+    #     return res
+
 
 
 # We don't need the full SeqColHenge,
