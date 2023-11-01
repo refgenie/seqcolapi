@@ -176,12 +176,20 @@ async def compare_1_digest(
 
 
 @app.get(
-    "/list",
-    summary="List all sequence collections on the server",
+    "/list-by-offset",
+    summary="List sequence collections on the server",
     tags=["Listing sequence collections"],
 )
-async def list_collections(limit: int = 100, offset: int = 0):
-    return JSONResponse(schenge.list(limit=limit, offset=offset))
+async def list_collections_by_offset(limit: int = 100, offset: int = 0):
+    return JSONResponse(schenge.list_by_offset(limit=limit, offset=offset))
+
+@app.get(
+    "/list",
+    summary="List sequence collections on the server",
+    tags=["Listing sequence collections"],
+)
+async def list_collections_by_token(page_size: int = 100, cursor: str = None):
+    return JSONResponse(schenge.list(page_size=page_size, cursor=cursor))
 
 
 # Mount statics after other routes for lower precedence
