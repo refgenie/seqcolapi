@@ -2,10 +2,25 @@
 
 This repository contains:
 
-1. Beta version of sequence collections server software, the `seqcolapi` package. This package is based on the `seqcol` package. It simply provides an API wrapper, implementing the seqcol service.
-2. Configuration and GitHub Actions for demo server instance ([seqcolapi.databio.org subfolder](/seqcolapi.databio.org)).
+1. Sequence collections API software (the `seqcolapi` package). This package is based on the `refget` package. It simply provides an wrapper to implement the Sequence Collections API.
+2. Configuration and GitHub Actions for demo server instance ([servers subfolder](/servers)).
 
 ## Instructions
+
+### Run locally for development
+
+To run a local server with a **local database**:
+```
+source servers/localhost/dev_local.env
+uvicorn seqcolapi.main:app --reload --port 8100
+```
+
+To run a local server with **the production database**:
+```
+source servers/seqcolapi.databio.org/production.env
+export SEQCOLAPI_CONFIG=servers/seqcolapi.databio.org/seqcolapi.yaml
+uvicorn seqcolapi.main:app --reload --port 8100
+```
 
 ### Running with docker
 
@@ -37,14 +52,8 @@ Left to do:
 - [ ] make it take 2 refget servers correctly.
 
 
-## seqcolapi.databio.org
+## To load new data into seqcolapi.databio.org
 
-Config file located in /config.
-
-This will use the image in docker.io://databio/seqcolapi, github repo: [refgenie/seqcolapi](https://github.com/refgenie/seqcolapi) as base, bundle it with the above config, and deploy to the shefflab ECS.
-
-
-To load up new data:
 ```
 cd analysis
 source ../servers/localhost/dev_local.env
@@ -75,38 +84,14 @@ docker run \
   scim
 ```
 
+### Deploying
+
 To upgrade the software:
 
-1. Ensure the [seqcol](https://github.com/refgenie/seqcol/) package master branch is as you want it.
+Use config file located in `/servers/seqcolapi.databio.org`. This will use the image in docker.io://databio/seqcolapi, github repo: [refgenie/seqcolapi](https://github.com/refgenie/seqcolapi) as base, bundle it with the above config, and deploy to the shefflab ECS.
+
+1. Ensure the [refget](https://github.com/refgenie/refget/) package master branch is as you want it.
 2. Deploy the updated [secqolapi](https://github.com/refgenie/seqcolapi/) app to dockerhub (using manual dispatch, or deploy on github release).
-3. Finally, deploy the instance (this repo) with manual dispatch using the included GitHub action, or use auto-deploy when `config.yaml` is updated.
+3. Finally, deploy the instance with manual dispatch using the included GitHub action.
 
-
-## Run locally for development
-
-For running a local server, connecting to a local database:
-```
-source servers/localhost/dev_local.env
-uvicorn seqcolapi.main:app --reload --port 8100
-```
-
-For running a local server, connecting to the production database:
-```
-source servers/seqcolapi.databio.org/production.env
-export SEQCOLAPI_CONFIG=servers/seqcolapi.databio.org/seqcolapi.yaml
-uvicorn seqcolapi.main:app --reload --port 8100
-```
-
-### Installing and running for production
-
-Install natively with `pip install .`, then run natively:
-
-```
-source servers/seqcolapi.databio.org/production.env
-seqcolapi serve -c /home/nsheff/code/seqcolapi/servers/seqcolapi.databio.org/seqcolapi.yaml -p 8100
-```
-
-Use at: http://localhost:8100
-
-http://0.0.0.0:8100/comparison/a6748aa0f6a1e165f871dbed5e54ba62/2786eb8a921aa97018c214f64b9960a0
 

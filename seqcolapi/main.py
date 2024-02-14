@@ -23,7 +23,7 @@ from .const import *
 from .scconf import RDBDict
 from .examples import *
 
-from seqcol import SeqColConf, SeqColHenge, format_itemwise
+from refget import SeqColConf, SeqColHenge, format_itemwise
 
 global _LOGGER
 
@@ -239,5 +239,6 @@ if __name__ != "__main__":
     if os.environ.get("SEQCOLAPI_CONFIG") is not None:
         scconf = SeqColConf()
         create_globals(scconf)
+        print(f"scchenge: {schenge}")
     else:
         _LOGGER.error("Configure by setting SEQCOLAPI_CONFIG env var")

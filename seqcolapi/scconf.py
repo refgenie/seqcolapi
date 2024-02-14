@@ -34,7 +34,6 @@ class PipestatMapping(pipestat.PipestatManager):
     def __setitem__(self, key, value):
         return self.insert({key: value})
 
-
     def __len__(self):
         return self.count_records()
         
