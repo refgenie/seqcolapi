@@ -19,19 +19,18 @@ COLLECTION_TESTS = [
 ]
 
 api_root = "http://0.0.0.0:8100"
-demo_root = "/home/nsheff/code/seqcol/demo_fasta"
+demo_root = "/home/nsheff/code/refget/demo_fasta"
 demo_file = "demo0.fa"
 response_file = "tests/demo0_collection.json"
-import seqcol
-
+import refget
 
 def check_response(demo_file, response_file):
-    digest = seqcol.fasta_to_digest(f"{demo_root}/{demo_file}")
+    digest = refget.fasta_file_to_digest(f"{demo_root}/{demo_file}")
     res = requests.get(f"{api_root}/collection/{digest}")
     server_answer = json.loads(res.content)
     with open(response_file) as fp:
         correct_answer = json.load(fp)
     assert server_answer == correct_answer, "Collection endpoint failed"
 
-
-check_response(*COLLECTION_TESTS[0])
+def test_api():
+    check_response(*COLLECTION_TESTS[0])

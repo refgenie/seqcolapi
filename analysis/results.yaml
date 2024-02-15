@@ -195,3 +195,7 @@ add_to_seqcol:
       seqcol_digest: 6BCEz05tbMxTTl6k4x9gFmgkNaXECShd
     HG002.mat.cur.20211005:
       seqcol_digest: XjCjW7CHIqVb6lTzxhAVL-vaMohzgXAt
+    demo0:
+      seqcol_digest: fLf5M0BOIPIqcfbE6R8oYwxsy-PnoV32
+      pipestat_created_time: '2024-02-15 09:27:56'
+      pipestat_modified_time: '2024-02-15 09:27:56'

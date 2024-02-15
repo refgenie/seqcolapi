@@ -1,4 +1,4 @@
-pep_config: databio/hprc_genomes:default
+pep_config: config/demo_fasta.yaml
 output_dir: results
 pipeline_interfaces:
   sample: pipeline/pipeline_interface.yaml

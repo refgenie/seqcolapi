@@ -6,7 +6,7 @@ to the server.
 import os
 import sys
 import yacman
-import seqcol
+import refget
 import henge
 
 sample_config = sys.argv[1]  # get first command-line argument, sample config file
@@ -15,7 +15,7 @@ print(f"Sample config: {sample_config}")
 sample = yacman.YAMLConfigManager(filepath=sample_config)
 print(f"Sample: {sample}")
 
-pconfig = yacman.YAMLConfigManager(filepath="config/hprc.yaml")
+# pconfig = yacman.YAMLConfigManager(filepath="config/hprc.yaml")
 
 # if "seqcol_digest" in pconfig[sample_config["sample_name"]]:
 #     print("Sample already has seqcol_digest")
@@ -29,24 +29,31 @@ stream.setFormatter(fmt)
 _LOGGER.setLevel(os.environ.get("LOGLEVEL", "INFO"))
 _LOGGER.addHandler(stream)
 
+import pypiper
+outfolder = os.path.dirname(sample_config)
+pm = pypiper.PipelineManager(name="add_to_seqcol_server", 
+                             outfolder=outfolder)
+target=f"{sample['fasta']}.checksums"
+command = f"checksumseq --input {sample['fasta']} --output {target}"
+pm.run(command, target)
 
 import pipestat
+print(f"Using pipestat version {pipestat.__version__}")
 psm = pipestat.PipestatManager(
-    sample_name=sample["sample_name"],
+    record_identifier=sample["sample_name"],
     schema_path="pipeline/output_schema.yaml",
     results_file_path="results.yaml",
     pipeline_type="sample"
 )
 
-
 sys.path.append("../seqcolapi")
 from scconf import RDBDict
 pgdb = RDBDict()  # parameterized through env vars
 
-scc = seqcol.SeqColConf()
-schenge = seqcol.SeqColHenge(
+scc = refget.SeqColConf()
+schenge = refget.SeqColHenge(
     database=pgdb,
-    schemas=["/home/nsheff/code/seqcol/seqcol/schemas/SeqColArraySetInherent.yaml"],
+    schemas=["/home/nsheff/code/refget/refget/schemas/SeqColArraySetInherent.yaml"],
     checksum_function=henge.sha512t24u_digest)
 
 print(f"SeqColHenge: {schenge}")
@@ -65,6 +72,8 @@ result = schenge.load_from_chromsizes(sample["fasta"] + ".checksums")
 #     cfg[sample["sample_name"]]["seqcol_digest"] = result["digest"]
 #     cfg.write()
 
-psm.report({"seqcol_digest": result["digest"]}, sample_name=sample["sample_name"])
+psm.report({"seqcol_digest": result["digest"]}, 
+           record_identifier=sample["sample_name"])
 
 
+pm.stop_pipeline()
