@@ -1,12 +1,28 @@
 # Analysis
 
+This is a looper project to add HPRC genomes to the seqcol server
+
+## Prerequisites
+
+1. Install the `checksumseq` command by installing [rust-gc-count](https://crates.io/crates/rust-gc-count).
+
+```
+cargo install rust-gc-count
+```
+
+2. Put `.fastq.gz` files into the `/data` folder.
+
 ## Compute digests for individual sequences using rust binary
+
+
 
 ```
 ./calc_checksum.sh
 ```
 
 ## Load into seqcol server and compute final digests
+
+There's a pipeline in `pipeline/add_to_seqcol_server.py` that takes a fasta file and adds it to the server.
 
 And,
 
