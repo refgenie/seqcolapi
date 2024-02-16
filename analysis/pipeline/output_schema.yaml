@@ -3,4 +3,9 @@ samples:
   seqcol_digest:
     type: "string"
     description: "seqcol digest"
-    
+  Time:
+    type: "string"
+    description: "Elapsed time for the pipeline run as reported by pypiper"
+  Success:
+    type: "string"
+    description: "Timestamp for when the pipeline completed"

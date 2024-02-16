@@ -3,7 +3,7 @@ import os
 import sys
 import logging
 import refgenconf
-import seqcol
+import refget
 
 # TODO put this somewhere permanent
 sys.path.append("../seqcolapi")
@@ -17,7 +17,7 @@ stream.setFormatter(fmt)
 _LOGGER.setLevel(os.environ.get("LOGLEVEL", "DEBUG"))
 _LOGGER.addHandler(stream)
 
-scc = seqcol.SeqColConf()
+scc = refget.SeqColConf()
 
 # rgc = refgenconf.RefGenConf("/home/nsheff/Dropbox/env/refgenie_config/zither.yaml")
 

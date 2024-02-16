@@ -3,7 +3,6 @@ import json
 import logging
 import logmuse
 import os
-import refget
 import sys
 import uvicorn
 import yacman
@@ -73,7 +72,7 @@ async def service_info():
         "name": "Sequence collections",
         "type": {
             "group": "org.ga4gh",
-            "artifact": "seqcol",
+            "artifact": "refget.seqcol",
             "version": ALL_VERSIONS["seqcol_spec_version"],
         },
         "description": "An API providing metadata such as names, lengths, and other values for collections of reference sequences",
@@ -176,12 +175,20 @@ async def compare_1_digest(
 
 
 @app.get(
-    "/list",
-    summary="List all sequence collections on the server",
+    "/list-by-offset",
+    summary="List sequence collections on the server",
     tags=["Listing sequence collections"],
 )
-async def list_collections(limit: int = 100, offset: int = 0):
-    return JSONResponse(schenge.list(limit=limit, offset=offset))
+async def list_collections_by_offset(limit: int = 100, offset: int = 0):
+    return JSONResponse(schenge.list_by_offset(limit=limit, offset=offset))
+
+@app.get(
+    "/list",
+    summary="List sequence collections on the server",
+    tags=["Listing sequence collections"],
+)
+async def list_collections_by_token(page_size: int = 100, cursor: str = None):
+    return JSONResponse(schenge.list(page_size=page_size, cursor=cursor))
 
 
 # Mount statics after other routes for lower precedence
@@ -239,6 +246,5 @@ if __name__ != "__main__":
     if os.environ.get("SEQCOLAPI_CONFIG") is not None:
         scconf = SeqColConf()
         create_globals(scconf)
-        print(f"scchenge: {schenge}")
     else:
         _LOGGER.error("Configure by setting SEQCOLAPI_CONFIG env var")

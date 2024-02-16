@@ -1,0 +1,45 @@
+add_to_seqcol:
+  project: {}
+  sample:
+    demo0:
+      seqcol_digest: fLf5M0BOIPIqcfbE6R8oYwxsy-PnoV32
+      pipestat_created_time: '2024-02-15 20:40:00'
+      pipestat_modified_time: '2024-02-15 20:40:00'
+      Time: 0:00:01
+      Success: 02-15-20:40:00
+    demo1:
+      seqcol_digest: 5TK2xeaOB3WmheaDFTzE6G2zdStHNQCM
+      pipestat_created_time: '2024-02-15 20:40:01'
+      pipestat_modified_time: '2024-02-15 20:40:01'
+      Time: 0:00:01
+      Success: 02-15-20:40:01
+    demo2:
+      seqcol_digest: V7QPcpp5S1wYnPBmMGiO53LXRxr9tTQa
+      pipestat_created_time: '2024-02-15 20:41:59'
+      pipestat_modified_time: '2024-02-15 20:41:59'
+      Time: 0:00:01
+      Success: 02-15-20:41:59
+    demo3:
+      seqcol_digest: _G-IybZWJOcCWYagm6qmjQTaRsKhNRT2
+      pipestat_created_time: '2024-02-15 20:42:00'
+      pipestat_modified_time: '2024-02-15 20:42:01'
+      Time: 0:00:01
+      Success: 02-15-20:42:01
+    demo4:
+      seqcol_digest: D96Ze37DS8pG-jJXXjyHbUlb9coGht6g
+      pipestat_created_time: '2024-02-15 20:42:02'
+      pipestat_modified_time: '2024-02-15 20:42:02'
+      Time: 0:00:01
+      Success: 02-15-20:42:02
+    demo5:
+      seqcol_digest: JPd9Y-hwnhGD7HPe3yka4Qtx2YsIL8tW
+      pipestat_created_time: '2024-02-15 20:42:04'
+      pipestat_modified_time: '2024-02-15 20:42:04'
+      Time: 0:00:01
+      Success: 02-15-20:42:04
+    demo6:
+      seqcol_digest: fLf5M0BOIPIqcfbE6R8oYwxsy-PnoV32
+      pipestat_created_time: '2024-02-15 20:42:05'
+      pipestat_modified_time: '2024-02-15 20:42:05'
+      Time: 0:00:01
+      Success: 02-15-20:42:05

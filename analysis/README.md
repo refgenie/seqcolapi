@@ -33,3 +33,14 @@ source ../servers/seqcolapi.databio.org/production.env
 looper run --package local
 ```
 
+
+
+# How to load sequence collections into the server
+
+1. Make a PEP with the FASTA files you want to process.
+2. Run looper on it.
+
+```
+source servers/seqcolapi.databio.org/production.env
+# looper run --limit 1 --package local  # for testing
+looper run --package local config/demo_fasta.csv --limit 1

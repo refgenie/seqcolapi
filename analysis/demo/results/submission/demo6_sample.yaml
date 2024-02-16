@@ -1,0 +1,5 @@
+sample_name: demo6
+fasta_local: data/demo/demo6.fa
+fasta: /home/nsheff/code/seqcolapi/analysis/data/demo/demo6.fa
+pipeline_interfaces: /home/nsheff/code/seqcolapi/analysis/demo/../pipeline/pipeline_interface.yaml
+sample_yaml_path: /home/nsheff/code/seqcolapi/analysis/demo/results/submission/demo6_sample.yaml

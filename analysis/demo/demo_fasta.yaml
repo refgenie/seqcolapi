@@ -1,0 +1,9 @@
+sample_table: demo_fasta.csv
+
+sample_modifiers:
+  append:
+    fasta: demo_data
+  derive:
+    attributes: ['fasta']
+    sources:
+      demo_data: "${CODE}/seqcolapi/analysis/data/demo/{sample_name}.fa"

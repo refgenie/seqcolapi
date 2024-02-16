@@ -1,0 +1,8 @@
+pep_config: demo_fasta.yaml
+output_dir: results
+pipeline_interfaces:
+  sample: ../pipeline/pipeline_interface.yaml
+pipestat:
+  project_name: demo
+  pipeline_name: add_to_seqcol
+  results_file_path: results/pipeline_stats.yaml
