@@ -17,6 +17,19 @@ DEMO_FILES = [
 COLLECTION_TESTS = [
     (DEMO_FILES[0], "tests/demo0_collection.json"),
     (DEMO_FILES[1], "tests/demo1_collection.json"),
+    (DEMO_FILES[2], "tests/demo2_collection.json"),
+    (DEMO_FILES[3], "tests/demo3_collection.json"),
+    (DEMO_FILES[4], "tests/demo4_collection.json"),
+    (DEMO_FILES[5], "tests/demo5_collection.json"),
+    (DEMO_FILES[6], "tests/demo6_collection.json"),
+]
+
+COMPARISON_TESTS = [
+    "tests/0-vs-1-comparison.json",
+    "tests/0-vs-2-comparison.json", 
+    "tests/1-vs-2-comparison.json",  # subset
+    "tests/2-vs-3-comparison.json",  # same sequences, different names
+    "tests/5-vs-6-comparison.json",  # sample sequnces, same names, different order
 ]
 
 # This is optional, so we could turn off for a compliance test
@@ -80,9 +93,18 @@ def check_response(demo_file, response_file):
             == correct_answer["sorted_name_length_pairs"]
         ), "Collection endpoint failed"
 
-
+def check_comparison(response_file):
+        with open(response_file) as fp:
+            correct_answer = json.load(fp) 
+        res = requests.get(f"{api_root}/comparison/{correct_answer['digests']['a']}/{correct_answer['digests']['b']}")
+        server_answer = json.loads(res.content)
+        assert server_answer == correct_answer, "Comparison endpoint failed"
 class TestAPI:
 
     def test_collection_endpoint(self):
         check_response(*COLLECTION_TESTS[0])
         check_response(*COLLECTION_TESTS[1])
+
+    def test_comparison_endpoint(self):
+        check_comparison(COMPARISON_TESTS[0])
+        check_comparison(COMPARISON_TESTS[1])
