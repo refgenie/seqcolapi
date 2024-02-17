@@ -1,6 +1,7 @@
 # Draft of a compliance suite for the API
 
 import json
+import pytest
 import requests
 
 # Collection endpoints
@@ -25,11 +26,11 @@ COLLECTION_TESTS = [
 ]
 
 COMPARISON_TESTS = [
-    "tests/0-vs-1-comparison.json",
-    "tests/0-vs-2-comparison.json", 
-    "tests/1-vs-2-comparison.json",  # subset
-    "tests/2-vs-3-comparison.json",  # same sequences, different names
-    "tests/5-vs-6-comparison.json",  # sample sequnces, same names, different order
+    "tests/compare_subset.json",  # subset
+    "tests/compare_different_names.json",  # same sequences, different names
+    "tests/compare_different_order.json",  # same sequences, name order switch, but equivalent coordinate system
+    "tests/compare_pair_swap.json",  # swapped name-length-pairs
+    "tests/compare_swap_wo_coords.json",  # swapped name-length-pairs, but no coord system change
 ]
 
 # This is optional, so we could turn off for a compliance test
@@ -64,15 +65,15 @@ def read_url(url):
     return yaml.safe_load(text)
 
 
-def check_response(demo_file, response_file):
+def check_collection(demo_file, response_file):
 
     # Need schema to make sure we eliminate inherent attributes correctly
     schema_path = "https://schema.databio.org/refget/SeqColArraySetInherent.yaml"
 
     schema = read_url(schema_path)
-
+    print(f"Loading fasta file at '{demo_root}/{demo_file}'")
     digest = refget.fasta_file_to_digest(f"{demo_root}/{demo_file}", schema=schema)
-    print(f"Digest: {digest}")
+    print(f"Checking digest: {digest}")
     res = requests.get(f"{api_root}/collection/{digest}")
     server_answer = json.loads(res.content)
     with open(response_file) as fp:
@@ -80,18 +81,18 @@ def check_response(demo_file, response_file):
 
     assert (
         server_answer["sequences"] == correct_answer["sequences"]
-    ), "Collection endpoint failed: sequence mismatch"
+    ), f"Collection endpoint failed: sequence mismatch for {demo_file}"
     assert (
         server_answer["names"] == correct_answer["names"]
-    ), "Collection endpoint failed"
+    ), f"Collection endpoint failed: names mismatch for {demo_file}"
     assert (
         server_answer["lengths"] == correct_answer["lengths"]
-    ), "Collection endpoint failed"
+    ), f"Collection endpoint failed: lengths mismatch for {demo_file}"
     if TEST_SORTED_NAME_LENGTH_PAIRS:
         assert (
             server_answer["sorted_name_length_pairs"]
             == correct_answer["sorted_name_length_pairs"]
-        ), "Collection endpoint failed"
+        ), f"Collection endpoint failed: sorted_name_length_pairs mismatch for {demo_file}"
 
 def check_comparison(response_file):
         with open(response_file) as fp:
@@ -101,10 +102,10 @@ def check_comparison(response_file):
         assert server_answer == correct_answer, "Comparison endpoint failed"
 class TestAPI:
 
-    def test_collection_endpoint(self):
-        check_response(*COLLECTION_TESTS[0])
-        check_response(*COLLECTION_TESTS[1])
+    @pytest.mark.parametrize('test_values', COLLECTION_TESTS)
+    def test_collection_endpoint(self, test_values):
+        check_collection(*test_values)
 
-    def test_comparison_endpoint(self):
-        check_comparison(COMPARISON_TESTS[0])
-        check_comparison(COMPARISON_TESTS[1])
+    @pytest.mark.parametrize("response_file", COMPARISON_TESTS)
+    def test_comparison_endpoint(self, response_file):
+        check_comparison(response_file)

@@ -43,3 +43,45 @@ add_to_seqcol:
       pipestat_modified_time: '2024-02-17 07:40:52'
       Time: 0:00:01
       Success: 02-17-07:40:52
+    base:
+      seqcol_digest: fLf5M0BOIPIqcfbE6R8oYwxsy-PnoV32
+      pipestat_created_time: '2024-02-17 08:43:12'
+      pipestat_modified_time: '2024-02-17 08:43:12'
+      Time: 0:00:01
+      Success: 02-17-08:43:12
+    different_names:
+      seqcol_digest: TKB7n_14iKSFjljBA-TSVjeYpxPQe0-k
+      pipestat_created_time: '2024-02-17 08:43:14'
+      pipestat_modified_time: '2024-02-17 08:43:14'
+      Time: 0:00:01
+      Success: 02-17-08:43:14
+    different_order:
+      seqcol_digest: JPd9Y-hwnhGD7HPe3yka4Qtx2YsIL8tW
+      pipestat_created_time: '2024-02-17 08:43:16'
+      pipestat_modified_time: '2024-02-17 08:43:16'
+      Time: 0:00:01
+      Success: 02-17-08:43:16
+    pair_swap_maintain_coords:
+      seqcol_digest: EkMSPx-_MdAzj2tWGfdFSVsuv03OznPn
+      pipestat_created_time: '2024-02-17 08:43:17'
+      pipestat_modified_time: '2024-02-17 08:43:17'
+      Time: 0:00:01
+      Success: 02-17-08:43:17
+    subset:
+      seqcol_digest: 8aA37TYgiVohRqfRhXEeklIAXf2Rs8jw
+      pipestat_created_time: '2024-02-17 08:43:19'
+      pipestat_modified_time: '2024-02-17 08:43:19'
+      Time: 0:00:01
+      Success: 02-17-08:43:19
+    swap_wo_coords:
+      seqcol_digest: EkMSPx-_MdAzj2tWGfdFSVsuv03OznPn
+      pipestat_created_time: '2024-02-17 08:56:20'
+      pipestat_modified_time: '2024-02-17 08:56:20'
+      Time: 0:00:06
+      Success: 02-17-08:56:20
+    pair_swap:
+      seqcol_digest: E6zGtGuc8wKYmCMw5gaLW3ppyXsoO6p4
+      pipestat_created_time: '2024-02-17 08:56:22'
+      pipestat_modified_time: '2024-02-17 08:56:22'
+      Time: 0:00:01
+      Success: 02-17-08:56:22

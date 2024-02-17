@@ -1,0 +1,5 @@
+sample_name: pair_swap
+fasta_local: data/demo/pair_swap.fa
+fasta: /home/nsheff/code/seqcolapi/analysis/data/test_data/pair_swap.fa
+pipeline_interfaces: /home/nsheff/code/seqcolapi/analysis/demo/../pipeline/pipeline_interface.yaml
+sample_yaml_path: /home/nsheff/code/seqcolapi/analysis/demo/results/submission/pair_swap_sample.yaml

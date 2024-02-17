@@ -62,3 +62,33 @@ checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/demo/demo4.fa --ou
 checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/demo/demo4.fa --output /home/nsheff/code/seqcolapi/analysis/data/demo/demo4.fa.checksums
 # Pipeline started at 02-17 07:40:51
 
+# Pipeline started at 02-17 08:19:33
+
+# Pipeline started at 02-17 08:21:22
+
+# Pipeline started at 02-17 08:23:18
+
+# Pipeline started at 02-17 08:43:11
+
+checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/test_data/base.fa --output /home/nsheff/code/seqcolapi/analysis/data/test_data/base.fa.checksums
+# Pipeline started at 02-17 08:43:13
+
+checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/test_data/different_names.fa --output /home/nsheff/code/seqcolapi/analysis/data/test_data/different_names.fa.checksums
+# Pipeline started at 02-17 08:43:15
+
+checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/test_data/different_order.fa --output /home/nsheff/code/seqcolapi/analysis/data/test_data/different_order.fa.checksums
+# Pipeline started at 02-17 08:43:16
+
+checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/test_data/pair_swap_maintain_coords.fa --output /home/nsheff/code/seqcolapi/analysis/data/test_data/pair_swap_maintain_coords.fa.checksums
+# Pipeline started at 02-17 08:43:18
+
+checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/test_data/subset.fa --output /home/nsheff/code/seqcolapi/analysis/data/test_data/subset.fa.checksums
+# Pipeline started at 02-17 08:55:55
+
+checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/test_data/pair_swap_maintain_coords.fa --output /home/nsheff/code/seqcolapi/analysis/data/test_data/pair_swap_maintain_coords.fa.checksums
+# Pipeline started at 02-17 08:56:14
+
+checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/test_data/swap_wo_coords.fa --output /home/nsheff/code/seqcolapi/analysis/data/test_data/swap_wo_coords.fa.checksums
+# Pipeline started at 02-17 08:56:21
+
+checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/test_data/pair_swap.fa --output /home/nsheff/code/seqcolapi/analysis/data/test_data/pair_swap.fa.checksums

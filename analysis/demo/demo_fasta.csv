@@ -1,8 +1,7 @@
 sample_name,fasta_local
-demo0,data/demo/demo0.fa
-demo1,data/demo/demo1.fa
-demo2,data/demo/demo2.fa
-demo3,data/demo/demo3.fa
-demo4,data/demo/demo4.fa
-demo5,data/demo/demo5.fa
-demo6,data/demo/demo6.fa
+base,data/demo/base.fa
+different_names,data/demo/different_names.fa
+different_order,data/demo/different_order.fa
+swap_wo_coords,data/demo/swap_wo_coords.fa
+pair_swap,data/demo/pair_swap.fa
+subset,data/demo/subset.fa

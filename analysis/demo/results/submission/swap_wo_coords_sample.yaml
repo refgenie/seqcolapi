@@ -1,0 +1,5 @@
+sample_name: swap_wo_coords
+fasta_local: data/demo/swap_wo_coords.fa
+fasta: /home/nsheff/code/seqcolapi/analysis/data/test_data/swap_wo_coords.fa
+pipeline_interfaces: /home/nsheff/code/seqcolapi/analysis/demo/../pipeline/pipeline_interface.yaml
+sample_yaml_path: /home/nsheff/code/seqcolapi/analysis/demo/results/submission/swap_wo_coords_sample.yaml

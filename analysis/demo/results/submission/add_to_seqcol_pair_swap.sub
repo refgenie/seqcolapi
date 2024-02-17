@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo 'Compute node:' `hostname`
+echo 'Start time:' `date +'%Y-%m-%d %T'`
+
+{
+python -u /home/nsheff/code/seqcolapi/analysis/demo/../pipeline/add_to_seqcol_server.py /home/nsheff/code/seqcolapi/analysis/demo/results/submission/pair_swap_sample.yaml /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml  
+} | tee /home/nsheff/code/seqcolapi/analysis/demo/results/submission/add_to_seqcol_pair_swap.log

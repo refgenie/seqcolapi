@@ -2,6 +2,6 @@ project_name: demo
 pipeline_name: add_to_seqcol
 results_file_path: results/pipeline_stats.yaml
 output_dir: /home/nsheff/code/seqcolapi/analysis/demo/results
-record_identifier: demo6
+record_identifier: subset
 schema_path: /home/nsheff/code/seqcolapi/analysis/demo/../pipeline/output_schema.yaml
 pipeline_type: sample

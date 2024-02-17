@@ -1,0 +1,5 @@
+sample_name: subset
+fasta_local: data/demo/subset.fa
+fasta: /home/nsheff/code/seqcolapi/analysis/data/test_data/subset.fa
+pipeline_interfaces: /home/nsheff/code/seqcolapi/analysis/demo/../pipeline/pipeline_interface.yaml
+sample_yaml_path: /home/nsheff/code/seqcolapi/analysis/demo/results/submission/subset_sample.yaml

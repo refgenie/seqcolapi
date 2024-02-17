@@ -6,4 +6,4 @@ sample_modifiers:
   derive:
     attributes: ['fasta']
     sources:
-      demo_data: "${CODE}/seqcolapi/analysis/data/demo/{sample_name}.fa"
+      demo_data: "${CODE}/seqcolapi/analysis/data/test_data/{sample_name}.fa"

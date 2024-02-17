@@ -92,6 +92,9 @@ print(f"SeqColHenge: {schenge}")
 print("Loading from chromsizes...")
 result = schenge.load_from_chromsizes(sample["fasta"] + ".checksums")
 
+print(f"Final seqcol digest: {result['digest']}")  # should be reported by pypiper, but isn't due to bug
+print(result)
+
 # I once thought about just writing it back to the config file, but...
 # there *is* no config file that works like this since I'm using pephub.
 # print(f"Writing digest to config")
