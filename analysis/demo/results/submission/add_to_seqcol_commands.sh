@@ -52,3 +52,13 @@ checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/demo/demo5.fa --ou
 # Pipeline started at 02-15 20:42:05
 
 checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/demo/demo6.fa --output /home/nsheff/code/seqcolapi/analysis/data/demo/demo6.fa.checksums
+# Pipeline started at 02-17 07:23:20
+
+checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/demo/demo4.fa --output /home/nsheff/code/seqcolapi/analysis/data/demo/demo4.fa.checksums
+# Pipeline started at 02-17 07:24:47
+
+# Pipeline started at 02-17 07:31:42
+
+checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/demo/demo4.fa --output /home/nsheff/code/seqcolapi/analysis/data/demo/demo4.fa.checksums
+# Pipeline started at 02-17 07:40:51
+

@@ -2252,3 +2252,425 @@ INFO 2024-02-15 20:42:05,742 | scconf:scconf:168 > Updating existing value for f
 *  Total elapsed time (all runs):  0:00:00
 *         Peak memory (this run):  0 GB
 *        Pipeline completed time: 2024-02-15 20:42:05
+### Pipeline run code and environment:
+
+*              Command:  `/home/nsheff/code/seqcolapi/analysis/demo/../pipeline/add_to_seqcol_server.py /home/nsheff/code/seqcolapi/analysis/demo/results/submission/demo4_sample.yaml /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml`
+*         Compute host:  zither
+*          Working dir:  /home/nsheff/code/seqcolapi/analysis/demo
+*            Outfolder:  /home/nsheff/code/seqcolapi/analysis/demo/results/submission/
+*  Pipeline started at:   (02-17 07:23:20) elapsed: 0.0 _TIME_
+
+### Version log:
+
+*       Python version:  3.11.7
+*          Pypiper dir:  `/home/nsheff/.local/lib/python3.11/site-packages/pypiper`
+*      Pypiper version:  0.14.0
+*         Pipeline dir:  `/home/nsheff/code/seqcolapi/analysis/pipeline`
+*     Pipeline version:  None
+*        Pipeline hash:  c39bac871561302f3f8190c28fd939f14439e1c0
+*      Pipeline branch:  * master
+*        Pipeline date:  2024-02-15 21:36:08 -0500
+*        Pipeline diff:  4 files changed, 9 insertions(+), 3 deletions(-)
+
+### Arguments passed to pipeline:
+
+
+### Initialized Pipestat Object:
+
+* PipestatManager (add_to_seqcol)
+* Backend: File
+*  - results: /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml
+*  - status: /home/nsheff/code/seqcolapi/analysis/demo/results
+* Multiple Pipelines Allowed: False
+* Pipeline name: add_to_seqcol
+* Pipeline type: sample
+* Project Level Data:
+* Sample Level Data:
+*  seqcol_digest : {'type': 'string', 'description': 'seqcol digest'}
+*  Time : {'type': 'string', 'description': 'Elapsed time for the pipeline run as reported by pypiper'}
+*  Success : {'type': 'string', 'description': 'Timestamp for when the pipeline completed'}
+* Status Schema key: {'running': {'description': 'the pipeline is running', 'color': [30, 144, 255]}, 'completed': {'description': 'the pipeline has completed', 'color': [50, 205, 50]}, 'failed': {'description': 'the pipeline has failed', 'color': [220, 20, 60]}, 'waiting': {'description': 'the pipeline is waiting', 'color': [240, 230, 140]}, 'partial': {'description': 'the pipeline stopped before completion point', 'color': [169, 169, 169]}}
+* Results formatter: default_formatter
+* Results schema source: ../pipeline/output_schema.yaml
+* Status schema source: /home/nsheff/.local/lib/python3.11/site-packages/pipestat/schemas/status_schema.yaml
+* Records count: 2
+* Sample name: demo4
+
+
+----------------------------------------
+
+Pipestat manager name: add_to_seqcol
+sample_name: demo4
+pipestat record identifier: demo4
+pipestat_results_file: /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml
+pipestat _file: /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml
+PipestatManager (add_to_seqcol)
+Backend: File
+ - results: /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml
+ - status: /home/nsheff/code/seqcolapi/analysis/demo/results
+Multiple Pipelines Allowed: False
+Pipeline name: add_to_seqcol
+Pipeline type: sample
+Project Level Data:
+Sample Level Data:
+ seqcol_digest : {'type': 'string', 'description': 'seqcol digest'}
+ Time : {'type': 'string', 'description': 'Elapsed time for the pipeline run as reported by pypiper'}
+ Success : {'type': 'string', 'description': 'Timestamp for when the pipeline completed'}
+Status Schema key: {'running': {'description': 'the pipeline is running', 'color': [30, 144, 255]}, 'completed': {'description': 'the pipeline has completed', 'color': [50, 205, 50]}, 'failed': {'description': 'the pipeline has failed', 'color': [220, 20, 60]}, 'waiting': {'description': 'the pipeline is waiting', 'color': [240, 230, 140]}, 'partial': {'description': 'the pipeline stopped before completion point', 'color': [169, 169, 169]}}
+Results formatter: default_formatter
+Results schema source: ../pipeline/output_schema.yaml
+Status schema source: /home/nsheff/.local/lib/python3.11/site-packages/pipestat/schemas/status_schema.yaml
+Records count: 2
+Target to produce: `/home/nsheff/code/seqcolapi/analysis/data/demo/demo4.fa.checksums`  
+
+> `checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/demo/demo4.fa --output /home/nsheff/code/seqcolapi/analysis/data/demo/demo4.fa.checksums` (8252)
+<pre>
+</pre>
+Command completed. Elapsed time: 0:00:00. Running peak memory: 0GB.  
+  PID: 8252;	Command: checksumseq;	Return code: 0;	Memory used: 0.0GB
+
+Traceback (most recent call last):
+  File "/home/nsheff/code/seqcolapi/analysis/demo/../../seqcolapi/scconf.py", line 20, in getenv
+    return os.environ[varname]
+           ~~~~~~~~~~^^^^^^^^^
+  File "<frozen os>", line 679, in __getitem__
+KeyError: 'POSTGRES_DB'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nsheff/code/seqcolapi/analysis/demo/../pipeline/add_to_seqcol_server.py", line 78, in <module>
+    pgdb = RDBDict()  # parameterized through env vars
+           ^^^^^^^^^
+  File "/home/nsheff/code/seqcolapi/analysis/demo/../../seqcolapi/scconf.py", line 89, in __init__
+    self.db_name = db_name or getenv("POSTGRES_DB")
+                              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nsheff/code/seqcolapi/analysis/demo/../../seqcolapi/scconf.py", line 22, in getenv
+    raise Exception(f"Environment variable {varname} not set.")
+Exception: Environment variable POSTGRES_DB not set.
+
+### Pipeline failed at:  (02-17 07:23:20) elapsed: 0.0 _TIME_
+
+Total time: 0:00:00
+Failure reason: Pipeline failure. See details above.
+Exception ignored in atexit callback: <bound method PipelineManager._exit_handler of <pypiper.manager.PipelineManager object at 0x7f23968defd0>>
+Traceback (most recent call last):
+  File "/home/nsheff/.local/lib/python3.11/site-packages/pypiper/manager.py", line 2201, in _exit_handler
+    self.fail_pipeline(Exception("Pipeline failure. See details above."))
+  File "/home/nsheff/.local/lib/python3.11/site-packages/pypiper/manager.py", line 2045, in fail_pipeline
+    raise exc
+Exception: Pipeline failure. See details above.
+### Pipeline run code and environment:
+
+*              Command:  `/home/nsheff/code/seqcolapi/analysis/demo/../pipeline/add_to_seqcol_server.py /home/nsheff/code/seqcolapi/analysis/demo/results/submission/demo4_sample.yaml /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml`
+*         Compute host:  zither
+*          Working dir:  /home/nsheff/code/seqcolapi/analysis/demo
+*            Outfolder:  /home/nsheff/code/seqcolapi/analysis/demo/results/submission/
+*  Pipeline started at:   (02-17 07:24:47) elapsed: 0.0 _TIME_
+
+### Version log:
+
+*       Python version:  3.11.7
+*          Pypiper dir:  `/home/nsheff/.local/lib/python3.11/site-packages/pypiper`
+*      Pypiper version:  0.14.0
+*         Pipeline dir:  `/home/nsheff/code/seqcolapi/analysis/pipeline`
+*     Pipeline version:  None
+*        Pipeline hash:  c39bac871561302f3f8190c28fd939f14439e1c0
+*      Pipeline branch:  * master
+*        Pipeline date:  2024-02-15 21:36:08 -0500
+*        Pipeline diff:  6 files changed, 124 insertions(+), 4 deletions(-)
+
+### Arguments passed to pipeline:
+
+
+### Initialized Pipestat Object:
+
+* PipestatManager (add_to_seqcol)
+* Backend: File
+*  - results: /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml
+*  - status: /home/nsheff/code/seqcolapi/analysis/demo/results
+* Multiple Pipelines Allowed: False
+* Pipeline name: add_to_seqcol
+* Pipeline type: sample
+* Project Level Data:
+* Sample Level Data:
+*  seqcol_digest : {'type': 'string', 'description': 'seqcol digest'}
+*  Time : {'type': 'string', 'description': 'Elapsed time for the pipeline run as reported by pypiper'}
+*  Success : {'type': 'string', 'description': 'Timestamp for when the pipeline completed'}
+* Status Schema key: {'running': {'description': 'the pipeline is running', 'color': [30, 144, 255]}, 'completed': {'description': 'the pipeline has completed', 'color': [50, 205, 50]}, 'failed': {'description': 'the pipeline has failed', 'color': [220, 20, 60]}, 'waiting': {'description': 'the pipeline is waiting', 'color': [240, 230, 140]}, 'partial': {'description': 'the pipeline stopped before completion point', 'color': [169, 169, 169]}}
+* Results formatter: default_formatter
+* Results schema source: ../pipeline/output_schema.yaml
+* Status schema source: /home/nsheff/.local/lib/python3.11/site-packages/pipestat/schemas/status_schema.yaml
+* Records count: 2
+* Sample name: demo4
+
+
+----------------------------------------
+
+Pipestat manager name: add_to_seqcol
+sample_name: demo4
+pipestat record identifier: demo4
+pipestat_results_file: /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml
+pipestat _file: /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml
+PipestatManager (add_to_seqcol)
+Backend: File
+ - results: /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml
+ - status: /home/nsheff/code/seqcolapi/analysis/demo/results
+Multiple Pipelines Allowed: False
+Pipeline name: add_to_seqcol
+Pipeline type: sample
+Project Level Data:
+Sample Level Data:
+ seqcol_digest : {'type': 'string', 'description': 'seqcol digest'}
+ Time : {'type': 'string', 'description': 'Elapsed time for the pipeline run as reported by pypiper'}
+ Success : {'type': 'string', 'description': 'Timestamp for when the pipeline completed'}
+Status Schema key: {'running': {'description': 'the pipeline is running', 'color': [30, 144, 255]}, 'completed': {'description': 'the pipeline has completed', 'color': [50, 205, 50]}, 'failed': {'description': 'the pipeline has failed', 'color': [220, 20, 60]}, 'waiting': {'description': 'the pipeline is waiting', 'color': [240, 230, 140]}, 'partial': {'description': 'the pipeline stopped before completion point', 'color': [169, 169, 169]}}
+Results formatter: default_formatter
+Results schema source: ../pipeline/output_schema.yaml
+Status schema source: /home/nsheff/.local/lib/python3.11/site-packages/pipestat/schemas/status_schema.yaml
+Records count: 2
+Target exists: `/home/nsheff/code/seqcolapi/analysis/data/demo/demo4.fa.checksums`  
+INFO 2024-02-17 07:24:47,737 | scconf:scconf:191 > Connection to PostgreSQL DB successful 
+INFO 2024-02-17 07:24:47,738 | scconf:scconf:105 > <connection object at 0x7fde0fdff4c0; dsn: 'user=seqcol_admin password=xxx dbname=seqcol host=databio-rds.c2i34ludgwj2.us-east-1.rds.amazonaws.com port=5432', closed: 0> 
+INFO 2024-02-17 07:24:47,738 | yacman.yacman1:yacman1:626 > Could not locate seqcol config file. 
+INFO 2024-02-17 07:24:47,738 | henge.henge:henge:50 > Reading URL: https://schema.databio.org/refget/SeqColArraySetInherent.yaml 
+INFO 2024-02-17 07:24:47,866 | refget.seqcol:seqcol:65 > Initializing SeqColHenge 
+SeqColHenge: Henge object. Item types: SeqColArraySet,strarray,intarray,seqarray,sequence
+Loading from chromsizes...
+INFO 2024-02-17 07:24:47,914 | scconf:scconf:168 > Updating existing value for tT6ShOcWyUlHT1gqhYX9Jos9wStqtHBl 
+INFO 2024-02-17 07:24:47,949 | scconf:scconf:168 > Updating existing value for tT6ShOcWyUlHT1gqhYX9Jos9wStqtHBl_item_type 
+INFO 2024-02-17 07:24:47,972 | scconf:scconf:168 > Updating existing value for tT6ShOcWyUlHT1gqhYX9Jos9wStqtHBl_digest_version 
+INFO 2024-02-17 07:24:48,001 | scconf:scconf:168 > Updating existing value for tT6ShOcWyUlHT1gqhYX9Jos9wStqtHBl_external_string 
+INFO 2024-02-17 07:24:48,027 | scconf:scconf:168 > Updating existing value for RgMgL2OKPYdwokXug10nVlzEcwXFv0Pg 
+INFO 2024-02-17 07:24:48,054 | scconf:scconf:168 > Updating existing value for RgMgL2OKPYdwokXug10nVlzEcwXFv0Pg_item_type 
+INFO 2024-02-17 07:24:48,088 | scconf:scconf:168 > Updating existing value for RgMgL2OKPYdwokXug10nVlzEcwXFv0Pg_digest_version 
+INFO 2024-02-17 07:24:48,116 | scconf:scconf:168 > Updating existing value for RgMgL2OKPYdwokXug10nVlzEcwXFv0Pg_external_string 
+INFO 2024-02-17 07:24:48,143 | scconf:scconf:168 > Updating existing value for Qem3pJ27x7C6lAtmwtQcxBNIv0y9eqCF 
+INFO 2024-02-17 07:24:48,167 | scconf:scconf:168 > Updating existing value for Qem3pJ27x7C6lAtmwtQcxBNIv0y9eqCF_item_type 
+INFO 2024-02-17 07:24:48,193 | scconf:scconf:168 > Updating existing value for Qem3pJ27x7C6lAtmwtQcxBNIv0y9eqCF_digest_version 
+INFO 2024-02-17 07:24:48,219 | scconf:scconf:168 > Updating existing value for Qem3pJ27x7C6lAtmwtQcxBNIv0y9eqCF_external_string 
+INFO 2024-02-17 07:24:48,245 | scconf:scconf:168 > Updating existing value for B2kTRHJbed0zMKerGK_fBc08Smiyyxis 
+INFO 2024-02-17 07:24:48,331 | scconf:scconf:168 > Updating existing value for B2kTRHJbed0zMKerGK_fBc08Smiyyxis_item_type 
+INFO 2024-02-17 07:24:48,361 | scconf:scconf:168 > Updating existing value for B2kTRHJbed0zMKerGK_fBc08Smiyyxis_digest_version 
+INFO 2024-02-17 07:24:48,385 | scconf:scconf:168 > Updating existing value for B2kTRHJbed0zMKerGK_fBc08Smiyyxis_external_string 
+INFO 2024-02-17 07:24:48,424 | scconf:scconf:168 > Updating existing value for D96Ze37DS8pG-jJXXjyHbUlb9coGht6g 
+INFO 2024-02-17 07:24:48,449 | scconf:scconf:168 > Updating existing value for D96Ze37DS8pG-jJXXjyHbUlb9coGht6g_item_type 
+INFO 2024-02-17 07:24:48,473 | scconf:scconf:168 > Updating existing value for D96Ze37DS8pG-jJXXjyHbUlb9coGht6g_digest_version 
+INFO 2024-02-17 07:24:48,501 | scconf:scconf:168 > Updating existing value for D96Ze37DS8pG-jJXXjyHbUlb9coGht6g_external_string 
+These results exist for 'demo4': seqcol_digest
+These results exist for 'demo4': Time
+These results exist for 'demo4': Success
+
+### Pipeline completed. Epilogue
+*        Elapsed time (this run):  0:00:01
+*  Total elapsed time (all runs):  0:00:00
+*         Peak memory (this run):  0 GB
+*        Pipeline completed time: 2024-02-17 07:24:48
+### Pipeline run code and environment:
+
+*              Command:  `/home/nsheff/code/seqcolapi/analysis/demo/../pipeline/add_to_seqcol_server.py /home/nsheff/code/seqcolapi/analysis/demo/results/submission/demo4_sample.yaml /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml`
+*         Compute host:  zither
+*          Working dir:  /home/nsheff/code/seqcolapi/analysis/demo
+*            Outfolder:  /home/nsheff/code/seqcolapi/analysis/demo/results/submission/
+*  Pipeline started at:   (02-17 07:31:42) elapsed: 0.0 _TIME_
+
+### Version log:
+
+*       Python version:  3.11.7
+*          Pypiper dir:  `/home/nsheff/.local/lib/python3.11/site-packages/pypiper`
+*      Pypiper version:  0.14.0
+*         Pipeline dir:  `/home/nsheff/code/seqcolapi/analysis/pipeline`
+*     Pipeline version:  None
+*        Pipeline hash:  f651461a3d67d295b6762202e471840e36ab0912
+*      Pipeline branch:  * master
+*        Pipeline date:  2024-02-17 07:26:50 -0500
+*        Pipeline diff:  7 files changed, 232 insertions(+), 5 deletions(-)
+
+### Arguments passed to pipeline:
+
+
+### Initialized Pipestat Object:
+
+* PipestatManager (add_to_seqcol)
+* Backend: File
+*  - results: /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml
+*  - status: /home/nsheff/code/seqcolapi/analysis/demo/results
+* Multiple Pipelines Allowed: False
+* Pipeline name: add_to_seqcol
+* Pipeline type: sample
+* Project Level Data:
+* Sample Level Data:
+*  seqcol_digest : {'type': 'string', 'description': 'seqcol digest'}
+*  Time : {'type': 'string', 'description': 'Elapsed time for the pipeline run as reported by pypiper'}
+*  Success : {'type': 'string', 'description': 'Timestamp for when the pipeline completed'}
+* Status Schema key: {'running': {'description': 'the pipeline is running', 'color': [30, 144, 255]}, 'completed': {'description': 'the pipeline has completed', 'color': [50, 205, 50]}, 'failed': {'description': 'the pipeline has failed', 'color': [220, 20, 60]}, 'waiting': {'description': 'the pipeline is waiting', 'color': [240, 230, 140]}, 'partial': {'description': 'the pipeline stopped before completion point', 'color': [169, 169, 169]}}
+* Results formatter: default_formatter
+* Results schema source: ../pipeline/output_schema.yaml
+* Status schema source: /home/nsheff/.local/lib/python3.11/site-packages/pipestat/schemas/status_schema.yaml
+* Records count: 2
+* Sample name: demo4
+
+
+----------------------------------------
+
+Pipestat manager name: add_to_seqcol
+sample_name: demo4
+pipestat record identifier: demo4
+pipestat_results_file: /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml
+pipestat _file: /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml
+PipestatManager (add_to_seqcol)
+Backend: File
+ - results: /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml
+ - status: /home/nsheff/code/seqcolapi/analysis/demo/results
+Multiple Pipelines Allowed: False
+Pipeline name: add_to_seqcol
+Pipeline type: sample
+Project Level Data:
+Sample Level Data:
+ seqcol_digest : {'type': 'string', 'description': 'seqcol digest'}
+ Time : {'type': 'string', 'description': 'Elapsed time for the pipeline run as reported by pypiper'}
+ Success : {'type': 'string', 'description': 'Timestamp for when the pipeline completed'}
+Status Schema key: {'running': {'description': 'the pipeline is running', 'color': [30, 144, 255]}, 'completed': {'description': 'the pipeline has completed', 'color': [50, 205, 50]}, 'failed': {'description': 'the pipeline has failed', 'color': [220, 20, 60]}, 'waiting': {'description': 'the pipeline is waiting', 'color': [240, 230, 140]}, 'partial': {'description': 'the pipeline stopped before completion point', 'color': [169, 169, 169]}}
+Results formatter: default_formatter
+Results schema source: ../pipeline/output_schema.yaml
+Status schema source: /home/nsheff/.local/lib/python3.11/site-packages/pipestat/schemas/status_schema.yaml
+Records count: 2
+Target to produce: `/home/nsheff/code/seqcolapi/analysis/data/demo/demo4.fa.checksums`  
+
+> `checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/demo/demo4.fa --output /home/nsheff/code/seqcolapi/analysis/data/demo/demo4.fa.checksums` (11896)
+<pre>
+</pre>
+Command completed. Elapsed time: 0:00:00. Running peak memory: 0GB.  
+  PID: 11896;	Command: checksumseq;	Return code: 0;	Memory used: 0.0GB
+
+INFO 2024-02-17 07:31:42,253 | scconf:scconf:191 > Connection to PostgreSQL DB successful 
+INFO 2024-02-17 07:31:42,253 | scconf:scconf:105 > <connection object at 0x7ff9499e34c0; dsn: 'user=seqcol_admin password=xxx dbname=seqcol host=databio-rds.c2i34ludgwj2.us-east-1.rds.amazonaws.com port=5432', closed: 0> 
+INFO 2024-02-17 07:31:42,253 | yacman.yacman1:yacman1:626 > Could not locate seqcol config file. 
+INFO 2024-02-17 07:31:42,253 | henge.henge:henge:50 > Reading URL: https://schema.databio.org/refget/SeqColArraySetInherent.yaml 
+INFO 2024-02-17 07:31:42,334 | refget.seqcol:seqcol:65 > Initializing SeqColHenge 
+SeqColHenge: Henge object. Item types: SeqColArraySet,strarray,intarray,seqarray,sequence
+Loading from chromsizes...
+INFO 2024-02-17 07:31:42,364 | scconf:scconf:168 > Updating existing value for x5qpE4FtMkvlwpKIzvHs3a02Nex5tthp 
+INFO 2024-02-17 07:31:42,392 | scconf:scconf:168 > Updating existing value for x5qpE4FtMkvlwpKIzvHs3a02Nex5tthp_item_type 
+INFO 2024-02-17 07:31:42,432 | scconf:scconf:168 > Updating existing value for x5qpE4FtMkvlwpKIzvHs3a02Nex5tthp_digest_version 
+INFO 2024-02-17 07:31:42,459 | scconf:scconf:168 > Updating existing value for x5qpE4FtMkvlwpKIzvHs3a02Nex5tthp_external_string 
+INFO 2024-02-17 07:31:42,551 | scconf:scconf:168 > Updating existing value for jRkQnIS5K5k9WIkLxiJ0pvsPimKOM_ij 
+INFO 2024-02-17 07:31:42,579 | scconf:scconf:168 > Updating existing value for jRkQnIS5K5k9WIkLxiJ0pvsPimKOM_ij_item_type 
+INFO 2024-02-17 07:31:42,606 | scconf:scconf:168 > Updating existing value for jRkQnIS5K5k9WIkLxiJ0pvsPimKOM_ij_digest_version 
+INFO 2024-02-17 07:31:42,635 | scconf:scconf:168 > Updating existing value for jRkQnIS5K5k9WIkLxiJ0pvsPimKOM_ij_external_string 
+INFO 2024-02-17 07:31:42,662 | scconf:scconf:168 > Updating existing value for EXmqru5BC4Nu8beq86XdCJrEb6jg6-Z_ 
+INFO 2024-02-17 07:31:42,686 | scconf:scconf:168 > Updating existing value for EXmqru5BC4Nu8beq86XdCJrEb6jg6-Z__item_type 
+INFO 2024-02-17 07:31:42,711 | scconf:scconf:168 > Updating existing value for EXmqru5BC4Nu8beq86XdCJrEb6jg6-Z__digest_version 
+INFO 2024-02-17 07:31:42,742 | scconf:scconf:168 > Updating existing value for EXmqru5BC4Nu8beq86XdCJrEb6jg6-Z__external_string 
+These results exist for 'demo4': seqcol_digest
+These results exist for 'demo4': Time
+These results exist for 'demo4': Success
+
+### Pipeline completed. Epilogue
+*        Elapsed time (this run):  0:00:01
+*  Total elapsed time (all runs):  0:00:00
+*         Peak memory (this run):  0 GB
+*        Pipeline completed time: 2024-02-17 07:31:42
+### Pipeline run code and environment:
+
+*              Command:  `/home/nsheff/code/seqcolapi/analysis/demo/../pipeline/add_to_seqcol_server.py /home/nsheff/code/seqcolapi/analysis/demo/results/submission/demo4_sample.yaml /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml`
+*         Compute host:  zither
+*          Working dir:  /home/nsheff/code/seqcolapi/analysis/demo
+*            Outfolder:  /home/nsheff/code/seqcolapi/analysis/demo/results/submission/
+*  Pipeline started at:   (02-17 07:40:51) elapsed: 0.0 _TIME_
+
+### Version log:
+
+*       Python version:  3.11.7
+*          Pypiper dir:  `/home/nsheff/.local/lib/python3.11/site-packages/pypiper`
+*      Pypiper version:  0.14.0
+*         Pipeline dir:  `/home/nsheff/code/seqcolapi/analysis/pipeline`
+*     Pipeline version:  None
+*        Pipeline hash:  f651461a3d67d295b6762202e471840e36ab0912
+*      Pipeline branch:  * master
+*        Pipeline date:  2024-02-17 07:26:50 -0500
+*        Pipeline diff:  8 files changed, 342 insertions(+), 10 deletions(-)
+
+### Arguments passed to pipeline:
+
+
+### Initialized Pipestat Object:
+
+* PipestatManager (add_to_seqcol)
+* Backend: File
+*  - results: /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml
+*  - status: /home/nsheff/code/seqcolapi/analysis/demo/results
+* Multiple Pipelines Allowed: False
+* Pipeline name: add_to_seqcol
+* Pipeline type: sample
+* Project Level Data:
+* Sample Level Data:
+*  seqcol_digest : {'type': 'string', 'description': 'seqcol digest'}
+*  Time : {'type': 'string', 'description': 'Elapsed time for the pipeline run as reported by pypiper'}
+*  Success : {'type': 'string', 'description': 'Timestamp for when the pipeline completed'}
+* Status Schema key: {'running': {'description': 'the pipeline is running', 'color': [30, 144, 255]}, 'completed': {'description': 'the pipeline has completed', 'color': [50, 205, 50]}, 'failed': {'description': 'the pipeline has failed', 'color': [220, 20, 60]}, 'waiting': {'description': 'the pipeline is waiting', 'color': [240, 230, 140]}, 'partial': {'description': 'the pipeline stopped before completion point', 'color': [169, 169, 169]}}
+* Results formatter: default_formatter
+* Results schema source: ../pipeline/output_schema.yaml
+* Status schema source: /home/nsheff/.local/lib/python3.11/site-packages/pipestat/schemas/status_schema.yaml
+* Records count: 2
+* Sample name: demo4
+
+
+----------------------------------------
+
+Pipestat manager name: add_to_seqcol
+sample_name: demo4
+pipestat record identifier: demo4
+pipestat_results_file: /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml
+pipestat _file: /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml
+PipestatManager (add_to_seqcol)
+Backend: File
+ - results: /home/nsheff/code/seqcolapi/analysis/demo/results/pipeline_stats.yaml
+ - status: /home/nsheff/code/seqcolapi/analysis/demo/results
+Multiple Pipelines Allowed: False
+Pipeline name: add_to_seqcol
+Pipeline type: sample
+Project Level Data:
+Sample Level Data:
+ seqcol_digest : {'type': 'string', 'description': 'seqcol digest'}
+ Time : {'type': 'string', 'description': 'Elapsed time for the pipeline run as reported by pypiper'}
+ Success : {'type': 'string', 'description': 'Timestamp for when the pipeline completed'}
+Status Schema key: {'running': {'description': 'the pipeline is running', 'color': [30, 144, 255]}, 'completed': {'description': 'the pipeline has completed', 'color': [50, 205, 50]}, 'failed': {'description': 'the pipeline has failed', 'color': [220, 20, 60]}, 'waiting': {'description': 'the pipeline is waiting', 'color': [240, 230, 140]}, 'partial': {'description': 'the pipeline stopped before completion point', 'color': [169, 169, 169]}}
+Results formatter: default_formatter
+Results schema source: ../pipeline/output_schema.yaml
+Status schema source: /home/nsheff/.local/lib/python3.11/site-packages/pipestat/schemas/status_schema.yaml
+Records count: 2
+Target exists: `/home/nsheff/code/seqcolapi/analysis/data/demo/demo4.fa.checksums`  
+INFO 2024-02-17 07:40:51,267 | scconf:scconf:191 > Connection to PostgreSQL DB successful 
+INFO 2024-02-17 07:40:51,267 | scconf:scconf:105 > <connection object at 0x7fe46243b4c0; dsn: 'user=seqcol_admin password=xxx dbname=seqcol host=databio-rds.c2i34ludgwj2.us-east-1.rds.amazonaws.com port=5432', closed: 0> 
+INFO 2024-02-17 07:40:51,267 | yacman.yacman1:yacman1:626 > Could not locate seqcol config file. 
+INFO 2024-02-17 07:40:51,267 | henge.henge:henge:50 > Reading URL: https://schema.databio.org/refget/SeqColArraySetInherent.yaml 
+INFO 2024-02-17 07:40:51,370 | refget.seqcol:seqcol:65 > Initializing SeqColHenge 
+SeqColHenge: Henge object. Item types: SeqColArraySet,strarray,intarray,seqarray,sequence
+Loading from chromsizes...
+INFO 2024-02-17 07:40:51,412 | scconf:scconf:168 > Updating existing value for x5qpE4FtMkvlwpKIzvHs3a02Nex5tthp 
+INFO 2024-02-17 07:40:51,439 | scconf:scconf:168 > Updating existing value for x5qpE4FtMkvlwpKIzvHs3a02Nex5tthp_item_type 
+INFO 2024-02-17 07:40:51,465 | scconf:scconf:168 > Updating existing value for x5qpE4FtMkvlwpKIzvHs3a02Nex5tthp_digest_version 
+INFO 2024-02-17 07:40:51,490 | scconf:scconf:168 > Updating existing value for x5qpE4FtMkvlwpKIzvHs3a02Nex5tthp_external_string 
+INFO 2024-02-17 07:40:51,569 | scconf:scconf:168 > Updating existing value for gSWbV6khfIsnlQTyw1PmlQ8G7VRfIWbU 
+INFO 2024-02-17 07:40:51,604 | scconf:scconf:168 > Updating existing value for gSWbV6khfIsnlQTyw1PmlQ8G7VRfIWbU_item_type 
+INFO 2024-02-17 07:40:51,629 | scconf:scconf:168 > Updating existing value for gSWbV6khfIsnlQTyw1PmlQ8G7VRfIWbU_digest_version 
+INFO 2024-02-17 07:40:51,661 | scconf:scconf:168 > Updating existing value for gSWbV6khfIsnlQTyw1PmlQ8G7VRfIWbU_external_string 
+INFO 2024-02-17 07:40:51,690 | scconf:scconf:168 > Updating existing value for jRkQnIS5K5k9WIkLxiJ0pvsPimKOM_ij 
+INFO 2024-02-17 07:40:51,741 | scconf:scconf:168 > Updating existing value for jRkQnIS5K5k9WIkLxiJ0pvsPimKOM_ij_item_type 
+INFO 2024-02-17 07:40:51,765 | scconf:scconf:168 > Updating existing value for jRkQnIS5K5k9WIkLxiJ0pvsPimKOM_ij_digest_version 
+INFO 2024-02-17 07:40:51,789 | scconf:scconf:168 > Updating existing value for jRkQnIS5K5k9WIkLxiJ0pvsPimKOM_ij_external_string 
+INFO 2024-02-17 07:40:51,822 | scconf:scconf:168 > Updating existing value for EXmqru5BC4Nu8beq86XdCJrEb6jg6-Z_ 
+INFO 2024-02-17 07:40:51,846 | scconf:scconf:168 > Updating existing value for EXmqru5BC4Nu8beq86XdCJrEb6jg6-Z__item_type 
+INFO 2024-02-17 07:40:51,871 | scconf:scconf:168 > Updating existing value for EXmqru5BC4Nu8beq86XdCJrEb6jg6-Z__digest_version 
+INFO 2024-02-17 07:40:51,897 | scconf:scconf:168 > Updating existing value for EXmqru5BC4Nu8beq86XdCJrEb6jg6-Z__external_string 
+INFO 2024-02-17 07:40:51,926 | scconf:scconf:168 > Updating existing value for fA00QeHT0S71LuhX_QBMWVFEEnijlHSm 
+INFO 2024-02-17 07:40:51,950 | scconf:scconf:168 > Updating existing value for fA00QeHT0S71LuhX_QBMWVFEEnijlHSm_item_type 
+INFO 2024-02-17 07:40:51,977 | scconf:scconf:168 > Updating existing value for fA00QeHT0S71LuhX_QBMWVFEEnijlHSm_digest_version 
+INFO 2024-02-17 07:40:52,002 | scconf:scconf:168 > Updating existing value for fA00QeHT0S71LuhX_QBMWVFEEnijlHSm_external_string 
+
+### Pipeline completed. Epilogue
+*        Elapsed time (this run):  0:00:01
+*  Total elapsed time (all runs):  0:00:00
+*         Peak memory (this run):  0 GB
+*        Pipeline completed time: 2024-02-17 07:40:52

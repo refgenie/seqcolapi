@@ -41,6 +41,8 @@ looper run --package local
 2. Run looper on it.
 
 ```
-source servers/seqcolapi.databio.org/production.env
+cd demo
+source ../../servers/seqcolapi.databio.org/production.env
 # looper run --limit 1 --package local  # for testing
-looper run --package local config/demo_fasta.csv --limit 1
+looper run --package local --limit 1
+```
