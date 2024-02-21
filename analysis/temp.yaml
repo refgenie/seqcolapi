@@ -1,0 +1,91 @@
+refget:
+  project: {}
+  sample:
+    sample2:
+      value: arg
+      pipestat_created_time: '2024-02-20 21:53:22'
+      pipestat_modified_time: '2024-02-20 21:53:22'
+    sample5:
+      value: lookie!
+      pipestat_created_time: '2024-02-20 21:56:15'
+      pipestat_modified_time: '2024-02-20 21:56:15'
+    cGRMZIb3AVgkcAfNv39RN7hnT5Chk7RX:
+      value: '[8,4,4]'
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    cGRMZIb3AVgkcAfNv39RN7hnT5Chk7RX_item_type:
+      value: intarray
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    cGRMZIb3AVgkcAfNv39RN7hnT5Chk7RX_digest_version:
+      value: md5
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    cGRMZIb3AVgkcAfNv39RN7hnT5Chk7RX_external_string:
+      value: 'null'
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    Fw1r9eRxfOZD98KKrhlYQNEdSRHoVxAG:
+      value: '["chrX","chr1","chr2"]'
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    Fw1r9eRxfOZD98KKrhlYQNEdSRHoVxAG_item_type:
+      value: strarray
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    Fw1r9eRxfOZD98KKrhlYQNEdSRHoVxAG_digest_version:
+      value: md5
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    Fw1r9eRxfOZD98KKrhlYQNEdSRHoVxAG_external_string:
+      value: 'null'
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    0uDQVLuHaOZi1u76LjV__yrVUIz9Bwhr:
+      value: '["SQ.iYtREV555dUFKg2_agSJW6suquUyPpMw","SQ.YBbVX0dLKG1ieEDCiMmkrTZFt_Z5Vdaj","SQ.AcLxtBuKEPk_7PGE_H4dGElwZHCujwH6"]'
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    0uDQVLuHaOZi1u76LjV__yrVUIz9Bwhr_item_type:
+      value: seqarray
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    0uDQVLuHaOZi1u76LjV__yrVUIz9Bwhr_digest_version:
+      value: md5
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    0uDQVLuHaOZi1u76LjV__yrVUIz9Bwhr_external_string:
+      value: 'null'
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    zjM1Ie9m0zFbqsAnZ6jAJSXuFpKTr40J:
+      value: '["IWFt7HQ4XoMk34U27BKO-4szSRifP6H5","chDD8A4S8YZKNNctCimHasAA2Dn596SZ","enZNOGccwFbN9yJ3YZVifFTFCVA9hIpH"]'
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    zjM1Ie9m0zFbqsAnZ6jAJSXuFpKTr40J_item_type:
+      value: strarray
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    zjM1Ie9m0zFbqsAnZ6jAJSXuFpKTr40J_digest_version:
+      value: md5
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    zjM1Ie9m0zFbqsAnZ6jAJSXuFpKTr40J_external_string:
+      value: 'null'
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    fLf5M0BOIPIqcfbE6R8oYwxsy-PnoV32:
+      value: '{"lengths":"cGRMZIb3AVgkcAfNv39RN7hnT5Chk7RX","names":"Fw1r9eRxfOZD98KKrhlYQNEdSRHoVxAG","sequences":"0uDQVLuHaOZi1u76LjV__yrVUIz9Bwhr"}'
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    fLf5M0BOIPIqcfbE6R8oYwxsy-PnoV32_item_type:
+      value: SeqColArraySet
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    fLf5M0BOIPIqcfbE6R8oYwxsy-PnoV32_digest_version:
+      value: md5
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'
+    fLf5M0BOIPIqcfbE6R8oYwxsy-PnoV32_external_string:
+      value: '{"sorted_name_length_pairs":"zjM1Ie9m0zFbqsAnZ6jAJSXuFpKTr40J"}'
+      pipestat_created_time: '2024-02-21 07:36:32'
+      pipestat_modified_time: '2024-02-21 07:36:32'

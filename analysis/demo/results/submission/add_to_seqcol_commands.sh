@@ -92,3 +92,5 @@ checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/test_data/swap_wo_
 # Pipeline started at 02-17 08:56:21
 
 checksumseq --input /home/nsheff/code/seqcolapi/analysis/data/test_data/pair_swap.fa --output /home/nsheff/code/seqcolapi/analysis/data/test_data/pair_swap.fa.checksums
+# Pipeline started at 02-17 14:21:01
+
