@@ -18,7 +18,6 @@ uvicorn seqcolapi.main:app --reload --port 8100
 To run a local server with **the production database**:
 ```
 source servers/seqcolapi.databio.org/production.env
-export SEQCOLAPI_CONFIG=servers/seqcolapi.databio.org/seqcolapi.yaml
 uvicorn seqcolapi.main:app --reload --port 8100
 ```
 
