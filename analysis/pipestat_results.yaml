@@ -1,0 +1,10 @@
+refget:
+  project: {}
+  sample:
+    sample1:
+      value: '123'
+      pipestat_created_time: '2024-02-21 19:04:25'
+      pipestat_modified_time: '2024-02-21 19:05:01'
+      mydict:
+        toplevel:
+          value: '456'
