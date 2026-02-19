@@ -1,5 +1,9 @@
 # seqcolapi
 
+> **ARCHIVED:** This repository has been consolidated into [refgenie/refget](https://github.com/refgenie/refget). The `seqcolapi` funcionality now lives at `refget/seqcolapi/` within the refget repository. All future development happens there. This repo is preserved for historical reference only.
+
+---
+
 This repository contains:
 
 1. Sequence collections API software (the `seqcolapi` package). This package is based on the `refget` package. It simply provides an wrapper to implement the Sequence Collections API.
